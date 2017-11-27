@@ -1,0 +1,17 @@
+*.orig
+*.py[cod]
+.idea/
+/jewishdiaspora/local_settings.py
+/uploads/
+*~
+*.pot
+Include/
+Lib/
+Scripts/
+man/
+pip-selfcheck.json
+share/
+lib/
+local/
+bin/
+include/
