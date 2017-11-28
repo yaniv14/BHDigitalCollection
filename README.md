@@ -11,9 +11,9 @@
 
 * Migrate tables
 	
-	m migrate
-	m makemigrations artifacts
-	m sqlmigrate artifacts 0001
+	    m migrate
+	    m makemigrations artifacts
+	    m sqlmigrate artifacts 0001
 
 * Create tables:
 
