@@ -1,26 +1,29 @@
 # Setup instructions
 
-* Clone this repo.
+* Clone repository from your own fork::
+    
+        git clone git@github.com:your_user_name/JewishDiaspora.git
+
 * Create a virtualenv:
 
         mkvirtualenv diaspora
+
+* Upgrade pip:
+
+        pip install -U pip
 
 * Install requirements:
 
         pip install -r requirements.txt
 
-* Migrate tables
+* Migrate latest changes::
 
-	    m migrate
-	    m makemigrations artifacts
-	    m sqlmigrate artifacts 0001
+        python manage.py migrate
 
-* Create tables:
+* Create a superuser::
 
-        m migrate
+        python manage.py createsuperuser myname
 
-* Run your server:
+* Run the server::
 
-        m runserver
-
-* Enjoy: http://localhost:8000/
+        python manage.py runserver

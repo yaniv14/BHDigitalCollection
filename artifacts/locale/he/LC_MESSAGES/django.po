@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 00:57+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:14
+msgid "Pending approval"
+msgstr ""
+
+#: models.py:15
+msgid "Missing info"
+msgstr ""
+
+#: models.py:16
+msgid "Approved"
+msgstr ""
+
+#: models.py:17
+msgid "Rejected"
+msgstr ""
+
+#: models.py:22 models.py:36
+msgid "Name"
+msgstr ""
+
+#: models.py:23
+msgid "Parent category"
+msgstr ""
+
+#: models.py:34
+msgid "Status"
+msgstr ""
+
+#: models.py:35
+msgid "Privately owned artifact"
+msgstr ""
+
+#: models.py:37
+msgid "Category"
+msgstr ""
+
+#: models.py:38
+msgid "Era/Years range"
+msgstr ""
+
+#: models.py:39
+msgid "Technical data"
+msgstr ""
+
+#: models.py:40 models.py:57
+msgid "Description"
+msgstr ""
+
+#: models.py:41
+msgid "Short description"
+msgstr ""
+
+#: models.py:42
+msgid "City"
+msgstr ""
+
+#: models.py:43
+msgid "Country"
+msgstr ""
+
+#: models.py:44
+msgid "Area"
+msgstr ""
+
+#: models.py:45
+msgid "Displayed in museum?"
+msgstr ""
+
+#: models.py:46
+msgid "Artifact location in museum"
+msgstr ""
+
+#: models.py:47
+msgid "Donor name"
+msgstr ""
+
+#: models.py:48
+msgid "Display donor name?"
+msgstr ""
+
+#: models.py:55
+msgid "Artifact"
+msgstr ""
+
+#: models.py:56 models.py:68
+msgid "Image"
+msgstr ""
+
+#: models.py:58
+msgid "Credit"
+msgstr ""
+
+#: models.py:59
+msgid "Year/Era"
+msgstr ""
+
+#: models.py:60
+msgid "Image location"
+msgstr ""
+
+#: models.py:61
+msgid "Cover image?"
+msgstr ""
+
+#: models.py:69
+msgid "X"
+msgstr ""
+
+#: models.py:70
+msgid "Y"
+msgstr ""
+
+#: models.py:71
+msgid "Width"
+msgstr ""
+
+#: models.py:72
+msgid "Height"
+msgstr ""
+
+#: models.py:73
+msgid "Info"
+msgstr ""

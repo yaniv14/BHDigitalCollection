@@ -1,3 +1,17 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+
+class ArtifactImageInline(admin.TabularInline):
+    model = models.ArtifactImage
+    extra = 1
+
+
+class ArtifactAdmin(admin.ModelAdmin):
+    inlines = [
+        ArtifactImageInline,
+    ]
+
+
+admin.site.register(models.Category)
+admin.site.register(models.Artifact, ArtifactAdmin)
