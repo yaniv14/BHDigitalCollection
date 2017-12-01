@@ -22,7 +22,7 @@
 
 * Create a superuser::
 
-        python manage.py createsuperuser myname
+        python manage.py createsuperuser
 
 * Run the server::
 
