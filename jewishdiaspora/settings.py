@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 3rd-party:
     'authtools',
     'django_countries',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
