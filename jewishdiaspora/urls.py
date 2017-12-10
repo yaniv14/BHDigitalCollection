@@ -10,6 +10,7 @@ from artifacts import views
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
+    path('artifact/', include('artifacts.urls')),
     path('accounts/', include('authtools.urls')),
     path('jsi18n/', JavaScriptCatalog.as_view(packages=['artifacts']), name='javascript-catalog'),
     path('i18n/', include('django.conf.urls.i18n')),

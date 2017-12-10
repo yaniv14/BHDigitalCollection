@@ -1,0 +1,65 @@
+{% load i18n jewishdiaspora %}
+
+<form {% if form_id %}id="{{ form_id }}" {% endif %} method="post" autocomplete="off"{% if action %}
+                       action="{{ action }}"{% endif %}{% if with_files %} enctype="multipart/form-data"{% endif %}>
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% if form.non_field_errors %}
+                {{ form.non_field_errors.as_text }}
+            {% elif form.errors %}
+                {% trans 'Please fix all fields marked in red' %}
+            {% endif %}
+        </div>
+    {% endif %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+        <div class="form-group{% if field.field.required %} required{% endif %}{% if field.errors %} has-danger{% endif %}">
+            {% if field|is_checkbox %}
+                <label>
+                    {{ field }}
+                    <span>{{ field.label }}</span>
+                </label>
+                {% if field.help_text %}
+                    <small id="{{ field.html_name }}Help" class="form-text text-muted">
+                        {{ field.help_text|safe }}
+                    </small>
+                {% endif %}
+            {% else %}
+                {% if labels %}{{ field.label_tag }}{% endif %}
+                {% if field.errors %}
+                    {{ field|addcss:"form-control has-warning" }}
+                {% else %}
+                    {{ field|addcss:"form-control" }}
+                {% endif %}
+                {% if field.help_text %}
+                    <small id="{{ field.html_name }}Help" class="form-text text-muted">
+                        {{ field.help_text|safe }}
+                    </small>
+                {% endif %}
+            {% endif %}
+            {% if field.errors %}
+                <div class="form-control-feedback">{{ field.errors.as_text }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% if form_error %}
+        <p class="errors color-orange"></p>
+    {% endif %}
+    <div class="form-group">
+        <button type="submit" class="pointer btn btn-{% if button_color %}{{ button_color }}{% else %}primary{% endif %}">
+            {% if submit_text %}
+                {% trans submit_text %}
+            {% else %}
+                {% trans 'Submit' %}
+            {% endif %}
+        </button>
+        {% if login_form %}
+            <a href="{% url 'users:password_reset' %}" class="color-blue fonts13">
+                {% trans 'Forgot password' %}?
+            </a>
+        {% endif %}
+    </div>
+</form>

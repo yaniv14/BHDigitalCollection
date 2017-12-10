@@ -50,6 +50,13 @@ class Artifact(models.Model):
     def __str__(self):
         return self.name
 
+    def get_cover_image(self):
+        image = self.images.filter(is_cover=True).first()
+        if image:
+            return image.image
+
+        return None
+
 
 class ArtifactImage(models.Model):
     artifact = models.ForeignKey(Artifact, verbose_name=_('Artifact'), on_delete=models.CASCADE, related_name='images')
