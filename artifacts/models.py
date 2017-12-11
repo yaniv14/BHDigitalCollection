@@ -55,6 +55,7 @@ class Artifact(models.Model):
         if image:
             return image.image
 
+        # return some default image instead
         return None
 
 

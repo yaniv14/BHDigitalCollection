@@ -45,8 +45,9 @@
             {% endif %}
         </div>
     {% endfor %}
-    {% if form_error %}
-        <p class="errors color-orange"></p>
+    {% if formset %}
+        <hr>
+        {% include '_base_formset.html' with form=artifact_image_formset %}
     {% endif %}
     <div class="form-group">
         <button type="submit" class="pointer btn btn-{% if button_color %}{{ button_color }}{% else %}primary{% endif %}">
