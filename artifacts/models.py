@@ -31,7 +31,6 @@ class Artifact(models.Model):
     year_era = models.CharField(_('Era/Years range'), max_length=200)
     technical_data = models.TextField(_('Technical data'))
     description = models.TextField(_('Description'))
-    short_description = models.TextField(_('Short description'), blank=True, null=True)
     origin_city = models.CharField(_('City'), max_length=100, blank=True, null=True)
     origin_country = CountryField(_('Country'), blank=True, null=True)
     origin_area = models.CharField(_('Area'), max_length=250, blank=True, null=True)
