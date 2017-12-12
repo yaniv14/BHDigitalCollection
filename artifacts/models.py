@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.db import models
 from django_countries.fields import CountryField
+from taggit.managers import TaggableManager
 
 
 class ArtifactStatus(object):
@@ -18,14 +19,6 @@ class ArtifactStatus(object):
     )
 
 
-class Category(models.Model):
-    name = models.CharField(_('Name'), max_length=200)
-    parent_category = models.ForeignKey('self', verbose_name=_('Parent category'), on_delete=models.SET_NULL, blank=True, null=True, related_name='parents')
-
-    def __str__(self):
-        return self.name
-
-
 class Artifact(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='uploaded_artifacts', null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
@@ -34,7 +27,7 @@ class Artifact(models.Model):
     status = models.PositiveSmallIntegerField(_('Status'), choices=ArtifactStatus.choices, default=ArtifactStatus.PENDING)
     is_private = models.BooleanField(_('Privately owned artifact'), default=False)
     name = models.CharField(_('Name'), max_length=250)
-    category = models.ForeignKey(Category, verbose_name=_('Category'), on_delete=models.SET_NULL, blank=True, null=True, related_name='artifacts')
+    tags = TaggableManager()
     year_era = models.CharField(_('Era/Years range'), max_length=200)
     technical_data = models.TextField(_('Technical data'))
     description = models.TextField(_('Description'))

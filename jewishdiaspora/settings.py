@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # 3rd-party:
     'authtools',
+    'taggit',
     'django_countries',
     'django_extensions',
 ]

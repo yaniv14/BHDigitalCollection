@@ -13,5 +13,4 @@ class ArtifactAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(models.Category)
 admin.site.register(models.Artifact, ArtifactAdmin)
