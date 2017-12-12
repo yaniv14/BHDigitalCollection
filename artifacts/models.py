@@ -27,7 +27,7 @@ class Artifact(models.Model):
     status = models.PositiveSmallIntegerField(_('Status'), choices=ArtifactStatus.choices, default=ArtifactStatus.PENDING)
     is_private = models.BooleanField(_('Privately owned artifact'), default=False)
     name = models.CharField(_('Name'), max_length=250)
-    tags = TaggableManager()
+    tags = TaggableManager(verbose_name=_('Tags'), blank=True)
     year_era = models.CharField(_('Era/Years range'), max_length=200)
     technical_data = models.TextField(_('Technical data'))
     description = models.TextField(_('Description'))
