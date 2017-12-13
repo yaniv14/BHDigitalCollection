@@ -1,0 +1,50 @@
+{% extends 'artifacts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+      1.  קצת פרטים עליך
+</div>
+<div>
+    <h5> 1. Please tell us about yourself </h5>
+</div>
+
+<hr/>
+
+    <form>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" id="fullName" aria-describedby="name" placeholder="Enter full name">
+            <small id="fullName1" class="form-text text-muted">Please emter your name.</small>
+        </div>
+        <div class="row ">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <span class="help-block text-muted small-font"> Phone number</span>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <span class="help-block text-muted small-font"> </span>
+                <label for="phone7"> </label>
+                <select class="form-control" id="phone3">
+                    <option>050</option>
+                    <option>052</option>
+                    <option>053</option>
+                    <option>054</option>
+                    <option>077</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">
+                I would like my name to be displayed next to the artifact image
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
