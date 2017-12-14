@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import include
+from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
@@ -11,6 +11,7 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('artifact/', include('artifacts.urls')),
+    url(r'^new/$', views.TheNewForm.as_view(), name='artifacts_donors_registration'),
     path('accounts/', include('authtools.urls')),
     path('jsi18n/', JavaScriptCatalog.as_view(packages=['artifacts']), name='javascript-catalog'),
     path('i18n/', include('django.conf.urls.i18n')),
