@@ -34,8 +34,14 @@ class HomeView(JewishDiasporaUIMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['bigs'] = [1, 6, 7, 12, 13, 18, 19, 24]
+        context['bigs'] = [1, 6, 7, 12, 13, 18, 19, 24, 25, 30, 31, 36, 37, 42, 43, 48, 49]
         return context
+
+
+class AboutView(JewishDiasporaUIMixin, TemplateView):
+    template_name = 'artifacts/about.html'
+    page_title = _('About')
+    page_name = 'about'
 
 
 class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
