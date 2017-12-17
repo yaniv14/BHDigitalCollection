@@ -2,17 +2,15 @@
 {% load static i18n %}
 
 {% block content %}
-    <div class="row">
+    <div class="card-columns artifact-set">
         {% for artifact in artifacts %}
-            <div class="col-6 col-md-3 artifact-set">
-                <div class="card">
-                    <img class="card-img-top"
-                         src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
-                         alt="{{ artifact.name }}">
-                    <a href="{% url 'artifacts:detail' artifact.id %}">
-                        <span>{{ artifact.name }}</span>
-                    </a>
-                </div>
+            <div class="card">
+                <img class="card-img-top"
+                     src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
+                     alt="{{ artifact.name }}">
+                <a href="{% url 'artifacts:detail' artifact.id %}">
+                    <span>{{ artifact.name }}</span>
+                </a>
             </div>
         {% endfor %}
     </div>
