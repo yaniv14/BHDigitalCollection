@@ -38,19 +38,19 @@ class HomeView(JewishDiasporaUIMixin, ListView):
         return context
 
 
-class ArtifactListView(JewishDiasporaUIMixin, ListView):
-    template_name = 'artifacts/artifact_list.html'
+class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
+    template_name = 'artifacts/users_artifact_list.html'
     model = Artifact
     context_object_name = 'artifacts'
-    page_title = _('Artifacts list')
-    page_name = 'artifact_list'
+    page_title = _('Users artifacts list')
+    page_name = 'users_artifact_list'
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
             if self.request.user.is_superuser:
-                return super(ArtifactListView, self).get_queryset()
+                return super(ArtifactUsersListView, self).get_queryset().filter(is_private=True)
 
-        return super(ArtifactListView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False)
+        return super(ArtifactUsersListView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=True)
 
 
 class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
