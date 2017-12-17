@@ -1,0 +1,150 @@
+/* Generic */
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Header */
+header .header-top {
+    width: 100%;
+    height: calc(100vw / 2.782);
+    padding: 2rem;
+    background-image: url(/static/images/1920x690.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+header .logo {
+
+}
+
+.top-links .dropdown-menu {
+    border: 0;
+    background-color: transparent;
+    min-width: 0;
+    border-radius: 0;
+}
+
+.top-links .dropdown-menu .dropdown-item:focus,
+.top-links .dropdown-menu .dropdown-item:hover {
+    background-color: transparent;
+}
+
+.top-links .nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    line-height: 60px;
+    font-size: 1.5rem;
+}
+
+.top-links .nav-link.dropdown-toggle {
+    height: 60px;
+    line-height: 60px;
+}
+
+.top-links .nav-link.dropdown-toggle::after {
+    display: none;
+}
+
+.new-artifact {
+    position: absolute;
+    bottom: 1rem;
+    left: 3rem;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 25px 0;
+}
+
+/* Main */
+main {
+    padding: 4rem 0;
+}
+
+.artifact-set {
+
+}
+
+.artifact-set .card a {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.artifact-set .card a span {
+    position: absolute;
+    display: block;
+    bottom: 15px;
+    right: 15px;
+}
+
+.card.big {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width: 100%;
+    height: 540px;
+    display: inline-flex;
+}
+
+.card.small {
+    width: calc(50% - 15px);
+    float: right;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    height: 240px;
+}
+
+.card.big img,
+.card.small img {
+    height: 100%;
+    width: auto;
+}
+
+.card.small.first {
+    margin-left: 15px;
+}
+
+.card.small.last {
+    margin-right: 15px;
+}
+
+/* SVG's */
+.svg-icon.flag-svg svg {
+    width: 60px;
+    height: 60px;
+}
+
+/* Responsive */
+@media (min-width: 576px) {
+    .card-columns {
+        -webkit-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 1.25rem;
+        column-gap: 1.25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        -webkit-column-count: 3;
+        column-count: 3;
+        -webkit-column-gap: 1.25rem;
+        column-gap: 1.25rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        -webkit-column-count: 4;
+        column-count: 4;
+        -webkit-column-gap: 1.25rem;
+        column-gap: 1.25rem;
+    }
+}
