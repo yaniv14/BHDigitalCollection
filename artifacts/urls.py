@@ -5,7 +5,7 @@ from . import views
 app_name = 'artifacts'
 
 urlpatterns = [
-    path('list/', views.ArtifactListView.as_view(), name='list'),
+    path('users/', views.ArtifactUsersListView.as_view(), name='users'),
     path('<int:pk>/', views.ArtifactDetailView.as_view(), name='detail'),
     path('create/', views.ArtifactCreateView.as_view(), name='create'),
     path('new/', views.TheNewForm.as_view(), name='artifacts_donors_registration'),

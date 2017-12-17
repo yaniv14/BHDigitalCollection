@@ -43,16 +43,16 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
             <div class="collapse navbar-collapse" id="bottom-navbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item{% if page_name == 'home' %} active{% endif %}">
                         <a class="nav-link" href="{% url 'home' %}">
                             {% trans 'BH collections' %}{% if page_name == 'home' %} <span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{% trans 'Users collections' %}</a>
+                    <li class="nav-item{% if page_name == 'users_artifact_list' %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'artifacts:users' %}">{% trans 'Users collections' %}{% if page_name == 'users_artifact_list' %} <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{% trans 'All' %}</a>
+                    <li class="nav-item{% if page_name == 'all_artifacts' %} active{% endif %}">
+                        <a class="nav-link" href="#">{% trans 'All' %}{% if page_name == 'all_artifacts' %} <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">

@@ -2,5 +2,8 @@
 {% load static i18n %}
 
 {% block content %}
-    {{ artifact.name }}
+    <div class="container">
+        <h1>{{ artifact.name }}</h1>
+        <p>{{ artifact.description|linebreaksbr }}</p>
+    </div>
 {% endblock %}
