@@ -1,0 +1,45 @@
+{% load static i18n %}
+
+<div class="header_style">
+
+<div class="page-header">
+
+    <a href="{% url 'home' %}">
+        <img align="right" src="{% static 'images/logo.jpg' %}" width="200" height="100"/>
+    </a>
+
+    <br>
+    <h1 align="middle">{% trans 'Main titel' %}</h1>
+
+    <br>
+    <br>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar_style">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">אוסף בית התפוצות</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">פרטי גולשים</a>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+
+</div>
+</nav>
+
+
+</div>
+</div>

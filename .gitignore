@@ -16,3 +16,4 @@ local/
 bin/
 include/
 db.sqlite3
+__pycache__/

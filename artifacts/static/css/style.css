@@ -1,3 +1,13 @@
 main {
     padding: 4rem 0;
 }
+
+.header_style{
+     background-color: #E7E7E7;
+}
+
+
+.navbar_style {
+    background-color: #e0e0e0 !important;
+    border-color: #F8F8F8;
+}

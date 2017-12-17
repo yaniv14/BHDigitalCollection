@@ -5,7 +5,6 @@ from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 
-
 class HomeView(JewishDiasporaUIMixin, TemplateView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
