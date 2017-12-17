@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 11:35+0200\n"
-"PO-Revision-Date: 2017-12-01 11:35+0200\n"
+"POT-Creation-Date: 2017-12-17 20:22+0200\n"
+"PO-Revision-Date: 2017-12-17 20:27+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -18,10 +18,46 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: models.py:7
+#: users/forms.py:24
+msgid "Artifact contact form"
+msgstr "יצירת קשר"
+
+#: users/models.py:12
+msgid "Not specified"
+msgstr "לא צויין"
+
+#: users/models.py:13
+msgid "Borrow"
+msgstr "השאלה"
+
+#: users/models.py:14
+msgid "Donate"
+msgstr "תרומה (מסירה)"
+
+#: users/models.py:19
 msgid "Full name"
 msgstr "שם מלא"
 
-#: models.py:8
+#: users/models.py:20 users/models.py:33
 msgid "Phone"
 msgstr "טלפון"
+
+#: users/models.py:31
+msgid "Name"
+msgstr "שם"
+
+#: users/models.py:32
+msgid "Email"
+msgstr "אימייל"
+
+#: users/models.py:34
+msgid "Artifact info"
+msgstr "תיאור הפריט"
+
+#: users/templates/users/contact_form.html:19 users/views.py:14
+msgid "Contact us"
+msgstr "צור קשר"
+
+#: users/views.py:17
+msgid "Thank you, we will contact you shortly"
+msgstr "תודה, ניצור איתך קשר בהקדם"
