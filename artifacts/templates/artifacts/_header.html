@@ -2,15 +2,15 @@
 
 <header>
     <div class="header-top">
-        <div class="logo pull-left">
+        <div class="logo float-left">
             <a href="{% url 'home' %}">
                 {% svg_icon 'logo' rtl=LANGUAGE_BIDI %}
             </a>
         </div>
-        <div class="top-links pull-right">
+        <div class="top-links float-right">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'about' %}">
                         {% trans 'About' %}
                     </a>
                 </li>
