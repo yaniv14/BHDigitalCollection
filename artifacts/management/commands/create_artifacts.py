@@ -24,6 +24,7 @@ class Command(BaseCommand):
             o.uploaded_at = silly.datetime().date()
             o.acceptance_date = silly.datetime().date()
             o.status = random.randint(1, 4)
+            o.is_private = random.choice([True, False])
             o.name = silly.name()
             o.year_era = silly.a_thing()
             o.technical_data = silly.thing()

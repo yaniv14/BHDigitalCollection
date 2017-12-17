@@ -20,6 +20,10 @@
 
         python manage.py migrate
 
+* Create sample data for testing::
+
+        python manage.py create_artifacts 20
+
 * Create a superuser::
 
         python manage.py createsuperuser
