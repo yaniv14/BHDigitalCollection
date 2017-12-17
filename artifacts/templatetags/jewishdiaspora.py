@@ -1,18 +1,9 @@
 from django import template
 from django.forms import CheckboxInput, FileInput, RadioSelect, CheckboxSelectMultiple, SelectMultiple, Select
+from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
 register = template.Library()
-
-
-@register.filter(name='addcss')
-def addcss(field, given_class):
-    existing_classes = field.field.widget.attrs.get('class', None)
-    if existing_classes:
-        classes = existing_classes + ' ' + given_class
-    else:
-        classes = given_class
-    return field.as_widget(attrs={"class": classes})
 
 
 @register.filter(name='is_checkbox')
@@ -51,3 +42,18 @@ def boolean_to_icon(arg):
         return mark_safe('<span class="fa fa-check green-icon"></span>')
     else:
         return mark_safe('<span class="fa fa-times red-icon"></span>')
+
+
+@register.simple_tag
+def svg_icon(icon_name, class_name='', from_upload=False, rtl=False):
+    if icon_name is None:
+        return ''
+    result = '<span class="svg-icon {}">'.format(class_name)
+    if from_upload:
+        file = open(icon_name, 'r')
+        result += file.read()
+        file.close()
+    else:
+        result += render_to_string('svgs/{}{}.svg'.format(icon_name, '_he' if rtl else '_en'))
+    result += '</span>'
+    return mark_safe(result)

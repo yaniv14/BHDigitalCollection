@@ -2,6 +2,7 @@ import copy
 from authtools.admin import UserAdmin as UA
 from django.contrib import admin
 
+from users.models import ArtifactContact
 from . import models
 
 
@@ -31,4 +32,10 @@ class UserAdmin(UA):
     )
 
 
+class ArtifactContactAdmin(admin.ModelAdmin):
+    list_display = ('submitted_at', 'name', 'email', 'phone')
+    list_display_links = ('submitted_at', 'name', 'email', 'phone')
+
+
 admin.site.register(models.User, UserAdmin)
+admin.site.register(ArtifactContact, ArtifactContactAdmin)

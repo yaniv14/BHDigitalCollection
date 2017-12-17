@@ -2,7 +2,7 @@ from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget
 
-from artifacts.models import Artifact, ArtifactImage
+from .models import Artifact, ArtifactImage
 
 
 class ArtifactForm(forms.ModelForm):

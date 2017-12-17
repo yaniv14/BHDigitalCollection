@@ -7,21 +7,35 @@ from jewishdiaspora.base_views import JewishDiasporaUIMixin
 
 
 class PersonalInformationRegistrationPage(JewishDiasporaUIMixin, TemplateView):
-     template_name = 'artifacts/sign_in_first_page.html'
+    template_name = 'artifacts/sign_in_first_page.html'
+
 
 class ArtifactInformationRegistrationPage(JewishDiasporaUIMixin, TemplateView):
-      template_name = 'artifacts/sign_in_second_page.html'
+    template_name = 'artifacts/sign_in_second_page.html'
+
 
 class ArtifactsImagesRegistrationPage(JewishDiasporaUIMixin, TemplateView):
-      template_name = 'artifacts/sign_in_third_page.html'
+    template_name = 'artifacts/sign_in_third_page.html'
+
 
 class TheNewForm(JewishDiasporaUIMixin, TemplateView):
     template_name = 'artifacts/artifacts_donor_registration.html'
 
-class HomeView(JewishDiasporaUIMixin, TemplateView):
+
+class HomeView(JewishDiasporaUIMixin, ListView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
     page_name = 'home'
+    model = Artifact
+    context_object_name = 'artifacts'
+
+    def get_queryset(self):
+        return super(HomeView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False)
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['bigs'] = [1, 6, 7, 12, 13, 18, 19, 24]
+        return context
 
 
 class ArtifactListView(JewishDiasporaUIMixin, ListView):
@@ -82,7 +96,8 @@ class ArtifactCreateView(JewishDiasporaUIMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(ArtifactCreateView, self).get_context_data(**kwargs)
         if self.request.POST:
-            context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES, prefix='artifact_image_formset')
+            context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES,
+                                                                     prefix='artifact_image_formset')
         else:
             context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
         return context
