@@ -19,12 +19,33 @@ class ArtifactStatus(object):
     )
 
 
+class ArtifactType(models.Model):
+    title = models.CharField(_('Title'), max_length=250)
+
+    def __str__(self):
+        return self.title
+
+
+class ArtifactMaterial(models.Model):
+    title = models.CharField(_('Title'), max_length=250)
+
+    def __str__(self):
+        return self.title
+
+
 class Artifact(models.Model):
-    uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='uploaded_artifacts', null=True, blank=True)
+    uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
+                                    related_name='uploaded_artifacts', null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     acceptance_date = models.DateTimeField(blank=True, null=True)
-    approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='approved_artifacts', null=True, blank=True)
-    status = models.PositiveSmallIntegerField(_('Status'), choices=ArtifactStatus.choices, default=ArtifactStatus.PENDING)
+    approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
+                                    related_name='approved_artifacts', null=True, blank=True)
+    artifact_type = models.ForeignKey(ArtifactType, verbose_name=_('Artifact type'), on_delete=models.SET_NULL,
+                                      related_name='artifacts', null=True, blank=True)
+    artifact_materials = models.ManyToManyField(ArtifactMaterial, verbose_name=_('Artifact material'),
+                                                related_name='artifacts', blank=True)
+    status = models.PositiveSmallIntegerField(_('Status'), choices=ArtifactStatus.choices,
+                                              default=ArtifactStatus.PENDING)
     is_private = models.BooleanField(_('Privately owned artifact'), default=False)
     name = models.CharField(_('Name'), max_length=250)
     tags = TaggableManager(verbose_name=_('Tags'), blank=True)
