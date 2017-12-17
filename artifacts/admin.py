@@ -14,3 +14,5 @@ class ArtifactAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Artifact, ArtifactAdmin)
+admin.site.register(models.ArtifactType)
+admin.site.register(models.ArtifactMaterial)

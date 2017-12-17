@@ -24,6 +24,8 @@ class ArtifactForm(forms.ModelForm):
             'displayed_at': forms.TextInput(attrs={'class': 'form-control'}),
             'donor_name': forms.TextInput(attrs={'class': 'form-control'}),
             'display_donor_name': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'artifact_type': forms.Select(attrs={'class': 'form-control'}),
+            'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
