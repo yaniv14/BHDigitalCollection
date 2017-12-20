@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-20 13:48+0200\n"
+"POT-Creation-Date: 2017-12-20 14:10+0200\n"
 "PO-Revision-Date: 2017-12-17 20:25+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -202,6 +202,36 @@ msgstr "מחק"
 msgid "read more"
 msgstr "קרא עוד"
 
+#: .\templates\artifacts\artifact_detail.html:20
+msgid "More information"
+msgstr "מידע נוסף"
+
+#: .\templates\artifacts\artifact_detail.html:23
+#, fuzzy
+#| msgid "Donor name"
+msgid "donors name"
+msgstr "שם התורם/משאיל"
+
+#: .\templates\artifacts\artifact_detail.html:24
+msgid "origin"
+msgstr "ארץ מקור"
+
+#: .\templates\artifacts\artifact_detail.html:25
+msgid "year"
+msgstr "שנה"
+
+#: .\templates\artifacts\artifact_detail.html:26
+#, fuzzy
+#| msgid "Artifact material"
+msgid "material"
+msgstr "חומר"
+
+#: .\templates\artifacts\artifact_detail.html:32
+#, fuzzy
+#| msgid "Displayed in museum?"
+msgid "Displayed"
+msgstr "מוצג במוזיאון"
+
 #: .\templates\artifacts\base.html:15
 msgid "Jewish Diaspora"
 msgstr "בית התפוצות"
@@ -225,9 +255,6 @@ msgstr "יצירת פריט"
 #: .\views.py:116
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
-
-#~ msgid "More information"
-#~ msgstr "מידע נוסף"
 
 #~ msgid "Parent category"
 #~ msgstr "קטגוריית אב"
