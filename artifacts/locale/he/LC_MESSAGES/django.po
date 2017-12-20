@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-20 14:17+0200\n"
+"POT-Creation-Date: 2017-12-20 14:32+0200\n"
 "PO-Revision-Date: 2017-12-17 20:25+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -42,7 +42,7 @@ msgstr "כותרת"
 msgid "Artifact type"
 msgstr "סוג הפריט"
 
-#: .\models.py:45
+#: .\models.py:45 .\templates\artifacts\artifact_detail.html:26
 msgid "Artifact material"
 msgstr "חומר הפריט"
 
@@ -94,7 +94,7 @@ msgstr "האם מוצג במוזיאון?"
 msgid "Artifact location in museum"
 msgstr "איפה מוצג במוזיאון"
 
-#: .\models.py:60
+#: .\models.py:60 .\templates\artifacts\artifact_detail.html:23
 msgid "Donor name"
 msgstr "שם התורם/משאיל"
 
@@ -167,6 +167,7 @@ msgid "Contact"
 msgstr "צור קשר"
 
 #: .\templates\artifacts\_header.html:45
+#: .\templates\artifacts\artifact_detail.html:61
 msgid "Upload artifact"
 msgstr "העלו פריט"
 
@@ -206,12 +207,6 @@ msgstr "קרא עוד"
 msgid "More information"
 msgstr "מידע נוסף"
 
-#: .\templates\artifacts\artifact_detail.html:23
-#, fuzzy
-#| msgid "Donor name"
-msgid "donors name"
-msgstr "שם התורם/משאיל"
-
 #: .\templates\artifacts\artifact_detail.html:24
 msgid "origin"
 msgstr "ארץ מקור"
@@ -220,15 +215,7 @@ msgstr "ארץ מקור"
 msgid "year"
 msgstr "שנה"
 
-#: .\templates\artifacts\artifact_detail.html:26
-#, fuzzy
-#| msgid "Artifact material"
-msgid "material"
-msgstr "חומר"
-
 #: .\templates\artifacts\artifact_detail.html:32
-#, fuzzy
-#| msgid "Displayed in museum?"
 msgid "Displayed"
 msgstr "מוצג במוזיאון"
 
@@ -247,6 +234,14 @@ msgstr "זהב"
 #: .\templates\artifacts\artifact_detail.html:43
 msgid "pearls"
 msgstr "פנינים"
+
+#: .\templates\artifacts\artifact_detail.html:49
+msgid "Artifacts loaded by donors"
+msgstr "פריטים שגולשים העלו"
+
+#: .\templates\artifacts\artifact_detail.html:60
+msgid "you are part of the story"
+msgstr "גם אתם חלק מהסיפור"
 
 #: .\templates\artifacts\base.html:15
 msgid "Jewish Diaspora"
@@ -271,6 +266,16 @@ msgstr "יצירת פריט"
 #: .\views.py:116
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
+
+#, fuzzy
+#~| msgid "Donor name"
+#~ msgid "donors name"
+#~ msgstr "שם התורם/משאיל"
+
+#, fuzzy
+#~| msgid "Upload artifact"
+#~ msgid "load an artifact"
+#~ msgstr "העלו פריט"
 
 #~ msgid "Parent category"
 #~ msgstr "קטגוריית אב"
