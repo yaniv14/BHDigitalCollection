@@ -18,6 +18,20 @@ class ArtifactStatus(object):
     )
 
 
+class PhonePrefix(object):
+    APREFIX = 1
+    BPREFIX= 2
+    CPREFIX= 3
+    DPREFIX= 4
+
+    prefix = (
+        (APREFIX, _('050')),
+        (BPREFIX, _('052')),
+        (CPREFIX, _('053')),
+        (DPREFIX, _('054')),
+    )
+
+
 class Category(models.Model):
     name = models.CharField(_('Name'), max_length=200)
     parent_category = models.ForeignKey('self', verbose_name=_('Parent category'), on_delete=models.SET_NULL, blank=True, null=True, related_name='parents')
@@ -26,14 +40,27 @@ class Category(models.Model):
         return self.name
 
 
+# class PhonePrefix(models.Model):
+#     name = models.CharField(_('Name'), max_length=200)
+#     parent_category = models.ForeignKey('self', verbose_name=_('Parent category'), on_delete=models.SET_NULL, blank=True, null=True, related_name='parents')
+#
+#     def __str__(self):
+#         return self.name
+
+
+
+
 class Artifact(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='uploaded_artifacts', null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     acceptance_date = models.DateTimeField(blank=True, null=True)
     approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='approved_artifacts', null=True, blank=True)
-    status = models.PositiveSmallIntegerField(_('Status'), choices=ArtifactStatus.choices, default=ArtifactStatus.PENDING)
     is_private = models.BooleanField(_('Privately owned artifact'), default=False)
-    name = models.CharField(_('Name'), max_length=250)
+    artifact_name = models.CharField(_('Name'), max_length=250)
+    status = models.PositiveSmallIntegerField(_('Status'), choices=ArtifactStatus.choices, default=ArtifactStatus.PENDING)
+    donor_phone_prefix = models.PositiveSmallIntegerField(_('Prefix'), choices=PhonePrefix.prefix, default=PhonePrefix.APREFIX)
+    donor_phone_number = models.CharField(_('Phone number'), max_length=7)
+    mail = models.CharField(_('Email'), max_length=70)
     category = models.ForeignKey(Category, verbose_name=_('Category'), on_delete=models.SET_NULL, blank=True, null=True, related_name='artifacts')
     year_era = models.CharField(_('Era/Years range'), max_length=200)
     technical_data = models.TextField(_('Technical data'))

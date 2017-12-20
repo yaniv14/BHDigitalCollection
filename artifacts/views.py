@@ -1,7 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.utils.translation import ugettext as _
-from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet
+from artifacts.forms import ArtifactForm, ArtifactImageFormSet, ArtifactFormPersonDetails, ArtifactFormArtifactDetails, \
+    ArtifactFormArtifactPictures
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 
@@ -34,19 +35,19 @@ class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
     page_name = 'artifact_detail'
 
 
-class ArtifactCreateView(JewishDiasporaUIMixin, CreateView):
-    template_name = 'artifacts/artifact_create.html'
+class ArtifactCreateViewPersonDetails(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/artifact_createPersonDetails.html'
     model = Artifact
     success_url = reverse_lazy('artifacts:list')
     page_title = _('Artifact create')
     page_name = 'artifact_create'
-
+    field = ['uploaded_by']
     def get_form_class(self):
         if self.request.user.is_authenticated:
             if self.request.user.is_superuser:
-                return ArtifactForm
+                return ArtifactFormPersonDetails
 
-        return UserArtifactForm
+        return ArtifactFormPersonDetails
 
     def form_valid(self, form):
         context = self.get_context_data()
@@ -67,12 +68,120 @@ class ArtifactCreateView(JewishDiasporaUIMixin, CreateView):
         # return self.render_to_response(self.get_context_data(form=form))
 
     def get_context_data(self, **kwargs):
-        context = super(ArtifactCreateView, self).get_context_data(**kwargs)
+        context = super(ArtifactCreateViewPersonDetails, self).get_context_data(**kwargs)
         if self.request.POST:
             context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES, prefix='artifact_image_formset')
         else:
             context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
         return context
+
+
+
+
+
+
+
+
+class ArtifactCreateViewArtifactDetails(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/artifact_createPersonDetails.html'
+    model = Artifact
+    success_url = reverse_lazy('artifacts:list')
+    page_title = _('Artifact create')
+    page_name = 'artifact_create'
+    field = ['uploaded_by']
+    def get_form_class(self):
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return ArtifactFormArtifactDetails
+
+        return ArtifactFormArtifactDetails
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        artifact_image_formset = context['artifact_image_formset']
+
+        if artifact_image_formset.is_valid():
+            if self.request.user.is_authenticated:
+                form.instance.uploaded_by = self.request.user
+                if not self.request.user.is_superuser:
+                    form.instance.is_private = True
+            self.object = form.save()
+            artifact_image_formset.instance = self.object
+            artifact_image_formset.save()
+            return super().form_valid(form)
+            # return redirect(self.success_url)
+
+        return super().form_invalid(form)
+        # return self.render_to_response(self.get_context_data(form=form))
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtifactCreateViewArtifactDetails, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES, prefix='artifact_image_formset')
+        else:
+            context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
+        return context
+
+
+
+
+
+class ArtifactCreateViewArtifactPictute(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/artifact_createPersonDetails.html'
+    model = Artifact
+    success_url = reverse_lazy('artifacts:list')
+    page_title = _('Artifact create')
+    page_name = 'artifact_create'
+    field = ['uploaded_by']
+    def get_form_class(self):
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return ArtifactFormArtifactPictures
+
+        return ArtifactFormArtifactPictures
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        artifact_image_formset = context['artifact_image_formset']
+
+        if artifact_image_formset.is_valid():
+            if self.request.user.is_authenticated:
+                form.instance.uploaded_by = self.request.user
+                if not self.request.user.is_superuser:
+                    form.instance.is_private = True
+            self.object = form.save()
+            artifact_image_formset.instance = self.object
+            artifact_image_formset.save()
+            return super().form_valid(form)
+            # return redirect(self.success_url)
+
+        return super().form_invalid(form)
+        # return self.render_to_response(self.get_context_data(form=form))
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtifactCreateViewArtifactPictute, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES, prefix='artifact_image_formset')
+        else:
+            context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
+        return context
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):
