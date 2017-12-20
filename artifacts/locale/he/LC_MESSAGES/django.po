@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-17 20:22+0200\n"
+"POT-Creation-Date: 2017-12-20 13:48+0200\n"
 "PO-Revision-Date: 2017-12-17 20:25+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -18,209 +18,216 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: artifacts/models.py:15
+#: .\models.py:15
 msgid "Pending approval"
 msgstr "ממתין לאישור מנהל"
 
-#: artifacts/models.py:16
+#: .\models.py:16
 msgid "Missing info"
 msgstr "ממתין למידע נוסף"
 
-#: artifacts/models.py:17
+#: .\models.py:17
 msgid "Approved"
 msgstr "מאושר להצגה"
 
-#: artifacts/models.py:18
+#: .\models.py:18
 msgid "Rejected"
 msgstr "נדחה"
 
-#: artifacts/models.py:23 artifacts/models.py:30
+#: .\models.py:23 .\models.py:30
 msgid "Title"
 msgstr "כותרת"
 
-#: artifacts/models.py:43
+#: .\models.py:43
 msgid "Artifact type"
 msgstr "סוג הפריט"
 
-#: artifacts/models.py:45
+#: .\models.py:45
 msgid "Artifact material"
 msgstr "חומר הפריט"
 
-#: artifacts/models.py:47
+#: .\models.py:47
 msgid "Status"
 msgstr "סטטוס"
 
-#: artifacts/models.py:49
+#: .\models.py:49
 msgid "Privately owned artifact"
 msgstr "פריט רכוש פרטי"
 
-#: artifacts/models.py:50
+#: .\models.py:50
 msgid "Name"
 msgstr "שם"
 
-#: artifacts/models.py:51
+#: .\models.py:51
 msgid "Tags"
 msgstr "תגיות"
 
-#: artifacts/models.py:52
+#: .\models.py:52
 msgid "Era/Years range"
 msgstr "תקופה/טווח שנים"
 
-#: artifacts/models.py:53
+#: .\models.py:53
 msgid "Technical data"
 msgstr "תיאור טכני"
 
-#: artifacts/models.py:54 artifacts/models.py:78
+#: .\models.py:54 .\models.py:78
 msgid "Description"
 msgstr "תיאור"
 
-#: artifacts/models.py:55
+#: .\models.py:55
 msgid "City"
 msgstr "עיר"
 
-#: artifacts/models.py:56
+#: .\models.py:56
 msgid "Country"
 msgstr "מדינה"
 
-#: artifacts/models.py:57
+#: .\models.py:57
 msgid "Area"
 msgstr "אזור"
 
-#: artifacts/models.py:58
+#: .\models.py:58
 msgid "Displayed in museum?"
 msgstr "האם מוצג במוזיאון?"
 
-#: artifacts/models.py:59
+#: .\models.py:59
 msgid "Artifact location in museum"
 msgstr "איפה מוצג במוזיאון"
 
-#: artifacts/models.py:60
+#: .\models.py:60
 msgid "Donor name"
 msgstr "שם התורם/משאיל"
 
-#: artifacts/models.py:61
+#: .\models.py:61
 msgid "Display donor name?"
 msgstr "האם להציג שם התורם באתר?"
 
-#: artifacts/models.py:76
+#: .\models.py:76
 msgid "Artifact"
 msgstr "פריט"
 
-#: artifacts/models.py:77 artifacts/models.py:89
+#: .\models.py:77 .\models.py:89
 msgid "Image"
 msgstr "תמונה"
 
-#: artifacts/models.py:79
+#: .\models.py:79
 msgid "Credit"
 msgstr "קרדיט לצלם"
 
-#: artifacts/models.py:80
+#: .\models.py:80
 msgid "Year/Era"
 msgstr "שנה/תקופה"
 
-#: artifacts/models.py:81
+#: .\models.py:81
 msgid "Image location"
 msgstr "מיקום הצילום"
 
-#: artifacts/models.py:82
+#: .\models.py:82
 msgid "Cover image?"
 msgstr "תמונת שער?"
 
-#: artifacts/models.py:90
+#: .\models.py:90
 msgid "X"
 msgstr "X"
 
-#: artifacts/models.py:91
+#: .\models.py:91
 msgid "Y"
 msgstr "Y"
 
-#: artifacts/models.py:92
+#: .\models.py:92
 msgid "Width"
 msgstr "אורך"
 
-#: artifacts/models.py:93
+#: .\models.py:93
 msgid "Height"
 msgstr "גובה"
 
-#: artifacts/models.py:94
+#: .\models.py:94
 msgid "Info"
 msgstr "מידע"
 
-#: artifacts/templates/_base_form.html:47
+#: .\templates\_base_form.html:47
 msgid "Submit"
 msgstr "שלח"
 
-#: artifacts/templates/_base_form.html:51
+#: .\templates\_base_form.html:51
 msgid "Forgot password"
 msgstr "שכחתי סיסמה"
 
-#: artifacts/templates/_base_formset.html:4
+#: .\templates\_base_formset.html:4
 msgid "Upload images"
 msgstr "העלה תמונות"
 
-#: artifacts/templates/artifacts/_header.html:14
+#: .\templates\artifacts\_header.html:14 .\views.py:43
 msgid "About"
 msgstr "אודות"
 
-#: artifacts/templates/artifacts/_header.html:19
+#: .\templates\artifacts\_header.html:19
 msgid "Contact"
 msgstr "צור קשר"
 
-#: artifacts/templates/artifacts/_header.html:39
+#: .\templates\artifacts\_header.html:45
 msgid "Upload artifact"
 msgstr "העלו פריט"
 
-#: artifacts/templates/artifacts/_header.html:48
+#: .\templates\artifacts\_header.html:54
 msgid "BH collections"
 msgstr "אוסף בית התפוצות"
 
-#: artifacts/templates/artifacts/_header.html:52
+#: .\templates\artifacts\_header.html:60
 msgid "Users collections"
 msgstr "האוסף הדיגיטלי"
 
-#: artifacts/templates/artifacts/_header.html:55
+#: .\templates\artifacts\_header.html:64
 msgid "All"
 msgstr "הכל"
 
-#: artifacts/templates/artifacts/_header.html:60
+#: .\templates\artifacts\_header.html:70
 msgid "Filters"
 msgstr "סינונים"
 
-#: artifacts/templates/artifacts/artifact_create.html:10
+#: .\templates\artifacts\artifact_create.html:10
 msgid "Save"
 msgstr "שמור"
 
-#: artifacts/templates/artifacts/artifact_create.html:22
+#: .\templates\artifacts\artifact_create.html:22
 msgid "Add"
 msgstr "הוסף"
 
-#: artifacts/templates/artifacts/artifact_create.html:23
+#: .\templates\artifacts\artifact_create.html:23
 msgid "Delete"
 msgstr "מחק"
 
-#: artifacts/templates/artifacts/base.html:15
+#: .\templates\artifacts\artifact_detail.html:8
+msgid "read more"
+msgstr "קרא עוד"
+
+#: .\templates\artifacts\base.html:15
 msgid "Jewish Diaspora"
 msgstr "בית התפוצות"
 
-#: artifacts/views.py:27
+#: .\views.py:27
 msgid "Home"
 msgstr "דף הבית"
 
-#: artifacts/views.py:45
+#: .\views.py:51
 msgid "Users artifacts list"
 msgstr "רשימת פרטי משתמשים"
 
-#: artifacts/views.py:60
+#: .\views.py:66
 msgid "Artifact detail"
 msgstr "פרטי פריט"
 
-#: artifacts/views.py:68
+#: .\views.py:74
 msgid "Artifact create"
 msgstr "יצירת פריט"
 
-#: artifacts/views.py:110
+#: .\views.py:116
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
+
+#~ msgid "More information"
+#~ msgstr "מידע נוסף"
 
 #~ msgid "Parent category"
 #~ msgstr "קטגוריית אב"
