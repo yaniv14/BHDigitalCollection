@@ -1,7 +1,7 @@
 *.orig
 *.py[cod]
 .idea/
-/jewishdiaspora/local_settings.py
+local_settings.py
 /uploads/
 *~
 *.pot
@@ -16,3 +16,4 @@ local/
 bin/
 include/
 db.sqlite3
+/static

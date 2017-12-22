@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import ugettext as _
 from django.db import models
 from django_countries.fields import CountryField
@@ -59,6 +60,14 @@ class ArtifactMaterial(models.Model):
         return self.title
 
 
+class OriginArea(models.Model):
+    title = models.CharField(_('Title'), max_length=250)
+    countries = ArrayField(CountryField(_('Country'), blank=True), blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Artifact(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
                                     related_name='uploaded_artifacts', null=True, blank=True)
@@ -74,7 +83,9 @@ class Artifact(models.Model):
                                               default=ArtifactStatus.PENDING)
     is_private = models.BooleanField(_('Privately owned artifact'), default=False)
     name = models.CharField(_('Name'), max_length=250)
-    year_era = models.CharField(_('Era/Years range'), max_length=200)
+    slug = models.SlugField(_('Slug'), max_length=250, allow_unicode=True, blank=True, null=True)
+    year_from = models.CharField(_('Year from'), max_length=200, blank=True, null=True)
+    year_to = models.CharField(_('Year to'), max_length=200, blank=True, null=True)
     technical_data = models.TextField(_('Technical data'))
     description = models.TextField(_('Description'))
     origin_city = models.CharField(_('City'), max_length=100, blank=True, null=True)
