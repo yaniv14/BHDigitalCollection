@@ -1,7 +1,7 @@
 {% load i18n static jewishdiaspora %}
 
 <header>
-    <div class="header-top">
+    <div class="header-top"{% if page_banner %} style="background-image: url({{ page_banner.image.url }});"{% endif %}>
         <div class="logo float-left">
             <a href="{% url 'home' %}">
                 {% svg_icon 'logo' rtl=LANGUAGE_BIDI %}

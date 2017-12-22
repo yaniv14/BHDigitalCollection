@@ -9,8 +9,9 @@
                     <img class="card-img-top"
                          src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
                          alt="{{ artifact.name }}">
-                    <a href="{% url 'artifacts:detail' artifact.id %}">
-                        <span>{{ artifact.name }}</span>
+                    <a class="text-center d-block" href="{% url 'artifacts:detail' artifact.id %}">
+                        {{ artifact.name }}<br>
+                        {{ artifact.origin_country.name }}, {{ artifact.year_era }}
                     </a>
                 </div>
                 {% if forloop.counter|divisibleby:3 %}

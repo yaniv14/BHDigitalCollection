@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.utils.translation import ugettext as _
 from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet
-from artifacts.models import Artifact, ArtifactStatus, ArtifactImage
+from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 
 
@@ -35,6 +35,7 @@ class HomeView(JewishDiasporaUIMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['bigs'] = [1, 6, 7, 12, 13, 18, 19, 24, 25, 30, 31, 36, 37, 42, 43, 48, 49]
+        context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
         return context
 
 
