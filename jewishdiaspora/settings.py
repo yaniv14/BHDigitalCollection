@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # 3rd-party:
     'authtools',
-    'taggit',
+    'taggit', # todo: safely remove later.
     'django_countries',
     'django_extensions',
 ]
