@@ -13,6 +13,12 @@ class ArtifactAdmin(admin.ModelAdmin):
     ]
 
 
+class PageBannerAdmin(admin.ModelAdmin):
+    list_display = ('page', 'main_text', 'credit', 'active')
+    list_display_links = ('page', 'main_text', 'credit', 'active')
+
+
 admin.site.register(models.Artifact, ArtifactAdmin)
 admin.site.register(models.ArtifactType)
 admin.site.register(models.ArtifactMaterial)
+admin.site.register(models.PageBanner, PageBannerAdmin)

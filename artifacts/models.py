@@ -19,6 +19,32 @@ class ArtifactStatus(object):
     )
 
 
+class Pages(object):
+    MUSEUM_COLLECTIONS = 'museum_collections'
+    USERS_COLLECTIONS = 'users_collections'
+    ALL_COLLECTIONS = 'all_collections'
+    ABOUT = 'about'
+    CONTACT = 'contact'
+    ACCOUNT = 'account'
+    LOGIN = 'login'
+    UPLOAD_STEP_1 = 'upload_step_1'
+    UPLOAD_STEP_2 = 'upload_step_2'
+    UPLOAD_STEP_3 = 'upload_step_3'
+
+    choices = (
+        (MUSEUM_COLLECTIONS, _('Museum collections')),
+        (USERS_COLLECTIONS, _('Users collections')),
+        (ALL_COLLECTIONS, _('All collections')),
+        (ABOUT, _('About')),
+        (CONTACT, _('Contact')),
+        (ACCOUNT, _('Account')),
+        (LOGIN, _('Login')),
+        (UPLOAD_STEP_1, _('Upload step 1')),
+        (UPLOAD_STEP_2, _('Upload step 2')),
+        (UPLOAD_STEP_3, _('Upload step 3')),
+    )
+
+
 class ArtifactType(models.Model):
     title = models.CharField(_('Title'), max_length=250)
 
@@ -94,3 +120,15 @@ class ArtifactImageCoord(models.Model):
 
     def __str__(self):
         return f'[{self.x},{self.y}] {self.image.artifact.name}'
+
+
+class PageBanner(models.Model):
+    page = models.CharField(_('Page'), max_length=250, choices=Pages.choices, blank=True, null=True)
+    image = models.ImageField(_('Image'), upload_to='banners/')
+    main_text = models.CharField(_('Main text'), max_length=400, blank=True, null=True)
+    description = models.CharField(_('Description'), max_length=400, blank=True, null=True)
+    credit = models.CharField(_('Credit'), max_length=200, blank=True, null=True)
+    active = models.BooleanField(_('Active?'), default=True)
+
+    def __str__(self):
+        return f'[{self.id}] {self.get_page_display()}'
