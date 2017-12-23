@@ -16,7 +16,7 @@ class HomeView(JewishDiasporaUIMixin, TemplateView):
     page_name = 'home'
 
 def ArtifactGallery(request):
-    return TemplateResponse(request, 'artifacts/gallery.html', {'number' : 'qwqwqwqwqwqwqwqw'})
+    return TemplateResponse(request, 'artifacts/gallery.html', {'number' : ''})
 
 
 class ArtifactListView(JewishDiasporaUIMixin, ListView):
