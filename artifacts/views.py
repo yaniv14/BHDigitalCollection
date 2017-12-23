@@ -1,3 +1,5 @@
+from django.template import Context
+from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.utils.translation import ugettext as _
@@ -7,9 +9,14 @@ from artifacts.models import Artifact, ArtifactStatus, ArtifactImage
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 
 class HomeView(JewishDiasporaUIMixin, TemplateView):
+
+
     template_name = 'artifacts/home.html'
     page_title = _('Home')
     page_name = 'home'
+
+def ArtifactGallery(request):
+    return TemplateResponse(request, 'artifacts/gallery.html', {'number' : 'qwqwqwqwqwqwqwqw'})
 
 
 class ArtifactListView(JewishDiasporaUIMixin, ListView):

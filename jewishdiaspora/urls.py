@@ -9,6 +9,7 @@ from artifacts import views
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
+    path('gallery/', views.ArtifactGallery, name='home'),
     path('admin/', admin.site.urls),
     path('artifact/', include('artifacts.urls')),
     path('accounts/', include('authtools.urls')),

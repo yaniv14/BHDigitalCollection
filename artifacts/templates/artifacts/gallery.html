@@ -1,0 +1,20 @@
+{% extends 'artifacts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{%for i in number %}
+
+    <figure>
+        <a>
+            <img src='http://placehold.it/200x200' width="250" height="200" />
+            <figcaption>Album name goes here</figcaption>
+        </a>
+    </figure>
+
+{% endfor %}
+
+
+
+{% endblock %}

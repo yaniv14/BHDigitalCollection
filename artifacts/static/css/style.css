@@ -11,3 +11,14 @@ main {
     background-color: #e0e0e0 !important;
     border-color: #F8F8F8;
 }
+
+figure {
+    display: inline-block;
+    margin: 20px;
+}
+figure img {
+    vertical-align: top;
+}
+figure figcaption {
+    text-align: center;
+}
