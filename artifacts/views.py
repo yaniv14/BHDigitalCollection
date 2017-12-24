@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.utils.translation import ugettext as _
-from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet
-from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner
+from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm
+from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 
 
@@ -108,6 +108,23 @@ class ArtifactCreateView(JewishDiasporaUIMixin, CreateView):
         else:
             context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
         return context
+
+
+class OriginAreaCreateView(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/origin_area_create.html'
+    model = OriginArea
+    form_class = OriginAreaForm
+    success_url = reverse_lazy('artifacts:origin_area_list')
+    page_title = _('Origin area create')
+    page_name = 'origin_area_create'
+
+
+class OriginAreaListView(JewishDiasporaUIMixin, ListView):
+    template_name = 'artifacts/origin_area_list.html'
+    model = OriginArea
+    context_object_name = 'areas'
+    page_title = _('Origin area list')
+    page_name = 'origin_area_list'
 
 
 class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):

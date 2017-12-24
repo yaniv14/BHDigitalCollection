@@ -62,10 +62,19 @@ class ArtifactMaterial(models.Model):
 
 class OriginArea(models.Model):
     title = models.CharField(_('Title'), max_length=250)
-    countries = ArrayField(CountryField(_('Country'), blank=True), blank=True, null=True)
+    countries = CountryField(_('Country'), multiple=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_countries_list(self):
+        return [
+            {
+                'name': x.name,
+                'code': x.code,
+                'flag': x.flag
+            } for x in self.countries
+        ]
 
 
 class Artifact(models.Model):

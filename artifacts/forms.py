@@ -1,8 +1,8 @@
 from django import forms
 from django.forms import inlineformset_factory
-from django_countries.widgets import CountrySelectWidget
+from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 
-from .models import Artifact, ArtifactImage
+from .models import Artifact, ArtifactImage, OriginArea
 
 
 class ArtifactForm(forms.ModelForm):
@@ -40,7 +40,8 @@ class ArtifactForm(forms.ModelForm):
 
 class UserArtifactForm(ArtifactForm):
     class Meta(ArtifactForm.Meta):
-        exclude = ArtifactForm.Meta.exclude + ['is_displayed', 'displayed_at', 'donor_name', 'is_private', 'acceptance_date']
+        exclude = ArtifactForm.Meta.exclude + ['is_displayed', 'displayed_at', 'donor_name', 'is_private',
+                                               'acceptance_date']
 
 
 class ArtifactImageForm(forms.ModelForm):
@@ -73,3 +74,16 @@ ArtifactImageFormSet = inlineformset_factory(
     extra=1,
     can_delete=False
 )
+
+
+class OriginAreaForm(forms.ModelForm):
+    class Meta:
+        model = OriginArea
+        fields = [
+            'title',
+            'countries'
+        ]
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'countries': LazySelectMultiple(attrs={'class': 'form-control'}),
+        }

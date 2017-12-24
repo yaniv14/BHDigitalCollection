@@ -1,0 +1,24 @@
+{% extends 'artifacts/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+    <div class="card">
+        {% for area in areas %}
+            <ul>
+                <li>{{ area.title }}</li>
+                {% if area.countries %}
+                    <li>
+                        <ul>
+                            {% for country in area.get_countries_list %}
+                                <li>
+                                    <img src="{{ country.flag }}" />
+                                    {{ country.name }} [{{ country.code }}]
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}
