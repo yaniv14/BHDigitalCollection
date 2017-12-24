@@ -11,15 +11,16 @@ class ArtifactForm(forms.ModelForm):
         exclude = ['uploaded_at', 'uploaded_by', 'approved_by', 'status']
         widgets = {
             'acceptance_date': forms.TextInput(attrs={'class': 'form-control'}),
-            'tags': forms.TextInput(attrs={'class': 'form-control'}),
             'is_private': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'year_era': forms.TextInput(attrs={'class': 'form-control'}),
+            'year_from': forms.TextInput(attrs={'class': 'form-control'}),
+            'year_to': forms.TextInput(attrs={'class': 'form-control'}),
             'technical_data': forms.Textarea(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'origin_city': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
-            'origin_area': forms.TextInput(attrs={'class': 'form-control'}),
+            'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'is_displayed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'displayed_at': forms.TextInput(attrs={'class': 'form-control'}),
             'donor_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -41,7 +42,7 @@ class ArtifactForm(forms.ModelForm):
 class UserArtifactForm(ArtifactForm):
     class Meta(ArtifactForm.Meta):
         exclude = ArtifactForm.Meta.exclude + ['is_displayed', 'displayed_at', 'donor_name', 'is_private',
-                                               'acceptance_date']
+                                               'acceptance_date', 'slug']
 
 
 class ArtifactImageForm(forms.ModelForm):
