@@ -1,9 +1,7 @@
 from django.conf import settings
-from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import ugettext as _
 from django.db import models
 from django_countries.fields import CountryField
-from taggit.managers import TaggableManager
 
 
 class ArtifactStatus(object):
