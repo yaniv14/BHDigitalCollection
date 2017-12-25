@@ -2,5 +2,65 @@
 {% load static i18n %}
 
 {% block content %}
-    {{ artifact.name }}
+    <div class="container">
+        <h1 class="text-center">
+            {{ artifact.name }}, {{ artifact.year_era }}, {{ artifact.origin_country }}
+        </h1>
+        <p>{{ artifact.description|linebreaksbr }}</p>
+        <a href="#">
+            <b>{% trans 'read more' %}</b>
+        </a>
+    </div>
+    <br/><br/>
+    <div class="container">
+        <div class="row">
+            <img src="{% static 'images/map123.jpg' %}" class="rounded img-thumbnail">
+        </div>
+    </div>
+    <br/><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>{% trans 'More information' %}</h3>
+                <hr/>
+
+                <p>{% trans 'Donor name' %} {{ artifact.donor_name }}</p>
+                <p>{% trans 'origin' %} {{ artifact.origin_country }}</p>
+                <p>{% trans 'year' %} {{ artifact.year_era }}</p>
+                <p>{% trans 'Artifact material' %} {{ artifact.year_era }} artifact_materials</p>
+                <hr/>
+            </div>
+
+            <div class="col">
+                {% if artifact.is_displayed %}
+                    {% trans 'Displayed' %}  {{ artifact.displayed_at }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'jewelry' %} </p>
+            <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'Persian Empire' %} </p>
+            <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'gold' %} </p>
+            <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'pearls' %} </p>
+        </div>
+    </div>
+    <br/><br/>
+
+    <div class="container">
+        <h4>  {% trans 'Artifacts loaded by donors' %} </h4>
+        <div class="row">
+            {% for image in artifact.images.all %}
+                <div class="col-6 col-md-3">
+                    <img src="{{ image.image.url }}" class="rounded img-thumbnail" alt="{{ artifact.name }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <h2>{% trans 'you are part of the story' %}</h2>
+        <p style="border-radius: 50px;color:gray;background:white;width:150px;margin:10px;text-align:center;">{% trans 'Upload artifact' %}</p>
+    </div>
 {% endblock %}

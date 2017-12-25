@@ -6,10 +6,12 @@ from django.urls import path
 from django.views.i18n import JavaScriptCatalog
 
 from artifacts import views
+from users import views as user_views
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
-    path('gallery/', views.ArtifactGallery, name='home'),
+    path('contact', user_views.ContactView.as_view(), name='contact'),
+    path('about', views.AboutView.as_view(), name='about'),
     path('admin/', admin.site.urls),
     path('artifact/', include('artifacts.urls')),
     path('accounts/', include('authtools.urls')),

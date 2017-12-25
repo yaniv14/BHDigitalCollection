@@ -11,38 +11,35 @@
                 {{ hidden }}
             {% endfor %}
             {% for field in f.visible_fields %}
-                <div class="form-group{% if field.field.required %} required{% endif %}{% if field.errors %} has-danger{% endif %}">
-                    {% if field|is_checkbox %}
-                        <label>
+                {% if field|is_checkbox %}
+                    <div class="form-check">
+                        <label class="form-check-label">
                             {{ field }}
-                            <span>{{ field.label }}</span>
+                            {{ field.label }}
                         </label>
                         {% if field.help_text %}
-                            <small id="{{ field.html_name }}Help" class="form-text text-muted">
+                            <small id="{{ field.html_name }}HelpBlock" class="form-text text-muted">
                                 {{ field.help_text|safe }}
                             </small>
                         {% endif %}
-                    {% else %}
+                {% else %}
+                    <div class="form-group">
                         {{ field.label_tag }}
-                        {% if field.errors %}
-                            {{ field|addcss:"form-control has-warning" }}
-                        {% else %}
-                            {{ field|addcss:"form-control" }}
-                        {% endif %}
+                        {{ field }}
                         {% if field.help_text %}
-                            <small id="{{ field.html_name }}Help" class="form-text text-muted">
+                            <small id="{{ field.html_name }}HelpBlock" class="form-text text-muted">
                                 {{ field.help_text|safe }}
                             </small>
                         {% endif %}
-                    {% endif %}
-                    {% if field.errors %}
-                        <div class="form-control-feedback">{{ field.errors.as_text }}</div>
-                    {% endif %}
+                {% endif %}
+                {% if field.errors %}
+                    <div class="invalid-feedback">{{ field.errors.as_text }}</div>
+                {% endif %}
                 </div>
             {% endfor %}
-            {% if form.can_delete %}
-                {{ f.DELETE }}
-            {% endif %}
         </div>
     {% endfor %}
+    {% if form.can_delete %}
+        {{ f.DELETE }}
+    {% endif %}
 </div>
