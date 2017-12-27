@@ -2,7 +2,7 @@ from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 
-from .models import Artifact, ArtifactImage, OriginArea
+from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial
 
 
 class ArtifactForm(forms.ModelForm):
@@ -88,3 +88,13 @@ class OriginAreaForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'countries': LazySelectMultiple(attrs={'class': 'form-control'}),
         }
+
+
+class ArtifactMaterialForm(forms.ModelForm):
+    class Meta:
+        model = ArtifactMaterial
+        fields = ['title']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+

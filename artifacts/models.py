@@ -75,6 +75,7 @@ class OriginArea(models.Model):
         ]
 
 
+
 class Artifact(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
                                     related_name='uploaded_artifacts', null=True, blank=True)
