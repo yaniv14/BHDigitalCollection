@@ -16,6 +16,8 @@ from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+PHONENUMBER_DEFAULT_REGION="IL"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'taggit', # todo: safely remove later.
     'django_countries',
     'django_extensions',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
