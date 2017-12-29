@@ -1,9 +1,12 @@
+from django.contrib.auth import login
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, FormView
 from django.utils.translation import ugettext as _
 from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
+from users.models import User
 
 
 class PersonalInformationRegistrationPage(JewishDiasporaUIMixin, TemplateView):
@@ -68,46 +71,49 @@ class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
     page_name = 'artifact_detail'
 
 
-class ArtifactCreateView(JewishDiasporaUIMixin, CreateView):
+class ArtifactCreateView(JewishDiasporaUIMixin, FormView):
     template_name = 'artifacts/artifact_create.html'
-    model = Artifact
-    success_url = reverse_lazy('artifacts:list')
+    form_class = UserArtifactForm
+    success_url = reverse_lazy('artifacts:details')
     page_title = _('Artifact create')
+    page_description = _('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra tortor nec lacus lacinia, non sodales est tristique. '
+                         'Suspendisse fermentum ultrices leo. Nunc viverra egestas purus vel sagittis. Fusce iaculis enim eget elementum volutpat. '
+                         'Duis et nisi purus. Vivamus tortor odio, condimentum rhoncus magna vitae, posuere tincidunt eros. Sed mollis quis ante et faucibus.')
+    form_description = _('Some Personal Data')
     page_name = 'artifact_create'
 
-    def get_form_class(self):
-        if self.request.user.is_authenticated:
-            if self.request.user.is_superuser:
-                return ArtifactForm
+    #
+    # def get_initial(self):
+    #
+    #     return {
+    #         'email': 'test@test.com'
+    #     }
 
-        return UserArtifactForm
+    # def get(self, request):
+    #     if self.request.user.is_authenticated:
+    #         if self.request.user.is_superuser:
+    #             return super(ArtifactUsersListView, self).get_queryset().filter(is_private=True)
+    #         else:
+    #             return redirect('artifacts:details')
+    #     else:
+    #         return super().get(self, request)
 
     def form_valid(self, form):
-        context = self.get_context_data()
-        artifact_image_formset = context['artifact_image_formset']
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
 
-        if artifact_image_formset.is_valid():
-            if self.request.user.is_authenticated:
-                form.instance.uploaded_by = self.request.user
-                if not self.request.user.is_superuser:
-                    form.instance.is_private = True
-            self.object = form.save()
-            artifact_image_formset.instance = self.object
-            artifact_image_formset.save()
-            return super().form_valid(form)
-            # return redirect(self.success_url)
+        name = form.cleaned_data.get('name')
+        email = form.cleaned_data.get('email')
+        phone = form.cleaned_data.get('phone_number')
+        password = User.objects.make_random_password()
 
-        return super().form_invalid(form)
-        # return self.render_to_response(self.get_context_data(form=form))
+        # TODO: Send Email
 
-    def get_context_data(self, **kwargs):
-        context = super(ArtifactCreateView, self).get_context_data(**kwargs)
-        if self.request.POST:
-            context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES,
-                                                                     prefix='artifact_image_formset')
-        else:
-            context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
-        return context
+        user = User.objects.create_user(email=email, password=password, full_name=name, phone=phone)
+
+        login(self.request, user)
+
+        return super().form_valid(form)
 
 
 class OriginAreaCreateView(JewishDiasporaUIMixin, CreateView):
@@ -134,3 +140,5 @@ class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):
     page_title = _('Artifact image create')
     page_name = 'artifact_image_create'
     fields = '__all__'
+
+

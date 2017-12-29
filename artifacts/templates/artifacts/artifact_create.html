@@ -3,11 +3,22 @@
 
 {% block content %}
     <div class="row justify-content-md-center">
+
         <div class="col col-md-8">
-            <h1>{{ page_title }}</h1>
+            <h5> TAB_PLACE_HOLDER  </h5>
         </div>
+
         <div class="col col-md-8">
-            {% include '_base_form.html' with form=form with_files=True submit_text=_('Save') labels=True formset=artifact_image_formset %}
+            <h6>{{ page_description }}  </h6>
+        </div>
+
+        <div class="col col-md-8">
+            <h5>{{ form_description }}</h5>
+           <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" />
+            </form>
         </div>
     </div>
 {% endblock %}

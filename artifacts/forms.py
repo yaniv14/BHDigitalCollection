@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
+from phonenumber_field.formfields import PhoneNumberField
 
 from .models import Artifact, ArtifactImage, OriginArea
 
@@ -88,3 +89,10 @@ class OriginAreaForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'countries': LazySelectMultiple(attrs={'class': 'form-control'}),
         }
+
+
+class UserArtifactForm(forms.Form):
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full name'}))
+    phone_number = PhoneNumberField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number is possible also'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Promise not to send spam'}))
+
