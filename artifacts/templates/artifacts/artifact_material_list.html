@@ -10,10 +10,11 @@
 
         <div class="col col-md-8">
             <p>
-
+                <a href="{% url 'artifacts:material_create'%}" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-plus"></span> add new material
+                </a>
             </p>
             {% for object in materials %}
-
             <p>
                 {{object.title}}
                 <a href="{% url 'artifacts:material_update' object.id %}">
