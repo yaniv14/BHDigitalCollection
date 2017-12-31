@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 14:17+0200\n"
+"POT-Creation-Date: 2017-12-31 12:17+0200\n"
 "PO-Revision-Date: 2017-12-17 20:25+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -91,6 +91,7 @@ msgid "Upload step 3"
 msgstr "העלה תמונות"
 
 #: .\models.py:48 .\models.py:55 .\models.py:62
+#: .\templates\artifacts\sign_in_second_page.html:22
 msgid "Title"
 msgstr "כותרת"
 
@@ -171,6 +172,7 @@ msgid "Image"
 msgstr "תמונה"
 
 #: .\models.py:124 .\models.py:150
+#: .\templates\artifacts\sign_in_second_page.html:78
 msgid "Credit"
 msgstr "קרדיט לצלם"
 
@@ -313,29 +315,80 @@ msgstr "גם אתם חלק מהסיפור"
 msgid "Jewish Diaspora"
 msgstr "בית התפוצות"
 
-#: .\templates\artifacts\sign_in_first_page.html:7
+#: .\templates\artifacts\sign_in_first_page.html:17
 msgid "Personal Information"
-msgstr "מידע נוסף"
+msgstr "קצת פרטים עליך"
 
-#: .\templates\artifacts\sign_in_first_page.html:13
+#: .\templates\artifacts\sign_in_first_page.html:23
+#: .\templates\artifacts\sign_in_third_page.html:22
 msgid "Full Name1"
 msgstr "שם מלא"
 
-#: .\templates\artifacts\sign_in_first_page.html:19
+#: .\templates\artifacts\sign_in_first_page.html:29
+#: .\templates\artifacts\sign_in_third_page.html:28
 msgid "Phone number"
 msgstr "מספר טלפון"
 
-#: .\templates\artifacts\sign_in_first_page.html:36
-msgid "Email address"
-msgstr ""
-
-#: .\templates\artifacts\sign_in_first_page.html:43
-msgid "I would like my name to be displayed next to the artifact image"
-msgstr "אני מעוניין ששמי יופיע לצד תמונת הפריט"
-
 #: .\templates\artifacts\sign_in_first_page.html:46
+#: .\templates\artifacts\sign_in_third_page.html:45
+msgid "Email address"
+msgstr "דואר אלקטרוני"
+
+#: .\templates\artifacts\sign_in_first_page.html:48
+msgid "We'll never share your email with anyone else."
+msgstr "פרטים אלו לצורך התקשרות בלבד. לא ינתנו לצד שלישי ללא הסכמתך"
+
+#: .\templates\artifacts\sign_in_first_page.html:51
+#: .\templates\artifacts\sign_in_second_page.html:82
+#: .\templates\artifacts\sign_in_third_page.html:55
 msgid "Continue"
 msgstr "המשך"
+
+#: .\templates\artifacts\sign_in_second_page.html:17
+msgid "Artifact Information"
+msgstr "מידע על הפריט"
+
+#: .\templates\artifacts\sign_in_second_page.html:27
+msgid "Original Location"
+msgstr "מהיכן הפריט"
+
+#: .\templates\artifacts\sign_in_second_page.html:37
+msgid "The time/era artifact was used"
+msgstr "ממתי הפריט"
+
+#: .\templates\artifacts\sign_in_second_page.html:53
+msgid "Exact year"
+msgstr "שנה מדוייקת"
+
+#: .\templates\artifacts\sign_in_second_page.html:60
+msgid "Artifact details / story"
+msgstr "סיפור הפריט"
+
+#: .\templates\artifacts\sign_in_second_page.html:64
+#, fuzzy
+#| msgid "Artifact type"
+msgid "Artifact Type"
+msgstr "סוג הפריט"
+
+#: .\templates\artifacts\sign_in_second_page.html:69
+#, fuzzy
+#| msgid "Artifact material"
+msgid "Artifact Material"
+msgstr "חומר הפריט"
+
+#: .\templates\artifacts\sign_in_second_page.html:74
+msgid "Technical description"
+msgstr "תיאור טכני"
+
+#: .\templates\artifacts\sign_in_third_page.html:7
+#, fuzzy
+#| msgid "Artifact material"
+msgid "Artifact Images"
+msgstr "חומר הפריט"
+
+#: .\templates\artifacts\sign_in_third_page.html:52
+msgid "I would like my name to be displayed next to the artifact image"
+msgstr ""
 
 #: .\views.py:27
 msgid "Home"
@@ -382,6 +435,9 @@ msgstr "חומר הפריט"
 #: .\views.py:176
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
+
+#~ msgid "To"
+#~ msgstr "עד"
 
 #~ msgid "Tags"
 #~ msgstr "תגיות"
