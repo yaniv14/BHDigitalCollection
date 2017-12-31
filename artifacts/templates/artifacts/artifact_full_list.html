@@ -1,5 +1,5 @@
 {% extends 'artifacts/base.html' %}
-{% load static i18n %}
+{% load static i18n jewishdiaspora %}
 
 {% block content %}
     <div class="card-columns artifact-set">
@@ -7,9 +7,9 @@
             <div class="card">
                 <img class="card-img-top"
                      src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
-                     alt="{{ artifact.name }}">
+                     alt="{{ artifact|bd:'name' }}">
                 <a href="{% url 'artifacts:detail' artifact.id %}">
-                    <span>{{ artifact.name }}</span>
+                    <span>{{ artifact|bd:'name' }}</span>
                     {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
                 </a>
             </div>

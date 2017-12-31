@@ -136,7 +136,8 @@ class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
     def get_initial(self):
         if self.request.user.is_authenticated and not self.request.user.is_superuser:
             return {
-                'donor_name': self.request.user.full_name,
+                'donor_name_he': self.request.user.full_name,
+                'donor_name_en': self.request.user.full_name,
             }
 
     def get_form_class(self):

@@ -120,8 +120,8 @@ FILE_UPLOAD_PERMISSIONS = 0o664
 # LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
-    ('en-us', _('English')),
     ('he', _('Hebrew')),
+    ('en', _('English')),
 ]
 
 LOCALE_PATHS = (

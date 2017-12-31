@@ -11,28 +11,36 @@ class UserArtifactForm(forms.ModelForm):
     class Meta:
         model = Artifact
         fields = [
-            'name',
+            'name_he',
+            'name_en',
             'origin_country',
             'origin_area',
             'year_from',
             'year_to',
-            'description',
+            'description_he',
+            'description_en',
             'artifact_type',
             'artifact_materials',
-            'technical_data',
-            'donor_name',
+            'technical_data_he',
+            'technical_data_en',
+            'donor_name_he',
+            'donor_name_en',
         ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
             'year_to': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'description_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'artifact_type': forms.Select(attrs={'class': 'form-control'}),
             'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'technical_data': forms.Textarea(attrs={'class': 'form-control'}),
-            'donor_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'technical_data_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'donor_name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -48,36 +56,46 @@ class UserArtifactForm(forms.ModelForm):
 class ArtifactForm(UserArtifactForm):
     class Meta(UserArtifactForm.Meta):
         fields = [
-            'name',
+            'name_he',
+            'name_en',
             'slug',
             'origin_country',
-            'origin_city',
+            'origin_city_he',
+            'origin_city_en',
             'origin_area',
             'year_from',
             'year_to',
-            'description',
+            'description_he',
+            'description_en',
             'artifact_type',
             'artifact_materials',
-            'technical_data',
-            'donor_name',
+            'technical_data_he',
+            'technical_data_en',
+            'donor_name_he',
+            'donor_name_en',
             'display_donor_name',
             'is_displayed',
             'displayed_at',
         ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
             'year_to': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'description_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'artifact_type': forms.Select(attrs={'class': 'form-control'}),
             'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'technical_data': forms.Textarea(attrs={'class': 'form-control'}),
-            'donor_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'technical_data_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'donor_name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'acceptance_date': forms.TextInput(attrs={'class': 'form-control'}),
             'is_private': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'origin_city': forms.TextInput(attrs={'class': 'form-control'}),
+            'origin_city_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'origin_city_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'is_displayed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'displayed_at': forms.TextInput(attrs={'class': 'form-control'}),
@@ -93,12 +111,14 @@ class ArtifactImageForm(forms.ModelForm):
             'description',
             'location',
             'year_era',
-            'credit',
+            'credit_he',
+            'credit_en',
         ]
         widgets = {
             'image': forms.FileInput(attrs={'class': 'form-control-file'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
-            'credit': forms.TextInput(attrs={'class': 'form-control'}),
+            'credit_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'credit_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'year_era': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'is_cover': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
@@ -145,11 +165,13 @@ class OriginAreaForm(forms.ModelForm):
     class Meta:
         model = OriginArea
         fields = [
-            'title',
+            'title_he',
+            'title_en',
             'countries'
         ]
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'countries': LazySelectMultiple(attrs={'class': 'form-control'}),
         }
 
@@ -197,7 +219,8 @@ class ArtifactFormImages(forms.Form):
 class ArtifactMaterialForm(forms.ModelForm):
     class Meta:
         model = ArtifactMaterial
-        fields = ['title']
+        fields = ['title_he', 'title_en']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
         }
