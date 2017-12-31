@@ -9,6 +9,24 @@
         </div>
         <div class="top-links float-right">
             <ul class="nav justify-content-end">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            {% trans 'Log Out' %}
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">
+                           {{ user.full_name }}
+                        </a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            {% trans 'Log In' %}
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">
                         {% trans 'About' %}

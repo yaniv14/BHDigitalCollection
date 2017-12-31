@@ -1,0 +1,34 @@
+{% extends 'artifacts/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+    <div class="container">
+       <div class="col col-md-8">
+            <h5> TAB_PLACE_HOLDER  </h5>
+        </div>
+
+        <div class="col col-md-8">
+           <h5>{{ form_description }}</h5>
+           <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input id="addImage" type="button" value="add additional image" onclick="doFunction();" />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.formset.js' %}"></script>
+<script>
+    $(function() {
+        $(".{{ artifact_image_formset.prefix }}").formset({
+            prefix: "{{ artifact_image_formset.prefix }}",
+            formCssClass: "dynamic-{{ artifact_image_formset.prefix }}",
+            addText: "{% trans 'Add' %}",
+            deleteText: "{% trans 'Delete' %}"
+        });
+    })
+</script>
+{% endblock %}

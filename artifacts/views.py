@@ -1,9 +1,8 @@
 from django.contrib.auth import login
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, FormView
 from django.utils.translation import ugettext as _
-from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm
+from artifacts.forms import ArtifactForm, UserArtifactForm, OriginAreaForm, ArtifactFormImages
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 from users.models import User
@@ -82,12 +81,13 @@ class ArtifactCreateView(JewishDiasporaUIMixin, FormView):
     form_description = _('Some Personal Data')
     page_name = 'artifact_create'
 
-    #
-    # def get_initial(self):
-    #
-    #     return {
-    #         'email': 'test@test.com'
-    #     }
+    def get_initial(self):
+        if self.request.user.is_authenticated:
+            return {
+                'name': self.request.user.full_name,
+                'email': self.request.user.email,
+                'phone': self.request.user.phone,
+            }
 
     # def get(self, request):
     #     if self.request.user.is_authenticated:
@@ -109,9 +109,9 @@ class ArtifactCreateView(JewishDiasporaUIMixin, FormView):
 
         # TODO: Send Email
 
-        user = User.objects.create_user(email=email, password=password, full_name=name, phone=phone)
-
-        login(self.request, user)
+        if not self.request.user.is_authenticated:
+            user = User.objects.create_user(email=email, password=password, full_name=name, phone=phone)
+            login(self.request, user)
 
         return super().form_valid(form)
 
@@ -142,3 +142,21 @@ class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):
     fields = '__all__'
 
 
+class ArtifactFormDetails(JewishDiasporaUIMixin, FormView):
+    template_name = 'artifacts/artifact_detail.html'
+    # form_class = ArtifactFormDetails
+    model = Artifact
+    form_class = ArtifactForm
+    page_title = _('Artifact detail')
+    page_name = 'artifact_detail'
+    success_url = reverse_lazy('artifacts:images')
+    form_description = _('Some Artifact Description')
+
+
+class ArtifactImagesFormDetails(JewishDiasporaUIMixin, FormView):
+    template_name = 'artifacts/artifact_image.html'
+    form_class = ArtifactFormImages
+    page_title = _('Artifact Images')
+    page_name = 'artifact_images'
+    success_url = reverse_lazy('artifacts:list')
+    form_description = _('Images of Artifact')
