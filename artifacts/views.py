@@ -63,6 +63,21 @@ class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
         return super(ArtifactUsersListView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=True)
 
 
+class ArtifactFullListView(JewishDiasporaUIMixin, ListView):
+    template_name = 'artifacts/artifact_full_list.html'
+    model = Artifact
+    context_object_name = 'artifacts'
+    page_title = _('All artifacts list')
+    page_name = 'all_artifact_list'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return super(ArtifactFullListView, self).get_queryset()
+
+        return super(ArtifactFullListView, self).get_queryset().filter(status=ArtifactStatus.APPROVED)
+
+
 class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
     model = Artifact
     context_object_name = 'artifact'

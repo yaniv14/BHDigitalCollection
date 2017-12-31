@@ -37,25 +37,14 @@
                         {% trans 'Contact' %}
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="true"
-                       aria-expanded="false">
-                        {% svg_icon 'flag' 'flag-svg' rtl=LANGUAGE_BIDI %}
-                    </a>
-                    <div id="lang-switcher" class="dropdown-menu">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        <form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                            <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                            <input name="language" type="hidden" id="id_language" value="{{ LANGUAGE_CODE }}"/>
-                        </form>
-                        <a class="dropdown-item" href="#" data-lang="en">
-                            {% svg_icon 'flag' 'flag-svg' rtl=False %}
-                        </a>
-                        <a class="dropdown-item" href="#" data-lang="he">
-                            {% svg_icon 'flag' 'flag-svg' rtl=True %}
-                        </a>
-                    </div>
+                <li class="nav-item">
+                    <form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <input name="language" type="hidden" id="id_language" value="{{ LANGUAGE_BIDI|yesno:'en,he' }}"/>
+                        <button type="submit" class="no-btn">
+                            {{ LANGUAGE_BIDI|yesno:_('English,Hebrew') }}
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -79,7 +68,7 @@
                                 <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
                     <li class="nav-item{% if page_name == 'all_artifacts' %} active{% endif %}">
-                        <a class="nav-link" href="#">{% trans 'All' %}{% if page_name == 'all_artifacts' %}
+                        <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">{% trans 'All' %}{% if page_name == 'all_artifacts' %}
                             <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
                 </ul>

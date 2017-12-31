@@ -107,6 +107,17 @@ class Artifact(models.Model):
     def __str__(self):
         return self.name
 
+    def get_years(self):
+        if self.year_from:
+            if self.year_to:
+                if self.year_from == self.year_to:
+                    return '{}-{}'.format(self.year_from, self.year_to)
+            return self.year_from
+        elif self.year_to:
+            return self.year_to
+        return None
+
+
     def get_all_tags(self):
         artifact_type = [self.artifact_type.title] if self.artifact_type else []
         artifact_materials = [x.title for x in self.artifact_materials.all()]
@@ -114,6 +125,10 @@ class Artifact(models.Model):
 
     def get_cover_image(self):
         image = self.images.filter(is_cover=True).first()
+        if image:
+            return image.image
+        # Fallback to not cover image
+        image = self.images.filter(is_cover=False).first()
         if image:
             return image.image
 

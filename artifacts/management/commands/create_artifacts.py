@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
+from django_countries.data import COUNTRIES
 
 from artifacts.models import Artifact, ArtifactImage
 from users.models import User
@@ -28,9 +29,11 @@ class Command(BaseCommand):
             o.status = random.randint(1, 4)
             o.is_private = random.choice([True, False])
             o.name = silly.name()
-            o.slug = slugify(silly.name(), allow_unicode=True)
+            o.slug = silly.name(slugify=True)
             o.year_from = random.randint(1700, 2000)
             o.year_to = random.randint(1700, 2000)
+            o.origin_country = list(COUNTRIES)[random.randint(0, 200)]
+            o.origin_city = silly.city()
             o.donor_name = silly.name()
             o.technical_data = silly.thing()
             o.description = silly.thing()
@@ -44,7 +47,7 @@ class Command(BaseCommand):
                     settings.BASE_DIR, f'artifact_images/{random.randint(1, 16)}.jpg'
                 )
                 image.image = UploadedFile(open(filename, "br"))
-                image.is_cover = True
+                image.is_cover = random.choice([True, False])
                 image.year_era = silly.name()
                 image.location = silly.name()
                 image.full_clean()

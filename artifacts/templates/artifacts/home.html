@@ -11,7 +11,7 @@
                          alt="{{ artifact.name }}">
                     <a class="text-center d-block" href="{% url 'artifacts:detail' artifact.id %}">
                         {{ artifact.name }}<br>
-                        {{ artifact.origin_country.name }}, {{ artifact.year_era }}
+                        {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
                     </a>
                 </div>
                 {% if forloop.counter|divisibleby:3 %}
