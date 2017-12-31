@@ -1,8 +1,9 @@
 from django.contrib.auth import login
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.utils.translation import ugettext as _
-from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, ArtifactMaterialForm, ArtifactFormImages
+from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, ArtifactMaterialForm, \
+    UserForm, ArtifactImagesForm
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 from users.models import User
@@ -70,15 +71,11 @@ class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
     page_name = 'artifact_detail'
 
 
-class ArtifactCreateView(JewishDiasporaUIMixin, FormView):
-    template_name = 'artifacts/artifact_create.html'
-    form_class = UserArtifactForm
-    success_url = reverse_lazy('artifacts:details')
+class ArtifactCreateStepOneView(JewishDiasporaUIMixin, FormView):
+    template_name = 'artifacts/artifact_create_step_one.html'
+    form_class = UserForm
+    success_url = reverse_lazy('artifacts:create_step_two')
     page_title = _('Artifact create')
-    page_description = _('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra tortor nec lacus lacinia, non sodales est tristique. '
-                         'Suspendisse fermentum ultrices leo. Nunc viverra egestas purus vel sagittis. Fusce iaculis enim eget elementum volutpat. '
-                         'Duis et nisi purus. Vivamus tortor odio, condimentum rhoncus magna vitae, posuere tincidunt eros. Sed mollis quis ante et faucibus.')
-    form_description = _('Some Personal Data')
     page_name = 'artifact_create'
 
     def get_initial(self):
@@ -86,34 +83,92 @@ class ArtifactCreateView(JewishDiasporaUIMixin, FormView):
             return {
                 'name': self.request.user.full_name,
                 'email': self.request.user.email,
-                'phone': self.request.user.phone,
+                'phone_number': self.request.user.phone,
             }
 
-    # def get(self, request):
-    #     if self.request.user.is_authenticated:
-    #         if self.request.user.is_superuser:
-    #             return super(ArtifactUsersListView, self).get_queryset().filter(is_private=True)
-    #         else:
-    #             return redirect('artifacts:details')
-    #     else:
-    #         return super().get(self, request)
-
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-
         name = form.cleaned_data.get('name')
         email = form.cleaned_data.get('email')
         phone = form.cleaned_data.get('phone_number')
-        password = User.objects.make_random_password()
-
-        # TODO: Send Email
 
         if not self.request.user.is_authenticated:
-            user = User.objects.create_user(email=email, password=password, full_name=name, phone=phone)
+            password = User.objects.make_random_password()
+            user = User.objects.create_user(
+                email=email,
+                password=password,
+                full_name=name,
+                phone=phone
+            )
+            # Send email
+            user.send_registration_email(password)
+            # Login user into session
             login(self.request, user)
 
         return super().form_valid(form)
+
+
+class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/artifact_create_step_two.html'
+    model = Artifact
+    page_title = _('Artifact detail')
+    page_name = 'artifact_detail'
+    form_description = _('Some Artifact Description')
+
+    def get_initial(self):
+        if self.request.user.is_authenticated and not self.request.user.is_superuser:
+            return {
+                'donor_name': self.request.user.full_name,
+            }
+
+    def get_form_class(self):
+        if self.request.user.is_superuser:
+            return ArtifactForm
+
+        return UserArtifactForm
+
+    def get_success_url(self):
+        return reverse('artifacts:create_step_three', args=[self.object.id])
+
+    def form_valid(self, form):
+        if not self.request.user.is_superuser:
+            form.instance.is_private = True
+        form.instance.uploaded_by = self.request.user
+        return super().form_valid(form)
+
+
+class ArtifactCreateStepThreeView(JewishDiasporaUIMixin, FormView):
+    template_name = 'artifacts/artifact_create_step_three.html'
+    form_class = ArtifactImagesForm
+    page_title = _('Artifact Images')
+    page_name = 'artifact_images'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        artifact_image_formset = context['artifact_image_formset']
+
+        if artifact_image_formset.is_valid():
+            artifact = Artifact.objects.get(pk=self.kwargs['pk'])
+            artifact_image_formset.instance = artifact
+            artifact_image_formset.save()
+            return super().form_valid(form)
+
+        return self.render_to_response(
+            self.get_context_data(
+                form=form,
+                artifact_image_formset=artifact_image_formset
+            )
+        )
+        # return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['artifact_image_formset'] = ArtifactImageFormSet(self.request.POST, self.request.FILES,
+                                                                     prefix='artifact_image_formset')
+        else:
+            context['artifact_image_formset'] = ArtifactImageFormSet(prefix='artifact_image_formset')
+        return context
 
 
 class OriginAreaCreateView(JewishDiasporaUIMixin, CreateView):
@@ -176,29 +231,9 @@ class ArtifactMaterialListView(JewishDiasporaUIMixin, ListView):
 
 
 class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):
-    template_name = 'artifacts/artifact_create.html'
+    template_name = 'artifacts/artifact_create_step_one.html'
     model = ArtifactImage
     success_url = reverse_lazy('artifacts:list')
     page_title = _('Artifact image create')
     page_name = 'artifact_image_create'
     fields = '__all__'
-
-
-class ArtifactFormDetails(JewishDiasporaUIMixin, FormView):
-    template_name = 'artifacts/artifact_detail.html'
-    # form_class = ArtifactFormDetails
-    model = Artifact
-    form_class = ArtifactForm
-    page_title = _('Artifact detail')
-    page_name = 'artifact_detail'
-    success_url = reverse_lazy('artifacts:images')
-    form_description = _('Some Artifact Description')
-
-
-class ArtifactImagesFormDetails(JewishDiasporaUIMixin, FormView):
-    template_name = 'artifacts/artifact_image.html'
-    form_class = ArtifactFormImages
-    page_title = _('Artifact Images')
-    page_name = 'artifact_images'
-    success_url = reverse_lazy('artifacts:list')
-    form_description = _('Images of Artifact')

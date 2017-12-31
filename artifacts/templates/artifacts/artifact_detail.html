@@ -1,19 +1,69 @@
 {% extends 'artifacts/base.html' %}
 {% load static i18n %}
 
-{% block content %}
-    <div class="container">
-       <div class="col col-md-8">
-            <h5> TAB_PLACE_HOLDER  </h5>
+{% block main %}
+    <main>
+        <div class="container text-center">
+            <h1>
+                {{ artifact.name }}
+            </h1>
+            <p>{{ artifact.description|linebreaksbr }}</p>
+            <a href="#">
+                <b>{% trans 'Read more' %}</b>
+            </a>
+        </div>
+        <div class="progress-map mb-4" style="background-image: url({% static 'images/map123.jpg' %});"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>{% trans 'More information' %}</h3>
+                    <hr/>
+                    <dl class="row">
+                        <dt class="col-sm-4">{% trans 'Donor name' %}</dt>
+                        <dd class="col-sm-8">{{ artifact.donor_name }}</dd>
+                        <dt class="col-sm-4">{% trans 'Origin' %}</dt>
+                        <dd class="col-sm-8">{{ artifact.origin_country }}</dd>
+                        <dt class="col-sm-4">{% trans 'Year' %}</dt>
+                        <dd class="col-sm-8">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
+                        <dt class="col-sm-4">{% trans 'Artifact material' %}</dt>
+                        <dd class="col-sm-8">{{ artifact.artifact_materials.all }}</dd>
+                    </dl>
+                    <hr/>
+                </div>
+
+                <div class="col">
+                    {% if artifact.is_displayed %}
+                        {% trans 'Displayed' %}  {{ artifact.displayed_at }}
+                    {% endif %}
+                </div>
+            </div>
         </div>
 
-        <div class="col col-md-8">
-           <h5>{{ form_description }}</h5>
-           <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit" />
-            </form>
+        <div class="container">
+            <div class="row">
+                <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'jewelry' %} </p>
+                <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'Persian Empire' %} </p>
+                <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'gold' %} </p>
+                <p style="border-radius: 50px;color:gray;background:lightgrey;width:150px;margin:10px;text-align:center;"> {% trans 'pearls' %} </p>
+            </div>
         </div>
-    </div>
+        <br/><br/>
+
+        <div class="container">
+            <h4>  {% trans 'Artifacts loaded by donors' %} </h4>
+            <div class="row">
+                {% for image in artifact.images.all %}
+                    <div class="col-6 col-md-3">
+                        <img src="{{ image.image.url }}" class="rounded img-thumbnail"
+                             alt="{{ artifact.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container">
+            <h2>{% trans 'you are part of the story' %}</h2>
+            <p style="border-radius: 50px;color:gray;background:white;width:150px;margin:10px;text-align:center;">{% trans 'Upload artifact' %}</p>
+        </div>
+    </main>
 {% endblock %}
