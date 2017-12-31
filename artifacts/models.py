@@ -75,7 +75,6 @@ class OriginArea(models.Model):
         ]
 
 
-
 class Artifact(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
                                     related_name='uploaded_artifacts', null=True, blank=True)
@@ -107,6 +106,11 @@ class Artifact(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_all_tags(self):
+        artifact_type = [self.artifact_type.title] if self.artifact_type else []
+        artifact_materials = [x.title for x in self.artifact_materials.all()]
+        return artifact_materials + artifact_type
 
     def get_cover_image(self):
         image = self.images.filter(is_cover=True).first()

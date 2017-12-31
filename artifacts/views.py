@@ -64,11 +64,15 @@ class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
 
 
 class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
-    template_name = 'artifacts/artifact_detail.html'
     model = Artifact
     context_object_name = 'artifact'
     page_title = _('Artifact detail')
     page_name = 'artifact_detail'
+
+    def get_template_names(self):
+        if self.object.is_private:
+            return 'artifacts/user_artifact_detail.html'
+        return 'artifacts/artifact_detail.html'
 
 
 class ArtifactCreateStepOneView(JewishDiasporaUIMixin, FormView):
