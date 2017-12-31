@@ -1,9 +1,9 @@
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, FormView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.utils.translation import ugettext as _
-from artifacts.forms import ArtifactForm, UserArtifactForm, OriginAreaForm, ArtifactFormImages
-from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea
+from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, ArtifactMaterialForm, ArtifactFormImages
+from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 from users.models import User
 
@@ -125,12 +125,54 @@ class OriginAreaCreateView(JewishDiasporaUIMixin, CreateView):
     page_name = 'origin_area_create'
 
 
+class OriginAreaUpdateView(JewishDiasporaUIMixin, UpdateView):
+    template_name = 'artifacts/origin_area_create.html'
+    model = OriginArea
+    form_class = OriginAreaForm
+    success_url = reverse_lazy('artifacts:origin_area_list')
+    page_title = _('Origin area update')
+    page_name = 'origin_area_update'
+
+
 class OriginAreaListView(JewishDiasporaUIMixin, ListView):
     template_name = 'artifacts/origin_area_list.html'
     model = OriginArea
     context_object_name = 'areas'
     page_title = _('Origin area list')
     page_name = 'origin_area_list'
+
+
+class ArtifactMaterialCreateView(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/artifact_material.html'
+    model = ArtifactMaterial
+    form_class = ArtifactMaterialForm
+    success_url = reverse_lazy('artifacts:material_list')
+    page_title = _('Artifact material create')
+    page_name = 'artifact_material_create'
+
+
+class ArtifactMaterialUpdateView(JewishDiasporaUIMixin, UpdateView):
+    template_name = 'artifacts/artifact_material.html'
+    model = ArtifactMaterial
+    form_class = ArtifactMaterialForm
+    success_url = reverse_lazy('artifacts:material_list')
+    page_title = _('Artifact material update')
+    page_name = 'artifact_material_update'
+
+
+class ArtifactMaterialDeleteView(JewishDiasporaUIMixin, DeleteView):
+    template_name = 'artifacts/artifact_material_delete.html'
+    model = ArtifactMaterial
+    form_class = ArtifactMaterialForm
+    success_url = reverse_lazy('artifacts:material_list')
+    page_title = _('Origin area update')
+    page_name = 'origin_area_update'
+
+
+class ArtifactMaterialListView(JewishDiasporaUIMixin, ListView):
+    template_name = 'artifacts/artifact_material_list.html'
+    model = ArtifactMaterial
+    context_object_name = 'materials'
 
 
 class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):

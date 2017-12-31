@@ -93,3 +93,12 @@ class ArtifactFormImages(forms.Form):
     imageLocation = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     imageTime = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     photographerName = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    
+class ArtifactMaterialForm(forms.ModelForm):
+    class Meta:
+        model = ArtifactMaterial
+        fields = ['title']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+        }

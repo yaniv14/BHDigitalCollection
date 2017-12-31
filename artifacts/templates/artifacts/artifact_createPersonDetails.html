@@ -1,0 +1,35 @@
+{% extends 'artifacts/base.html' %}
+{% load static jewishdiaspora i18n %}
+
+{% block content %}
+
+    <div>
+        <ul class="list-inline">
+            <li><a href="http://127.0.0.1:8000/artifact/create">step 1</a></li>
+            <li><a href="http://127.0.0.1:8000/artifact/create/artifactDetails/">step 2</a></li>
+            <li><a href="http://127.0.0.1:8000/artifact/create/artifactPictures">step 3</a></li>
+        </ul>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8">
+            <h1>{{ page_title }}</h1>
+        </div>
+        <div class="col col-md-8">
+            {% include '_base_form.html' with form=form with_files=True submit_text=_('Save') labels=True formset=artifact_image_formset %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.formset.js' %}"></script>
+<script>
+    $(function() {
+        $(".{{ artifact_image_formset.prefix }}").formset({
+            prefix: "{{ artifact_image_formset.prefix }}",
+            formCssClass: "dynamic-{{ artifact_image_formset.prefix }}",
+            addText: "{% trans 'Add' %}",
+            deleteText: "{% trans 'Delete' %}"
+        });
+    })
+</script>
+{% endblock %}

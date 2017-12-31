@@ -1,0 +1,32 @@
+{% extends 'artifacts/base.html' %}
+{% load static jewishdiaspora i18n %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8">
+            <h1>{{ page_title }}</h1>
+        </div>
+
+        <div class="col col-md-8">
+            <p>
+                <a href="{% url 'artifacts:material_create'%}" class="btn btn-info btn-lg">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> add new material
+                </a>
+            </p>
+            {% for object in materials %}
+            <p>
+                {{object.title}}
+                <a href="{% url 'artifacts:material_update' object.id %}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+                {% csrf_token %}
+                <a href="{% url 'artifacts:material_delete' object.id %}" method="post">
+                    <i class="fa fa-times" aria-hidden="true"></i></a>
+            </p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
