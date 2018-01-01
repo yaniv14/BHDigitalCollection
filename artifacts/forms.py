@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from jewishdiaspora.fields import ILPhoneNumberMultiWidget
 from users.models import User
 from .models import Artifact, ArtifactImage, OriginArea, ArtifactType, ArtifactMaterial
@@ -197,16 +197,16 @@ class UserForm(forms.Form):
             'These information is for contact reference only, it won\'t submitted to 3rd party without your consent')
     )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-
-        if User.objects.filter(email__iexact=email.lower()):
-            raise forms.ValidationError(
-                _("There is an existing account with that email address, please login first"),
-                code='invalid'
-            )
-        return cleaned_data
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     email = cleaned_data.get('email')
+    #
+    #     if User.objects.filter(email__iexact=email.lower()):
+    #         raise forms.ValidationError(
+    #             _("There is an existing account with that email address, please login first"),
+    #             code='invalid'
+    #         )
+    #     return cleaned_data
 
 
 class ArtifactFormImages(forms.Form):
@@ -224,3 +224,9 @@ class ArtifactMaterialForm(forms.ModelForm):
             'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
         }
+
+
+class YearForm(forms.Form):
+    filter = forms.CharField(widget=forms.HiddenInput)
+    year_from = forms.CharField(label=_('Year from'), widget=forms.NumberInput, required=False)
+    year_to = forms.CharField(label=_('Year to'), widget=forms.NumberInput, required=False)
