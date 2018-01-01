@@ -11,7 +11,9 @@
             <a href="#">
                 <b>{% trans 'Read more' %}</b>
             </a>
+
         </div>
+        <br/>
         <div class="progress-map mb-4" style="background-image: url({% static 'images/map123.jpg' %});"></div>
 
         <div class="container">
@@ -27,23 +29,15 @@
                         <dt class="col-sm-4">{% trans 'Year' %}</dt>
                         <dd class="col-sm-8">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
                         <dt class="col-sm-4">{% trans 'Artifact material' %}</dt>
-                        <dd class="col-sm-8">{{ artifact.artifact_materials.all }}</dd>
+                        <dd class="col-sm-8">
+                             {% for material in artifact.artifact_materials.all %}
+                               {{ material }}
+                             {% endfor %}
+                           </dd>
                     </dl>
                     <hr/>
-                </div>
-
-                <div class="col">
-                    {% if artifact.is_displayed %}
-                        {% trans 'Displayed' %}  {{ artifact.displayed_at }}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mb-1">
-                    <h4>{% trans 'Technical data abou the item' %}</h4>
+                     <div class="col-12 mb-1">
+                    <h4>{% trans 'Technical data about the item' %}</h4>
                     <p>
                         {{ artifact|bd:'technical_data'|linebreaksbr }}
                     </p>
@@ -54,6 +48,14 @@
                             {{ tag }}
                         </span>
                     {% endfor %}
+                </div>
+                </div>
+
+                <div class="col">
+                    {% if artifact.is_displayed %}
+                        <h4>{% trans 'Jewish Diaspora' %}</h4>
+                        <p>{% trans 'Displayed' %}  {{ artifact.displayed_at }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -70,7 +72,9 @@
         </div>
         <div class="container">
             <h2>{% trans 'you are part of the story' %}</h2>
-            <p style="border-radius: 50px;color:gray;background:white;width:150px;margin:10px;text-align:center;">{% trans 'Upload artifact' %}</p>
+            <p class="a123" > </p>
+
+            <button  button type="button" class="badge badge-pill badge-secondary"> {% trans 'Upload artifact' %} </button>
         </div>
     </main>
 {% endblock %}

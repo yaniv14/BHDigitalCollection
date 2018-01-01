@@ -154,7 +154,7 @@ class ArtifactImage(models.Model):
     is_cover = models.BooleanField(_('Cover image?'), default=False)
 
     def __str__(self):
-        return f'[{self.id}] {self.artifact.name}'
+        return f'[{self.id}] {self.artifact.name_he}'
 
 
 class ArtifactImageCoord(models.Model):
@@ -166,7 +166,7 @@ class ArtifactImageCoord(models.Model):
     info = models.CharField(_('Info'), max_length=400, blank=True, null=True)
 
     def __str__(self):
-        return f'[{self.x},{self.y}] {self.image.artifact.name}'
+        return f'[{self.x},{self.y}] {self.image.artifact.name_he}'
 
 
 class PageBanner(models.Model):
