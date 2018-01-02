@@ -12,39 +12,32 @@ class UserArtifactForm(forms.ModelForm):
         model = Artifact
         fields = [
             'name_he',
-            'name_en',
             'origin_country',
             'origin_area',
             'year_from',
             'year_to',
             'description_he',
-            'description_en',
             'artifact_type',
             'artifact_materials',
             'technical_data_he',
-            'technical_data_en',
             'donor_name_he',
-            'donor_name_en',
         ]
         widgets = {
             'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
             'year_to': forms.TextInput(attrs={'class': 'form-control'}),
             'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'description_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'artifact_type': forms.Select(attrs={'class': 'form-control'}),
             'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'technical_data_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'donor_name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
         }
 
     def __init__(self, *args, **kwargs):
         super(UserArtifactForm, self).__init__(*args, **kwargs)
+
         if self.errors:
             for field in self.fields:
                 if field in self.errors:
@@ -112,13 +105,11 @@ class ArtifactImageForm(forms.ModelForm):
             'location',
             'year_era',
             'credit_he',
-            'credit_en',
         ]
         widgets = {
             'image': forms.FileInput(attrs={'class': 'form-control-file'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
             'credit_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'credit_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'year_era': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'is_cover': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
@@ -138,7 +129,7 @@ ArtifactImageFormSet = inlineformset_factory(
     Artifact,
     ArtifactImage,
     form=ArtifactImageForm,
-    extra=1,
+    extra=1,max_num=5,
     can_delete=False
 )
 
@@ -197,10 +188,16 @@ class UserForm(forms.Form):
             'These information is for contact reference only, it won\'t submitted to 3rd party without your consent')
     )
 
+    def __init__(self, *args, **kwargs):
+        self.userId = kwargs.pop('userId')
+        super(UserForm, self).__init__(*args, **kwargs)
+
     def clean(self):
         cleaned_data = super().clean()
-        email = cleaned_data.get('email')
+        if self.userId:
+            return cleaned_data
 
+        email = cleaned_data.get('email')
         if User.objects.filter(email__iexact=email.lower()):
             raise forms.ValidationError(
                 _("There is an existing account with that email address, please login first"),

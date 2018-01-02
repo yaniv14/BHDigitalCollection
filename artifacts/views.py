@@ -1,7 +1,9 @@
 from django.contrib.auth import login
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.utils.translation import ugettext as _
+
 from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, ArtifactMaterialForm, \
     UserForm, ArtifactImagesForm
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial
@@ -97,6 +99,11 @@ class ArtifactCreateStepOneView(JewishDiasporaUIMixin, FormView):
     page_title = _('Artifact create')
     page_name = 'artifact_create'
 
+    def get_form_kwargs(self):
+        kwargs = super(ArtifactCreateStepOneView, self).get_form_kwargs()
+        kwargs.update({'userId': self.request.user.id})
+        return kwargs
+
     def get_initial(self):
         if self.request.user.is_authenticated:
             return {
@@ -133,6 +140,11 @@ class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
     page_name = 'artifact_detail'
     form_description = _('Some Artifact Description')
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('artifacts:create_step_one'))
+        return super().get(request, *args, **kwargs)
+
     def get_initial(self):
         if self.request.user.is_authenticated and not self.request.user.is_superuser:
             return {
@@ -143,8 +155,8 @@ class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
     def get_form_class(self):
         if self.request.user.is_superuser:
             return ArtifactForm
-
-        return UserArtifactForm
+        else:
+            return UserArtifactForm
 
     def get_success_url(self):
         return reverse('artifacts:create_step_three', args=[self.object.id])
@@ -153,6 +165,11 @@ class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
         if not self.request.user.is_superuser:
             form.instance.is_private = True
         form.instance.uploaded_by = self.request.user
+
+        form.instance.name_en = form.cleaned_data['name_he']
+        form.instance.description_en = form.cleaned_data['description_he']
+        form.instance.technical_data_en = form.cleaned_data['technical_data_he']
+        form.instance.donor_name_en = form.cleaned_data['donor_name_he']
         return super().form_valid(form)
 
 
@@ -163,6 +180,11 @@ class ArtifactCreateStepThreeView(JewishDiasporaUIMixin, FormView):
     page_name = 'artifact_images'
     success_url = reverse_lazy('home')
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('artifacts:create_step_one'))
+        return super().get(request, *args, **kwargs)
+
     def form_valid(self, form):
         context = self.get_context_data()
         artifact_image_formset = context['artifact_image_formset']
@@ -170,6 +192,7 @@ class ArtifactCreateStepThreeView(JewishDiasporaUIMixin, FormView):
         if artifact_image_formset.is_valid():
             artifact = Artifact.objects.get(pk=self.kwargs['pk'])
             artifact_image_formset.instance = artifact
+            artifact_image_formset.instance.description_en = artifact_image_formset.instance.description_he
             artifact_image_formset.save()
             return super().form_valid(form)
 
