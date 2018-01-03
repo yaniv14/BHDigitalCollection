@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.utils.translation import ugettext as _
 
 from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
-    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm
+    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
     ArtifactType
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
@@ -39,11 +39,28 @@ class HomeView(JewishDiasporaUIMixin, ListView):
     context_object_name = 'artifacts'
 
     def get_queryset(self):
-        return super(HomeView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False,
-                                                           is_featured=True)
+        filters = self.request.GET.get('filter', None)
+        if filters == 'time':
+            time_from = self.request.GET.get('year_from', None)
+            time_to = self.request.GET.get('year_to', None)
+            if time_from and time_to:
+                qs = super(HomeView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False)
+                return qs.filter(year_from__gte=int(time_from)).exclude(year_to__gt=int(time_to))
+        elif filters == 'location':
+            pass
+        return super().get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False,
+                                             is_featured=True)
 
     def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        filters = self.request.GET.get('filter', None)
+        context['filters'] = filters
+        year_form = YearForm(self.request.GET)
+        if filters == 'time':
+            pass
+        elif filters == 'location':
+            pass
+        context['filter_form'] = year_form
         context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
                                                            is_featured=False)
         context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()

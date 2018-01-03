@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{% if filters == 'time' %}
+    <form method="get" action="{{ request.path }}">
+        {{ filter_form }}
+        <button type="submit">
+            Go
+        </button>
+    </form>
+{% else %}
+    Location
+    {% for area in areas %}
+        <div>{{ area }}</div>
+    {% endfor %}
+{% endif %}
