@@ -6,7 +6,7 @@ from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 from django.utils.translation import ugettext as _
 from jewishdiaspora.fields import ILPhoneNumberMultiWidget
 from users.models import User
-from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial
+from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial, ArtifactType
 
 
 class UserArtifactForm(forms.ModelForm):
@@ -269,6 +269,16 @@ class ArtifactFormImages(forms.Form):
 class ArtifactMaterialForm(forms.ModelForm):
     class Meta:
         model = ArtifactMaterial
+        fields = ['title_he', 'title_en']
+        widgets = {
+            'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+        }
+
+
+class ArtifactTypeForm(forms.ModelForm):
+    class Meta:
+        model = ArtifactType
         fields = ['title_he', 'title_en']
         widgets = {
             'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),

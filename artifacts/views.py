@@ -8,8 +8,9 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.utils.translation import ugettext as _
 
 from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
-    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet
-from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial
+    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm
+from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
+    ArtifactType
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 from users.models import User
 
@@ -304,6 +305,39 @@ class ArtifactMaterialListView(JewishDiasporaUIMixin, ListView):
     template_name = 'artifacts/artifact_material_list.html'
     model = ArtifactMaterial
     context_object_name = 'materials'
+
+
+class ArtifactTypeCreateView(JewishDiasporaUIMixin, CreateView):
+    template_name = 'artifacts/artifact_type.html'
+    model = ArtifactType
+    form_class = ArtifactTypeForm
+    success_url = reverse_lazy('artifacts:type_list')
+    page_title = _('Artifact type create')
+    page_name = 'artifact_type_create'
+
+
+class ArtifactTypeUpdateView(JewishDiasporaUIMixin, UpdateView):
+    template_name = 'artifacts/artifact_type.html'
+    model = ArtifactType
+    form_class = ArtifactTypeForm
+    success_url = reverse_lazy('artifacts:type_list')
+    page_title = _('Artifact type update')
+    page_name = 'artifact_type_update'
+
+
+class ArtifactTypeDeleteView(JewishDiasporaUIMixin, DeleteView):
+    template_name = 'artifacts/artifact_type_delete.html'
+    model = ArtifactType
+    form_class = ArtifactTypeForm
+    success_url = reverse_lazy('artifacts:type_list')
+    page_title = _('Artifact type delete')
+    page_name = 'artifact_type_delete'
+
+
+class ArtifactTypeListView(JewishDiasporaUIMixin, ListView):
+    template_name = 'artifacts/artifact_type_list.html'
+    model = ArtifactType
+    context_object_name = 'types'
 
 
 class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):
