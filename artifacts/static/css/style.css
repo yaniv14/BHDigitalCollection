@@ -1,3 +1,220 @@
+/* hebrew */
+@font-face {
+    font-family: 'Alef';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/fonts/alef/Alef-Regular.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Alef';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/fonts/alef/Alef-Regular.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* hebrew */
+@font-face {
+    font-family: 'Alef';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/static/fonts/alef/Alef-Bold.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Alef';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/static/fonts/alef/Alef-Bold.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* cyrillic-ext */
+@font-face {
+    font-family: 'Arimo';
+    font-style: italic;
+    font-weight: 400;
+    src: url(/static/fonts/arimo/Arimo-Italic.ttf);
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+/* hebrew */
+@font-face {
+    font-family: 'Arimo';
+    font-style: italic;
+    font-weight: 400;
+    src: url(/static/fonts/arimo/Arimo-Italic.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Arimo';
+    font-style: italic;
+    font-weight: 400;
+    src: url(/static/fonts/arimo/Arimo-Italic.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* hebrew */
+@font-face {
+    font-family: 'Arimo';
+    font-style: italic;
+    font-weight: 700;
+    src: url(/static/fonts/arimo/Arimo-BoldItalic.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Arimo';
+    font-style: italic;
+    font-weight: 700;
+    src: url(/static/fonts/arimo/Arimo-BoldItalic.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* hebrew */
+@font-face {
+    font-family: 'Arimo';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/fonts/arimo/Arimo-Regular.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Arimo';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/fonts/arimo/Arimo-Regular.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* hebrew */
+@font-face {
+    font-family: 'Arimo';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/static/fonts/arimo/Arimo-Bold.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Arimo';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/static/fonts/arimo/Arimo/Arimo-Bold.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* Generic */
+body {
+    font-family: 'Alef', "Helvetica Neue", Arial, sans-serif;
+    /*font-family: 'Arimo', sans-serif;*/
+}
+
+.text-blue {
+    color: #47C3D3;
+}
+
+.text-orange {
+    color: #FFA400;
+}
+
+.text-red {
+    color: #47C3D3;
+}
+
+/* Buttons */
+.btn-orange {
+    color: #fff;
+    background-color: #FFA400;
+    border-color: #FFA400;
+    border-radius: 0;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background-color: #FFA400;
+    border-color: #FFA400;
+}
+
+.btn-orange:focus, .btn-orange.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-orange.disabled, .btn-orange:disabled {
+    background-color: #FFA400;
+    border-color: #FFA400;
+}
+
+.btn-orange:not([disabled]):not(.disabled):active, .btn-orange:not([disabled]):not(.disabled).active,
+.show > .btn-orange.dropdown-toggle {
+    color: #fff;
+    background-color: #FFA400;
+    border-color: #FFA400;
+}
+
+.btn-orange:not([disabled]):not(.disabled):active:focus, .btn-orange:not([disabled]):not(.disabled).active:focus,
+.show > .btn-orange.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #47C3D3;
+    border-color: #47C3D3;
+    border-radius: 0;
+}
+
+.btn-blue:hover {
+    color: #fff;
+    background-color: #47C3D3;
+    border-color: #47C3D3;
+}
+
+.btn-blue:focus, .btn-blue.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-blue.disabled, .btn-blue:disabled {
+    background-color: #47C3D3;
+    border-color: #47C3D3;
+}
+
+.btn-blue:not([disabled]):not(.disabled):active, .btn-blue:not([disabled]):not(.disabled).active,
+.show > .btn-blue.dropdown-toggle {
+    color: #fff;
+    background-color: #47C3D3;
+    border-color: #47C3D3;
+}
+
+.btn-blue:not([disabled]):not(.disabled):active:focus, .btn-blue:not([disabled]):not(.disabled).active:focus,
+.show > .btn-blue.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/* Titles */
+.step_title span {
+    border-bottom: 4px solid;
+}
+
+.step_title .blue {
+    border-color: #47C3D3;
+}
+
+.step_title .orange {
+    border-color: #FFA400;
+}
+
 /* Header */
 header .header-top {
     width: 100%;
@@ -12,6 +229,12 @@ header .header-top {
 
 header .logo {
 
+}
+
+.header-bottom .navbar-light .navbar-nav .active > .nav-link,
+.header-bottom .navbar-light .navbar-nav .nav-link.active {
+    border-bottom: 3px solid;
+    margin-bottom: -3px;
 }
 
 .no-btn {
@@ -37,6 +260,7 @@ header .logo {
     padding: 0.5rem 1rem;
     line-height: 60px;
     font-size: 1.5rem;
+    color: #fff;
 }
 
 .top-links .nav-link.dropdown-toggle {
@@ -67,6 +291,22 @@ main {
 
 .artifact-set {
 
+}
+
+.artifact-set .card {
+    text-align: center;
+}
+
+.artifact-set .card img {
+    border-bottom: 4px solid;
+}
+
+.artifact-set .card.blue img {
+    border-color: #47C3D3;
+}
+
+.artifact-set .card.red img {
+    border-color: red;
 }
 
 .artifact-set .card a {
@@ -100,15 +340,16 @@ main {
 }
 
 .card.small {
-    width: calc(50% - 15px);
+    width: calc(50% - 30px);
     float: left;
-    height: 240px;
+    height: 270px;
+    margin: 15px;
 }
 
 .card.big img,
 .card.small img {
     background-color: #ccc;
-    border-bottom: 8px solid orange;
+    border-bottom: 8px solid #47C3D3;
     height: calc(100% - 60px);
     width: auto;
 }
@@ -159,11 +400,11 @@ main {
 }
 
 .step_one {
-    background-color: orange;
+    background-color: #FFA400;
 }
 
 .step_two {
-    background-color: cyan;
+    background-color: #47C3D3;
 }
 
 .step_three {
@@ -182,6 +423,16 @@ main {
 .svg-icon.flag-svg svg {
     width: 60px;
     height: 60px;
+}
+
+.svg-icon.lang_switcher {
+    vertical-align: sub;
+    display: inline-block;
+}
+
+.svg-icon.lang_switcher svg {
+    width: auto;
+    height: 30px;
 }
 
 /* Responsive */

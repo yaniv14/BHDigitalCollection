@@ -2,23 +2,34 @@
 {% load static i18n jewishdiaspora %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-12 col-md-6 artifact-set">
-            {% for artifact in artifacts %}
-                <div class="card {% if forloop.counter in bigs %}big{% else %}small {% cycle 'first' 'last' %}{% endif %}">
+    {% for artifact in artifacts %}
+        <div class="row">
+            <div class="col-12 col-md-6 artifact-set order-md-{% cycle '1' '12' %}">
+                <div class="card big">
                     <img class="card-img-top"
                          src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
                          alt="{{ artifact|bd:'name' }}">
                     <a class="text-center d-block" href="{% url 'artifacts:detail' artifact.id %}">
                         {{ artifact|bd:'name' }}<br>
-                        {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
+                        {{ artifact.origin_country.name }}{% if artifact.get_years %},
+                            {{ artifact.get_years }}{% endif %}
                     </a>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            {% for a in none_featured|slice_qs:forloop.counter0 %}
+                {% if forloop.first %}<div class="col-12 col-md-6 artifact-set order-md-{% cycle '12' '1' %}">{% endif %}
+                    <div class="card small">
+                        <img class="card-img-top"
+                             src="{% if a.get_cover_image %}{{ a.get_cover_image.url }}{% endif %}"
+                             alt="{{ a|bd:'name' }}">
+                        <a class="text-center d-block" href="{% url 'artifacts:detail' a.id %}">
+                            {{ a|bd:'name' }}<br>
+                            {{ a.origin_country.name }}{% if a.get_years %},
+                                {{ a.get_years }}{% endif %}
+                        </a>
                     </div>
-                    <div class="col-12 col-md-6 artifact-set">
-                {% endif %}
+                {% if forloop.last %}</div>{% endif %}
             {% endfor %}
         </div>
-    </div>
+    {% endfor %}
 {% endblock %}

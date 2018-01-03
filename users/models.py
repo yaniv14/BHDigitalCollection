@@ -44,7 +44,7 @@ class ArtifactContact(models.Model):
     email = models.EmailField(_('Email'), max_length=250)
     phone = models.CharField(_('Phone'), max_length=250)
     artifact_info = models.TextField(_('Artifact info'), blank=True, null=True)
-    intend_type = models.PositiveSmallIntegerField(_(''), choices=IntendType.choices, default=IntendType.NA)
+    intend_type = models.PositiveSmallIntegerField(_('Intend type'), choices=IntendType.choices, default=IntendType.NA)
 
     def __str__(self):
         return u'{}: {}'.format(self.submitted_at, self.name)

@@ -1,24 +1,61 @@
 {% extends 'artifacts/base.html' %}
-{% load static i18n jewishdiaspora %}
+{% load static jewishdiaspora i18n %}
 
 {% block content %}
-    <div class="card">
-        {% for area in areas %}
-            <ul>
-                <li>{{ area|bd:'title' }}</li>
-                {% if area.countries %}
-                    <li>
-                        <ul>
-                            {% for country in area.get_countries_list %}
-                                <li>
-                                    <img src="{{ country.flag }}" />
-                                    {{ country.name }} [{{ country.code }}]
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endif %}
-            </ul>
-        {% endfor %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-8">
+                <h1>{{ page_title }}</h1>
+            </div>
+            <div class="col col-md-8">
+                <p>
+                    <a href="{% url 'artifacts:origin_area_create' %}" class="btn btn-info btn-lg">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> {% trans 'Add new area' %}
+                    </a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">{% trans 'Name' %}</th>
+                            <th scope="col">{% trans 'Countries' %}</th>
+                            <th scope="col">{% trans 'Edit' %}</th>
+                            <th scope="col">{% trans 'Delete' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for area in areas %}
+                            <tr>
+                                <td>{{ area|bd:'title' }}</td>
+                                <td>
+                                    {% if area.countries %}
+                                        <ul>
+                                            {% for country in area.get_countries_list %}
+                                                <li>
+                                                    <img src="{{ country.flag }}" />
+                                                    {{ country.name }} [{{ country.code }}]
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'artifacts:origin_area_update' area.id %}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> {% trans 'Edit' %}
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="{% url 'artifacts:origin_area_delete' area.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit">
+                                            <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete' %}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

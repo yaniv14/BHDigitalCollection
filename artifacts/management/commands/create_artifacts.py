@@ -4,7 +4,6 @@ import os
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.core.management.base import BaseCommand
-from django.utils.text import slugify
 from django_countries.data import COUNTRIES
 
 from artifacts.models import Artifact, ArtifactImage
@@ -18,6 +17,9 @@ class Command(BaseCommand):
         parser.add_argument('n', type=int)
 
     def handle(self, n, **options):
+        map = os.path.join(
+            settings.BASE_DIR, f'artifact_images/map.jpg'
+        )
         for i in range(n):
             user = User.objects.first()
 
@@ -25,9 +27,9 @@ class Command(BaseCommand):
             o = Artifact()
             o.uploaded_by = user
             o.uploaded_at = silly.datetime().date()
-            o.acceptance_date = silly.datetime().date()
             o.status = random.randint(1, 4)
             o.is_private = random.choice([True, False])
+            o.is_featured = random.choice([True, False])
             o.name_he = silly.name()
             o.name_en = silly.name()
             o.slug = silly.name(slugify=True)
@@ -42,6 +44,9 @@ class Command(BaseCommand):
             o.technical_data_en = silly.thing()
             o.description_he = silly.thing()
             o.description_en = silly.thing()
+            o.route_he = silly.thing()
+            o.route_en = silly.thing()
+            o.route_map = UploadedFile(open(map, "br"))
             o.save()
 
             # Add 4 random images to artifact
@@ -53,7 +58,9 @@ class Command(BaseCommand):
                 )
                 image.image = UploadedFile(open(filename, "br"))
                 image.is_cover = random.choice([True, False])
-                image.year_era = silly.name()
-                image.location = silly.name()
+                image.year_era_he = silly.name()
+                image.year_era_en = silly.name()
+                image.location_he = silly.name()
+                image.location_en = silly.name()
                 image.full_clean()
                 image.save()

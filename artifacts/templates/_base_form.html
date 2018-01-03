@@ -41,7 +41,7 @@
         {% endif %}
         </div>
     {% endfor %}
-    <div class="form-group">
+    <div class="form-group{% if btn_location %} text-{{ btn_location }}{% endif %}">
         <button type="submit" class="btn btn-{{ button_color|default:"primary" }}">
             {{ submit_text|default:_('Submit') }}
         </button>

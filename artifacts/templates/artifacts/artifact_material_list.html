@@ -7,25 +7,41 @@
             <div class="col col-md-8">
                 <h1>{{ page_title }}</h1>
             </div>
-
             <div class="col col-md-8">
                 <p>
                     <a href="{% url 'artifacts:material_create' %}" class="btn btn-info btn-lg">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i> {% trans 'Add new material' %}
                     </a>
                 </p>
-                {% for object in materials %}
-                    <p>
-                        {{ object|bd:'title' }}
-                        <a href="{% url 'artifacts:material_update' object.id %}">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-
-                        {% csrf_token %}
-                        <a href="{% url 'artifacts:material_delete' object.id %}" method="post">
-                            <i class="fa fa-times" aria-hidden="true"></i></a>
-                    </p>
-                {% endfor %}
-
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">{% trans 'Title' %}</th>
+                            <th scope="col">{% trans 'Edit' %}</th>
+                            <th scope="col">{% trans 'Delete' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for object in materials %}
+                            <tr>
+                                <td>{{ object|bd:'title' }}</td>
+                                <td>
+                                    <a href="{% url 'artifacts:material_update' object.id %}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> {% trans 'Edit' %}
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="{% url 'artifacts:material_delete' object.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit">
+                                            <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete' %}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -1,10 +1,12 @@
+import pdb
+
 from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 from django.utils.translation import ugettext as _
 from jewishdiaspora.fields import ILPhoneNumberMultiWidget
 from users.models import User
-from .models import Artifact, ArtifactImage, OriginArea, ArtifactType, ArtifactMaterial
+from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial
 
 
 class UserArtifactForm(forms.ModelForm):
@@ -23,16 +25,28 @@ class UserArtifactForm(forms.ModelForm):
             'donor_name_he',
         ]
         widgets = {
-            'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'name_he': forms.TextInput(attrs={'class': 'form-control'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
             'year_to': forms.TextInput(attrs={'class': 'form-control'}),
-            'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'description_he': forms.Textarea(attrs={'class': 'form-control'}),
             'artifact_type': forms.Select(attrs={'class': 'form-control'}),
             'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'technical_data_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'technical_data_he': forms.Textarea(attrs={'class': 'form-control'}),
+            'donor_name_he': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'name_he': _('Title'),
+            'origin_country': _('Item origin'),
+            'origin_area': _('Area or continent'),
+            'year_from': _('Year from'),
+            'year_to': _('Year to'),
+            'description_he': _('Item story'),
+            'artifact_type': _('Artifact type'),
+            'artifact_materials': _('Material'),
+            'technical_data_he': _('Technical data of the item'),
+            'donor_name_he': _('Credit'),
         }
 
     def __init__(self, *args, **kwargs):
@@ -69,6 +83,9 @@ class ArtifactForm(UserArtifactForm):
             'display_donor_name',
             'is_displayed',
             'displayed_at',
+            'route_map',
+            'route_he',
+            'route_en',
         ]
         widgets = {
             'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
@@ -85,7 +102,6 @@ class ArtifactForm(UserArtifactForm):
             'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'donor_name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
-            'acceptance_date': forms.TextInput(attrs={'class': 'form-control'}),
             'is_private': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'origin_city_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'origin_city_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
@@ -93,30 +109,32 @@ class ArtifactForm(UserArtifactForm):
             'is_displayed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'displayed_at': forms.TextInput(attrs={'class': 'form-control'}),
             'display_donor_name': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'route_map': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'route_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'route_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
         }
 
 
-class ArtifactImageForm(forms.ModelForm):
+class UserArtifactImageForm(forms.ModelForm):
     class Meta:
         model = ArtifactImage
         fields = [
             'image',
-            'description',
-            'location',
-            'year_era',
+            'description_he',
+            'location_he',
+            'year_era_he',
             'credit_he',
         ]
         widgets = {
             'image': forms.FileInput(attrs={'class': 'form-control-file'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'description_he': forms.TextInput(attrs={'class': 'form-control'}),
+            'location_he': forms.TextInput(attrs={'class': 'form-control'}),
+            'year_era_he': forms.TextInput(attrs={'class': 'form-control'}),
             'credit_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'year_era': forms.TextInput(attrs={'class': 'form-control'}),
-            'location': forms.TextInput(attrs={'class': 'form-control'}),
-            'is_cover': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
     def __init__(self, *args, **kwargs):
-        super(ArtifactImageForm, self).__init__(*args, **kwargs)
+        super(UserArtifactImageForm, self).__init__(*args, **kwargs)
         if self.errors:
             for field in self.fields:
                 if field in self.errors:
@@ -125,11 +143,49 @@ class ArtifactImageForm(forms.ModelForm):
                     self.fields[field].widget.attrs['class'] = classes
 
 
+class ArtifactImageForm(UserArtifactImageForm):
+    class Meta(UserArtifactImageForm.Meta):
+        fields = [
+            'image',
+            'description_he',
+            'description_en',
+            'location_he',
+            'location_en',
+            'year_era_he',
+            'year_era_en',
+            'credit_he',
+            'credit_en',
+            'is_cover',
+        ]
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'description_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'description_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'credit_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'credit_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'year_era_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'year_era_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'location_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'location_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'is_cover': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+
+
+UserArtifactImageFormSet = inlineformset_factory(
+    Artifact,
+    ArtifactImage,
+    form=UserArtifactImageForm,
+    extra=1,
+    max_num=5,
+    can_delete=False
+)
+
 ArtifactImageFormSet = inlineformset_factory(
     Artifact,
     ArtifactImage,
     form=ArtifactImageForm,
-    extra=1,max_num=5,
+    extra=1,
+    max_num=5,
     can_delete=False
 )
 
@@ -189,16 +245,13 @@ class UserForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        self.userId = kwargs.pop('userId')
+        self.logged = kwargs.pop('logged')
         super(UserForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = super().clean()
-        if self.userId:
-            return cleaned_data
-
         email = cleaned_data.get('email')
-        if User.objects.filter(email__iexact=email.lower()):
+        if User.objects.filter(email__iexact=email.lower()) and not self.logged:
             raise forms.ValidationError(
                 _("There is an existing account with that email address, please login first"),
                 code='invalid'
@@ -221,3 +274,14 @@ class ArtifactMaterialForm(forms.ModelForm):
             'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
         }
+
+
+class YearForm(forms.Form):
+    filter = forms.CharField(widget=forms.HiddenInput)
+    year_from = forms.CharField(label=_('Year from'), widget=forms.NumberInput, required=False)
+    year_to = forms.CharField(label=_('Year to'), widget=forms.NumberInput, required=False)
+
+
+class EmptyForm(forms.Form):
+    def is_valid(self):
+        return True

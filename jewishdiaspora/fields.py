@@ -31,19 +31,20 @@ class ILPhoneNumberMultiWidget(forms.MultiWidget):
             ('09', '09'),
         )
         widgets = (
-            forms.TextInput(
-                attrs=attrs if number_attrs is None else number_attrs
-            ),
             forms.Select(
                 attrs=attrs if area_attrs is None else area_attrs,
                 choices=IL_AREA_CODE
+            ),
+            forms.TextInput(
+                attrs=attrs if number_attrs is None else number_attrs
             ),
         )
         super().__init__(widgets)
 
     def decompress(self, value):
         if value:
-            return value.split('-')[::-1]  # reverse order base on form location
+            return value.split('-')
+            # return value.split('-')[::-1]  # reverse order base on form location
         return [None, None]
 
     def value_from_datadict(self, data, files, name):
@@ -53,4 +54,5 @@ class ILPhoneNumberMultiWidget(forms.MultiWidget):
             values[index] = data[d]
         if values[0] == values[1] == '':
             return None
-        return '%s-%s' % tuple(values)[::-1]  # reverse order base on form location
+        return '%s-%s' % tuple(values)
+        # return '%s-%s' % tuple(values)[::-1]  # reverse order base on form location

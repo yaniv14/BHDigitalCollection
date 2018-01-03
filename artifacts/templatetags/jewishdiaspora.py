@@ -46,7 +46,7 @@ def boolean_to_icon(arg):
 
 
 @register.simple_tag
-def svg_icon(icon_name, class_name='', from_upload=False, rtl=False):
+def svg_icon(icon_name, class_name='', from_upload=False, rtl=False, lang=True):
     if icon_name is None:
         return ''
     result = '<span class="svg-icon {}">'.format(class_name)
@@ -55,7 +55,10 @@ def svg_icon(icon_name, class_name='', from_upload=False, rtl=False):
         result += file.read()
         file.close()
     else:
-        result += render_to_string('svgs/{}{}.svg'.format(icon_name, '_he' if rtl else '_en'))
+        if lang:
+            result += render_to_string('svgs/{}{}.svg'.format(icon_name, '_he' if rtl else '_en'))
+        else:
+            result += render_to_string('svgs/{}.svg'.format(icon_name))
     result += '</span>'
     return mark_safe(result)
 
@@ -70,3 +73,8 @@ def bidi(instance, field):
 def bd(instance, field):
     lang = translation.get_language()[:2]
     return getattr(instance, field + "_" + lang)
+
+
+@register.filter
+def slice_qs(qs, arg):
+    return qs[int(arg * 4):int(arg * 4) + 4]

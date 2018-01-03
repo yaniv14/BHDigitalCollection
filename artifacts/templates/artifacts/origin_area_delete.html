@@ -1,0 +1,14 @@
+{% extends 'artifacts/base.html' %}
+{% load static jewishdiaspora i18n %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8">
+            <h1>Delete origin area</h1>
+        </div>
+        <div class="col col-md-8">
+            Are you sure you want to delete {{ object.title }}
+            {% include '_base_form.html' with form=form submit_text=_('Delete') labels=True %}
+        </div>
+    </div>
+{% endblock %}

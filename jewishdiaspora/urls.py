@@ -22,7 +22,7 @@ urlpatterns += i18n_patterns(
     path('contact', user_views.ContactView.as_view(), name='contact'),
     path('about', views.AboutView.as_view(), name='about'),
     path('artifact/', include('artifacts.urls')),
-    path('accounts/', include('authtools.urls')),
+    path('accounts/', include('users.urls')),
     path('jsi18n/', JavaScriptCatalog.as_view(packages=['artifacts']), name='javascript-catalog'),
     path('i18n/', include('django.conf.urls.i18n')),
 )

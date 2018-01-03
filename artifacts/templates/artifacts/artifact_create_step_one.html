@@ -15,11 +15,11 @@
                 {% endblocktrans %}
             </h4>
             <h1 class="text-center step_title">
-                1. {% trans 'About yourself' %}
+                <span class="orange">1. {% trans 'About yourself' %}</span>
             </h1>
         </div>
         <div class="col col-md-8">
-            {% include '_base_form.html' with form=form submit_text=_('Continue') labels=True %}
+            {% include '_base_form.html' with form=form submit_text=_('Continue') labels=True button_color='orange' btn_location='right' %}
         </div>
     </div>
 {% endblock %}

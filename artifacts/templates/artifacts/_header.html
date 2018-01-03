@@ -9,20 +9,37 @@
         </div>
         <div class="top-links float-right">
             <ul class="nav justify-content-end">
+                {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% trans 'Admin menu' %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="adminMenuDropdown">
+                            <a class="dropdown-item" href="{% url 'artifacts:material_list' %}">
+                                {% trans 'Materials' %}
+                            </a>
+                            <a class="dropdown-item" href="{% url 'artifacts:origin_area_list' %}">
+                                {% trans 'Areas' %}
+                            </a>
+                        </div>
+                    </li>
+                {% endif %}
                 {% if user.is_authenticated %}
+                    {% comment %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">
+                        <a class="nav-link" href="{% url 'users:logout' %}">
                             {% trans 'Log Out' %}
                         </a>
                     </li>
-                     <li class="nav-item">
+                    {% endcomment %}
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">
-                           {{ user.full_name }}
+                            {% trans 'My Account' %}
                         </a>
                     </li>
-                  {% else %}
+                {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">
+                        <a class="nav-link" href="{% url 'users:login' %}">
                             {% trans 'Log In' %}
                         </a>
                     </li>
@@ -34,15 +51,16 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'contact' %}">
-                        {% trans 'Contact' %}
+                        {% trans 'Contact Us' %}
                     </a>
                 </li>
                 <li class="nav-item">
                     <form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                        <input name="language" type="hidden" id="id_language" value="{{ LANGUAGE_BIDI|yesno:'en,he' }}"/>
+                        <input name="language" type="hidden" id="id_language"
+                               value="{{ LANGUAGE_BIDI|yesno:'en,he' }}"/>
                         <button type="submit" class="no-btn">
-                            {{ LANGUAGE_BIDI|yesno:_('English,Hebrew') }}
+                            {% svg_icon 'langueges' 'lang_switcher' lang=False %}
                         </button>
                     </form>
                 </li>
@@ -58,23 +76,35 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item{% if page_name == 'home' %} active{% endif %}">
                         <a class="nav-link" href="{% url 'home' %}">
-                            {% trans 'BH collections' %}{% if page_name == 'home' %}
+                            {% trans 'Museum Collection' %}{% if page_name == 'home' %}
                                 <span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
                     <li class="nav-item{% if page_name == 'users_artifact_list' %} active{% endif %}">
                         <a class="nav-link" href="{% url 'artifacts:users' %}">
-                            {% trans 'Users collections' %}{% if page_name == 'users_artifact_list' %}
+                            {% trans 'Users Collection' %}{% if page_name == 'users_artifact_list' %}
                                 <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
-                    <li class="nav-item{% if page_name == 'all_artifacts' %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">{% trans 'All' %}{% if page_name == 'all_artifacts' %}
-                            <span class="sr-only">(current)</span>{% endif %}</a>
+                    <li class="nav-item{% if page_name == 'all_artifact_list' %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">
+                            {% trans 'All' %}{% if page_name == 'all_artifact_list' %}
+                                <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{% trans 'Filters' %}</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="filterDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% trans 'Filters' %}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filterDropdown">
+                            <a class="dropdown-item" href="#">
+                                {% trans 'Time' %}
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                {% trans 'Location' %}
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -1,3 +1,4 @@
+from authtools.forms import AuthenticationForm
 from django import forms
 from django.core.mail import send_mail
 from django.utils.translation import ugettext as _
@@ -31,3 +32,17 @@ class ContactForm(forms.ModelForm):
             ['yanivmirel@gmail.com'],
             fail_silently=False,
         )
+
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, request=None, *args, **kwargs):
+        super(LoginForm, self).__init__(request, *args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password'].widget.attrs['class'] = 'form-control'
+
+        if self.errors:
+            for field in self.fields:
+                if field in self.errors:
+                    classes = self.fields[field].widget.attrs.get('class', '')
+                    classes += ' is-invalid'
+                    self.fields[field].widget.attrs['class'] = classes
