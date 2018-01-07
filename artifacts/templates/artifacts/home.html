@@ -10,9 +10,9 @@
                          src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
                          alt="{{ artifact|bd:'name' }}">
                     <a class="text-center d-block" href="{% url 'artifacts:detail' artifact.id %}">
-                        {{ artifact|bd:'name' }}<br>
-                        {{ artifact.origin_country.name }}{% if artifact.get_years %},
-                            {{ artifact.get_years }}{% endif %}
+                        {{ artifact|bd:'name' }}
+                        <span>{{ artifact.origin_country.name }}{% if artifact.get_years %},
+                            {{ artifact.get_years }}{% endif %}</span>
                     </a>
                 </div>
             </div>
@@ -23,9 +23,9 @@
                              src="{% if a.get_cover_image %}{{ a.get_cover_image.url }}{% endif %}"
                              alt="{{ a|bd:'name' }}">
                         <a class="text-center d-block" href="{% url 'artifacts:detail' a.id %}">
-                            {{ a|bd:'name' }}<br>
-                            {{ a.origin_country.name }}{% if a.get_years %},
-                                {{ a.get_years }}{% endif %}
+                            {{ a|bd:'name' }}
+                            <span>{{ a.origin_country.name }}{% if a.get_years %},
+                                {{ a.get_years }}{% endif %}</span>
                         </a>
                     </div>
                 {% if forloop.last %}</div>{% endif %}

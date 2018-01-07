@@ -118,9 +118,16 @@
 /* Generic */
 body {
     font-family: 'Alef', "Helvetica Neue", Arial, sans-serif;
-    /*font-family: 'Arimo', sans-serif;*/
     direction: rtl;
     text-align: right;
+}
+
+.alef-font {
+    font-family: 'Alef', "Helvetica Neue", Arial, sans-serif;
+}
+
+.arimo-font {
+    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
 }
 
 .text-blue {
@@ -132,7 +139,11 @@ body {
 }
 
 .text-red {
-    color: #47C3D3;
+    color: #CC5947;
+}
+
+.text-dark-gray {
+    color: #666666;
 }
 
 /* Buttons */
@@ -204,6 +215,71 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
+.btn-dark-gray {
+    color: #fff;
+    background-color: #666666;
+    border-color: #666666;
+    border-radius: 0;
+}
+
+.btn-dark-gray:hover {
+    color: #fff;
+    background-color: #666666;
+    border-color: #666666;
+}
+
+.btn-dark-gray:focus, .btn-dark-gray.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-dark-gray.disabled, .btn-dark-gray:disabled {
+    background-color: #666666;
+    border-color: #666666;
+}
+
+.btn-dark-gray:not([disabled]):not(.disabled):active, .btn-dark-gray:not([disabled]):not(.disabled).active,
+.show > .btn-dark-gray.dropdown-toggle {
+    color: #fff;
+    background-color: #666666;
+    border-color: #666666;
+}
+
+.btn-dark-gray:not([disabled]):not(.disabled):active:focus, .btn-dark-gray:not([disabled]):not(.disabled).active:focus,
+.show > .btn-dark-gray.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/* Page header */
+.banner-text {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 250px;
+}
+
+h1.page-banner-title {
+    margin: 0;
+    font-size: 5.82rem;
+    color: #fff;
+    text-align: center;
+    line-height: 6rem;
+}
+
+h2.page-banner-subtitle {
+    margin: 0;
+    font-size: 3.65rem;
+    color: #fff;
+    text-align: center;
+    line-height: 4rem;
+}
+
+p.page-banner-credit {
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
+    color: #fff;
+}
+
 /* Titles */
 .step_title span {
     border-bottom: 4px solid;
@@ -233,10 +309,26 @@ header .logo {
 
 }
 
-.header-bottom .navbar-light .navbar-nav .active > .nav-link,
-.header-bottom .navbar-light .navbar-nav .nav-link.active {
+.header-bottom .navbar-light {
+    border-bottom: 2px solid #ccc;
+}
+
+.header-bottom .navbar-light .navbar-nav .nav-link {
+    font-size: 1.625rem;
+    padding: 0;
+    margin: 0 2rem;
+    position: relative;
+}
+
+.header-bottom .navbar-light .navbar-nav .active > .nav-link::after,
+.header-bottom .navbar-light .navbar-nav .nav-link.active::after {
+    content: "";
     border-bottom: 3px solid;
-    margin-bottom: -3px;
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: -0.6rem;
+    right: 0;
 }
 
 .no-btn {
@@ -261,7 +353,7 @@ header .logo {
     display: block;
     padding: 0.5rem 1rem;
     line-height: 60px;
-    font-size: 1.5rem;
+    font-size: 1.625rem;
     color: #fff;
 }
 
@@ -279,11 +371,15 @@ header .logo {
     bottom: 1rem;
     left: 3rem;
     border-radius: 50%;
+    color: #000;
     background-color: #fff;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+    line-height: 1;
     text-align: center;
-    padding: 25px 0;
+    padding: 31px 0;
+    font-weight: bold;
+    font-size: 2.75rem;
 }
 
 /* Main */
@@ -308,14 +404,14 @@ main {
 }
 
 .artifact-set .card.red img {
-    border-color: red;
+    border-color: #CC5947;
 }
 
 .artifact-set .card a {
     display: block;
-    font-size: 18px;
+    font-size: 1.625rem;
+    line-height: 1;
     color: #000;
-    font-weight: bold;
     margin-top: 10px;
     min-height: 81px;
 }
@@ -326,6 +422,7 @@ main {
 
 .artifact-set .card a span {
     display: block;
+    font-size: 1.125rem;
 }
 
 .card {
@@ -410,7 +507,7 @@ main {
 }
 
 .step_three {
-    background-color: red;
+    background-color: #CC5947;
 }
 
 .progress-map {

@@ -69,12 +69,25 @@
                 </li>
             </ul>
         </div>
+        {% if page_banner %}
+            <div class="banner-text">
+                <h1 class="page-banner-title">
+                    {{ page_banner|bd:'main_text' }}
+                </h1>
+                <h2 class="page-banner-subtitle arimo-font">
+                    {{ page_banner|bd:'description' }}
+                </h2>
+            </div>
+            <p class="page-banner-credit">
+                {{ page_banner|bd:'credit' }}
+            </p>
+        {% endif %}
         <a href="{% url 'artifacts:create_step_one' %}" class="new-artifact">
             {% trans 'Upload artifact' %}
         </a>
     </div>
     <div class="header-bottom">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 sps" data-sps-offset="691">
             <div class="collapse navbar-collapse" id="bottom-navbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item{% if page_name == 'home' %} active{% endif %}">
