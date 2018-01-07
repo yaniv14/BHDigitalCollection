@@ -9,7 +9,7 @@
                     <img class="card-img-top"
                          src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
                          alt="{{ artifact|bd:'name' }}">
-                    <a class="text-center d-block" href="{% url 'artifacts:detail' artifact.id %}">
+                    <a class="text-center d-block" href="{% url 'artifacts:detail' artifact.slug %}">
                         {{ artifact|bd:'name' }}
                         <span>{{ artifact.origin_country.name }}{% if artifact.get_years %},
                             {{ artifact.get_years }}{% endif %}</span>
