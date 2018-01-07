@@ -22,7 +22,7 @@
                         <img class="card-img-top"
                              src="{% if a.get_cover_image %}{{ a.get_cover_image.url }}{% endif %}"
                              alt="{{ a|bd:'name' }}">
-                        <a class="text-center d-block" href="{% url 'artifacts:detail' a.id %}">
+                        <a class="text-center d-block" href="{% url 'artifacts:detail' a.slug %}">
                             {{ a|bd:'name' }}
                             <span>{{ a.origin_country.name }}{% if a.get_years %},
                                 {{ a.get_years }}{% endif %}</span>
