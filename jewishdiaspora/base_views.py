@@ -8,6 +8,7 @@ class JewishDiasporaUIMixin(object):
     page_name = None
     page_description = None
     form_description = None
+    filterable = False
 
     def get_page_title(self):
         if self.page_title:
@@ -41,6 +42,7 @@ class JewishDiasporaUIMixin(object):
         d['page_name'] = self.get_page_name()
         d['page_description'] = self.get_page_description()
         d['form_description'] = self.get_form_description()
+        d['filterable'] = self.filterable
         return d
 
 

@@ -10,4 +10,11 @@ $(function () {
         $('#id_language').val($(this).data('lang'));
         $('#lang-form').submit();
     });
+
+    var cards = $.getElementsByClassName("card-columns artifact-set")[0]
+    console.log(cards.length);
+    for (var i = 0; i < cards.length; ++i) {
+    var item = cards[i];
+    console.log(item.innerHTML);
+  }
 });
