@@ -1,6 +1,7 @@
 import pdb
 
 from django.contrib.auth import login
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.utils.text import slugify
@@ -8,7 +9,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.utils.translation import ugettext_lazy as _
 
 from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
-    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm
+    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
     ArtifactType
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
@@ -31,36 +32,67 @@ class TheNewForm(JewishDiasporaUIMixin, TemplateView):
     template_name = 'artifacts/artifacts_donor_registration.html'
 
 
+def get_custom_context_data(self, context):
+    filters = self.request.GET.get('filter', None)
+    context['filters'] = filters
+    year_form = YearForm(self.request.GET)
+    location_form = LocationForm(self.request.GET)
+    if filters == 'time':
+        pass
+    elif filters == 'location':
+        pass
+    context['filter_form'] = year_form
+    context['location_form'] = location_form
+    context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,is_featured=False)
+    context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
+
+
+def set_filters(self , context):
+    filters = self.request.GET.get('filter', None)
+    context['filters'] = filters
+    year_form = YearForm(self.request.GET)
+    location_form = LocationForm(self.request.GET)
+    if filters == 'time':
+        pass
+    elif filters == 'location':
+        pass
+    context['filter_form'] = year_form
+    context['location_form'] = location_form
+
+
+def filter_data(self , mixin , is_private):
+    filters = self.request.GET.get('filter', None)
+    if filters == 'time':
+        time_from = self.request.GET.get('year_from', None)
+        time_to = self.request.GET.get('year_to', None)
+        if time_from and time_to:
+            qs = mixin.get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=is_private)
+            return qs.filter(year_from__gte=int(time_from)).exclude(year_to__gt=int(time_to))
+    elif filters == 'location':
+        location = self.request.GET.get('location', "")
+        qs = mixin.get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=is_private)
+        if location.isdigit():
+            loc = int(location)
+        else:
+            loc = 0
+        return qs.filter(Q(origin_country=location) | Q(origin_city_en=location) | Q(origin_city_he=location) | Q(origin_area_id=loc))
+    return mixin.get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=is_private)
+
+
 class HomeView(JewishDiasporaUIMixin, ListView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
     page_name = 'home'
     model = Artifact
     context_object_name = 'artifacts'
+    filterable = True
 
     def get_queryset(self):
-        filters = self.request.GET.get('filter', None)
-        if filters == 'time':
-            time_from = self.request.GET.get('year_from', None)
-            time_to = self.request.GET.get('year_to', None)
-            if time_from and time_to:
-                qs = super(HomeView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False)
-                return qs.filter(year_from__gte=int(time_from)).exclude(year_to__gt=int(time_to))
-        elif filters == 'location':
-            pass
-        return super().get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=False,
-                                             is_featured=True)
+        return filter_data(self, super(JewishDiasporaUIMixin , self), False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        filters = self.request.GET.get('filter', None)
-        context['filters'] = filters
-        year_form = YearForm(self.request.GET)
-        if filters == 'time':
-            pass
-        elif filters == 'location':
-            pass
-        context['filter_form'] = year_form
+        set_filters(self, context)
         context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
                                                            is_featured=False)
         context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
@@ -79,13 +111,18 @@ class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
     context_object_name = 'artifacts'
     page_title = _('Users artifacts list')
     page_name = 'users_artifact_list'
+    filterable = True
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            if self.request.user.is_superuser:
-                return super(ArtifactUsersListView, self).get_queryset().filter(is_private=True)
+        return filter_data(self, super(JewishDiasporaUIMixin, self), True)
 
-        return super(ArtifactUsersListView, self).get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=True)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        set_filters(self, context)
+        context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
+                                                           is_featured=False)
+        context['page_banner'] = PageBanner.objects.filter(active=True, page='users_collections').order_by('?').first()
+        return context
 
 
 class ArtifactFullListView(JewishDiasporaUIMixin, ListView):
@@ -94,13 +131,19 @@ class ArtifactFullListView(JewishDiasporaUIMixin, ListView):
     context_object_name = 'artifacts'
     page_title = _('All artifacts list')
     page_name = 'all_artifact_list'
+    filterable = True
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            if self.request.user.is_superuser:
-                return super(ArtifactFullListView, self).get_queryset()
+        return filter_data(self, super(JewishDiasporaUIMixin, self), False)
 
-        return super(ArtifactFullListView, self).get_queryset().filter(status=ArtifactStatus.APPROVED)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        set_filters(self, context)
+        context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
+                                                           is_featured=True)
+        context['page_banner'] = PageBanner.objects.filter(active=True, page='all_collections').order_by('?').first()
+        return context
 
 
 class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):

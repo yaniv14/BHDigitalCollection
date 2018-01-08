@@ -294,6 +294,11 @@ class YearForm(forms.Form):
     year_to = forms.CharField(label=_('Year to'), widget=forms.NumberInput, required=False)
 
 
+class LocationForm(forms.Form):
+    filter = forms.CharField(widget=forms.HiddenInput)
+    location = forms.CharField(label=_('Location'), widget=forms.TextInput, required=False)
+
+
 class EmptyForm(forms.Form):
     def is_valid(self):
         return True

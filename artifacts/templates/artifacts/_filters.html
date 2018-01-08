@@ -8,8 +8,10 @@
         </button>
     </form>
 {% else %}
-    Location
-    {% for area in areas %}
-        <div>{{ area }}</div>
-    {% endfor %}
+    <form method="get" action="{{ request.path }}">
+        {{ location_form }}
+        <button type="submit">
+            Go
+        </button>
+    </form>
 {% endif %}
