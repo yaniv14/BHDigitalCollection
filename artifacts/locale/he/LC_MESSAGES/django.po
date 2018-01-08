@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-08 11:54+0200\n"
+"POT-Creation-Date: 2018-01-08 16:14+0200\n"
 "PO-Revision-Date: 2018-01-08 11:13+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -36,11 +36,11 @@ msgstr "ארץ מקור"
 msgid "Area or continent"
 msgstr "אזור"
 
-#: .\forms.py:43 .\forms.py:292 .\models.py:103
+#: .\forms.py:43 .\forms.py:293 .\models.py:103
 msgid "Year from"
 msgstr "משנה"
 
-#: .\forms.py:44 .\forms.py:293 .\models.py:104
+#: .\forms.py:44 .\forms.py:294 .\models.py:104
 msgid "Year to"
 msgstr "עד שנה"
 
@@ -77,25 +77,33 @@ msgstr ""
 msgid "You must approve that you have the rights for the pictures"
 msgstr "חובה לאשר שאתה בעל הזכויות על התמונות"
 
-#: .\forms.py:231
+#: .\forms.py:228 .\forms.py:231
 msgid "First and last name"
 msgstr "שם מלא"
+
+#: .\forms.py:234 .\templates\artifacts\sign_in_first_page.html:29
+msgid "Phone number"
+msgstr "מספר טלפון"
 
 #: .\forms.py:236
 msgid "Mobile preferred"
 msgstr ""
 
-#: .\forms.py:242
+#: .\forms.py:239 .\templates\artifacts\sign_in_first_page.html:46
+msgid "Email address"
+msgstr "דואר אלקטרוני"
+
+#: .\forms.py:243
 msgid "We will never send you spam"
 msgstr ""
 
-#: .\forms.py:245
+#: .\forms.py:246
 msgid ""
 "These information is for contact reference only, it won't submitted to 3rd "
 "party without your consent"
 msgstr ""
 
-#: .\forms.py:257
+#: .\forms.py:258
 msgid ""
 "There is an existing account with that email address, please login first"
 msgstr ""
@@ -192,15 +200,15 @@ msgstr ""
 
 #: .\models.py:100
 msgid "Name Hebrew"
-msgstr ""
+msgstr "שם בעברית"
 
 #: .\models.py:101
 msgid "Name English"
-msgstr ""
+msgstr "שם באנגלית"
 
 #: .\models.py:102
 msgid "Slug"
-msgstr ""
+msgstr "מה זה"
 
 #: .\models.py:105
 msgid "Technical data Hebrew"
@@ -436,7 +444,7 @@ msgstr ""
 
 #: .\templates\artifacts\artifact_create_step_one.html:18
 msgid "About yourself"
-msgstr ""
+msgstr "קצת פרטים עליך"
 
 #: .\templates\artifacts\artifact_create_step_one.html:22
 #: .\templates\artifacts\artifact_create_step_two.html:17
@@ -447,7 +455,7 @@ msgstr "המשך"
 
 #: .\templates\artifacts\artifact_create_step_three.html:13
 msgid "Item pictures"
-msgstr ""
+msgstr "תמונות של הפריט"
 
 #: .\templates\artifacts\artifact_create_step_three.html:22
 msgid "Donate item"
@@ -455,7 +463,7 @@ msgstr ""
 
 #: .\templates\artifacts\artifact_create_step_two.html:13
 msgid "Info about your item"
-msgstr ""
+msgstr "מידע על הפריט שלך"
 
 #: .\templates\artifacts\artifact_detail.html:12
 #: .\templates\artifacts\user_artifact_detail.html:12
@@ -539,14 +547,6 @@ msgstr "קצת פרטים עליך"
 #: .\templates\artifacts\sign_in_first_page.html:23
 msgid "Full Name1"
 msgstr "שם מלא"
-
-#: .\templates\artifacts\sign_in_first_page.html:29
-msgid "Phone number"
-msgstr "מספר טלפון"
-
-#: .\templates\artifacts\sign_in_first_page.html:46
-msgid "Email address"
-msgstr "דואר אלקטרוני"
 
 #: .\templates\artifacts\sign_in_first_page.html:48
 msgid "We'll never share your email with anyone else."

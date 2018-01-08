@@ -225,17 +225,18 @@ class OriginAreaForm(forms.ModelForm):
 
 
 class UserForm(forms.Form):
-    name = forms.CharField(max_length=100, widget=forms.TextInput(
+    name = forms.CharField(label=_('First and last name'), max_length=100, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': _('First and last name')
         }
     ))
-    phone_number = forms.CharField(widget=ILPhoneNumberMultiWidget(
+    phone_number = forms.CharField(label=_('Phone number'), widget=ILPhoneNumberMultiWidget(
         area_attrs={'class': 'form-control'},
         number_attrs={'class': 'form-control', 'size': '7', 'maxlength': '7', 'placeholder': _('Mobile preferred')},
     ))
     email = forms.EmailField(
+        label=_('Email address'),
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control',
