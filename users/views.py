@@ -2,7 +2,7 @@ from authtools.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from jewishdiaspora.base_views import JewishDiasporaUIMixin
 from users.forms import ContactForm, LoginForm
 from users.models import ArtifactContact
