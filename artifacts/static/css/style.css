@@ -388,6 +388,11 @@ main {
     text-align: center;
 }
 
+.artifact-set .card a {
+    height: 100%;
+    overflow: hidden;
+}
+
 .artifact-set .card img {
     border-bottom: 4px solid;
 }
@@ -400,7 +405,7 @@ main {
     border-color: #CC5947;
 }
 
-.artifact-set .card a {
+.artifact-set .card div {
     display: block;
     font-size: 1.625rem;
     line-height: 1;
@@ -409,11 +414,11 @@ main {
     min-height: 81px;
 }
 
-.artifact-set .card a:hover {
+.artifact-set .card div:hover {
     text-decoration: none;
 }
 
-.artifact-set .card a span {
+.artifact-set .card div span {
     display: block;
     font-size: 1.125rem;
 }
@@ -442,7 +447,7 @@ main {
 .card.small img {
     background-color: #ccc;
     border-bottom: 8px solid #47C3D3;
-    height: calc(100% - 60px);
+    max-height: calc(100% - 60px);
     width: auto;
 }
 

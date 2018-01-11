@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-11 20:53+0200\n"
-"PO-Revision-Date: 2018-01-11 21:01+0200\n"
+"POT-Creation-Date: 2018-01-11 21:49+0200\n"
+"PO-Revision-Date: 2018-01-11 21:50+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -36,11 +36,11 @@ msgstr "ארץ מקור"
 msgid "Area or continent"
 msgstr "אזור או יבשת"
 
-#: forms.py:43 forms.py:293 models.py:103
+#: forms.py:43 forms.py:301 models.py:103
 msgid "Year from"
 msgstr "משנה"
 
-#: forms.py:44 forms.py:294 models.py:104
+#: forms.py:44 forms.py:302 models.py:104
 msgid "Year to"
 msgstr "עד שנה"
 
@@ -64,50 +64,50 @@ msgstr "תיאור טכני"
 msgid "Credit"
 msgstr "קרדיט לצלם"
 
-#: forms.py:195
+#: forms.py:197
 msgid "I approve that I have all the rights to uplaod the image"
 msgstr "אני מאשר שיש בידי את כל הזכויות להעלות את התמונה"
 
-#: forms.py:197
+#: forms.py:199
 msgid "I would love to get info"
 msgstr "אשמח לקבל את עידכונים ודיוורים"
 
-#: forms.py:206
+#: forms.py:208
 msgid "You must approve that you have the rights for the pictures"
 msgstr "חובה לאשר שאתה בעל הזכויות על התמונות"
 
-#: forms.py:228 forms.py:231
+#: forms.py:230 forms.py:233
 msgid "First and last name"
 msgstr "שם מלא"
 
-#: forms.py:234 templates/artifacts/sign_in_first_page.html:29
+#: forms.py:236 templates/artifacts/sign_in_first_page.html:29
 msgid "Phone number"
 msgstr "מספר טלפון"
 
-#: forms.py:236
+#: forms.py:238 forms.py:258
 msgid "Mobile preferred"
 msgstr "אפשר גם סלולרי"
 
-#: forms.py:239 templates/artifacts/sign_in_first_page.html:46
+#: forms.py:241 templates/artifacts/sign_in_first_page.html:46
 msgid "Email address"
 msgstr "דואר אלקטרוני"
 
-#: forms.py:243
+#: forms.py:245
 msgid "We will never send you spam"
 msgstr "לא נשלח ספאם או פרסומות"
 
-#: forms.py:246
+#: forms.py:248
 msgid ""
 "These information is for contact reference only, it won't submitted to 3rd "
 "party without your consent"
 msgstr "פרטים אלו לצורך התקשרות בלבד. לא ינתנו לצד שלישי ללא הסכמתך"
 
-#: forms.py:258
+#: forms.py:266
 msgid ""
 "There is an existing account with that email address, please login first"
 msgstr "קיים חשבון עם כתובת מייל זו, נא לבצע התחברות למערכת"
 
-#: forms.py:299 templates/artifacts/_header.html:123
+#: forms.py:307 templates/artifacts/_header.html:123
 msgid "Location"
 msgstr "מהיכן הפריט"
 
@@ -143,7 +143,7 @@ msgstr "האוסף הדיגיטלי"
 msgid "All collections"
 msgstr "אוסף בית התפוצות"
 
-#: models.py:42 templates/artifacts/_header.html:53 views.py:104
+#: models.py:42 templates/artifacts/_header.html:53 views.py:105
 msgid "About"
 msgstr "אודות"
 
@@ -221,11 +221,11 @@ msgstr "תיאור טכני בעברית"
 msgid "Technical data English"
 msgstr "תיאור טכני באנגלית"
 
-#: models.py:107 models.py:157 models.py:189
+#: models.py:107 models.py:158 models.py:190
 msgid "Description Hebrew"
 msgstr "תיאור"
 
-#: models.py:108 models.py:158 models.py:190
+#: models.py:108 models.py:159 models.py:191
 msgid "Description English"
 msgstr "תיאור"
 
@@ -246,102 +246,106 @@ msgid "Displayed in museum?"
 msgstr "האם מוצג במוזיאון?"
 
 #: models.py:115
-msgid "Artifact location in museum"
-msgstr "איפה מוצג במוזיאון"
+msgid "Artifact location in museum Hebrew"
+msgstr "איפה מוצג במוזיאון בעברית"
 
 #: models.py:116
+msgid "Artifact location in museum English"
+msgstr "איפה מוצג במוזיאון באנגלית"
+
+#: models.py:117
 msgid "Donor name Hebrew"
 msgstr "שם התורם/משאיל"
 
-#: models.py:117
+#: models.py:118
 msgid "Donor name English"
 msgstr "שם התורם/משאיל"
 
-#: models.py:118
+#: models.py:119
 msgid "Display donor name?"
 msgstr "האם להציג שם התורם באתר?"
 
-#: models.py:119
+#: models.py:120
 msgid "Artifact route map"
 msgstr "מפת מסלול פריט"
 
-#: models.py:120
+#: models.py:121
 msgid "Artifact route Hebrew"
 msgstr "מסלול הפריט"
 
-#: models.py:121
+#: models.py:122
 msgid "Artifact route English"
 msgstr "מסלול הפריט"
 
-#: models.py:155
+#: models.py:156
 msgid "Artifact"
 msgstr "פריט"
 
-#: models.py:156 models.py:172 models.py:186
+#: models.py:157 models.py:173 models.py:187
 msgid "Image"
 msgstr "תמונה"
 
-#: models.py:159 models.py:191
+#: models.py:160 models.py:192
 msgid "Credit Hebrew"
 msgstr "קרדיט לצלם"
 
-#: models.py:160 models.py:192
+#: models.py:161 models.py:193
 msgid "Credit English"
 msgstr "קרדיט לצלם"
 
-#: models.py:161
+#: models.py:162
 msgid "Year/Era Hebrew"
 msgstr "שנה/תקופה בעברית"
 
-#: models.py:162
+#: models.py:163
 msgid "Year/Era English"
 msgstr "שנה/תקופה באנגלית"
 
-#: models.py:163
+#: models.py:164
 msgid "Image location Hebrew"
 msgstr "מיקום הצילום בעברית"
 
-#: models.py:164
+#: models.py:165
 msgid "Image location English"
 msgstr "מיקום הצילום באנגלית"
 
-#: models.py:165
+#: models.py:166
 msgid "Cover image?"
 msgstr "תמונת שער?"
 
-#: models.py:173
+#: models.py:174
 msgid "X"
 msgstr "X"
 
-#: models.py:174
+#: models.py:175
 msgid "Y"
 msgstr "Y"
 
-#: models.py:175
+#: models.py:176
 msgid "Width"
 msgstr "אורך"
 
-#: models.py:176
+#: models.py:177
 msgid "Height"
 msgstr "גובה"
 
-#: models.py:177 models.py:178
+#: models.py:178 models.py:179
 msgid "Info"
 msgstr "מידע"
 
-#: models.py:185
+#: models.py:186
 msgid "Page"
 msgstr "עמוד"
 
-#: models.py:187
+#: models.py:188
 msgid "Main text Hebrew"
 msgstr "טקסט ראשי בעברית"
 
-#: models.py:188
+#: models.py:189
 msgid "Main text English"
 msgstr "טקסט ראשי באנגלית"
 
-#: models.py:193
+#: models.py:194
 msgid "Active?"
 msgstr "פעיל?"
 
@@ -494,7 +498,7 @@ msgstr "שנה/תקופה"
 msgid "Technical data about the item"
 msgstr "תיאור טכני"
 
-#: templates/artifacts/artifact_detail.html:56 templates/artifacts/base.html:15
+#: templates/artifacts/artifact_detail.html:56
 msgid "Jewish Diaspora"
 msgstr "בית התפוצות"
 
@@ -529,6 +533,10 @@ msgstr "עריכה"
 #: templates/artifacts/artifact_type_list.html:13
 msgid "Add new artifact type"
 msgstr "הוסף סוג פריט"
+
+#: templates/artifacts/base.html:15
+msgid "BH Digital Collection"
+msgstr "אוסף בית התפוצות"
 
 #: templates/artifacts/origin_area_list.html:13
 msgid "Add new area"
@@ -574,71 +582,71 @@ msgstr "סיפור הפריט"
 msgid "Technical description"
 msgstr "תיאור טכני"
 
-#: views.py:84
+#: views.py:85
 msgid "Home"
 msgstr "דף הבית"
 
-#: views.py:112
+#: views.py:113
 msgid "Users artifacts list"
 msgstr "רשימת פרטי משתמשים"
 
-#: views.py:132
+#: views.py:133
 msgid "All artifacts list"
 msgstr "רשימת פרטי משתמשים"
 
-#: views.py:152 views.py:207
+#: views.py:153 views.py:209
 msgid "Artifact detail"
 msgstr "פרטי פריט"
 
-#: views.py:165
+#: views.py:166
 msgid "Artifact create"
 msgstr "יצירת פריט"
 
-#: views.py:209
+#: views.py:211
 msgid "Some Artifact Description"
 msgstr "תיאור קצר"
 
-#: views.py:250
+#: views.py:252
 msgid "Artifact Images"
 msgstr "תמונות הפריט"
 
-#: views.py:307
+#: views.py:309
 msgid "Origin area delete"
 msgstr "מחיקת תמונת פריט"
 
-#: views.py:316
+#: views.py:318
 msgid "Origin area create"
 msgstr "הוספת אזור"
 
-#: views.py:325 views.py:360
+#: views.py:327 views.py:362
 msgid "Origin area update"
 msgstr "עדכון אזור"
 
-#: views.py:333
+#: views.py:335
 msgid "Origin area list"
 msgstr "רשימת אזורים"
 
-#: views.py:342
+#: views.py:344
 msgid "Artifact material create"
 msgstr "חומר פריט"
 
-#: views.py:351
+#: views.py:353
 msgid "Artifact material update"
 msgstr "חומר הפריט"
 
-#: views.py:375
+#: views.py:377
 msgid "Artifact type create"
 msgstr "יצירת סוג פריט"
 
-#: views.py:384
+#: views.py:386
 msgid "Artifact type update"
 msgstr "עדכון סוג הפריט"
 
-#: views.py:393
+#: views.py:395
 msgid "Artifact type delete"
 msgstr "מחיקת סוג הפריט"
 
-#: views.py:407
+#: views.py:409
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
 
@@ -647,9 +655,6 @@ msgstr "יצירת תמונת פריט"
 
 #~ msgid "Upload images"
 #~ msgstr "העלה תמונות"
-
-#~ msgid "BH collections"
-#~ msgstr "אוסף בית התפוצות"
 
 #~ msgid "year"
 #~ msgstr "שנה"

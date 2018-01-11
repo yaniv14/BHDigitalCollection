@@ -5,12 +5,14 @@
     <div class="card-columns artifact-set">
         {% for artifact in artifacts %}
             <div class="card red">
-                <img class="card-img-top"
-                     src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
-                     alt="{{ artifact|bd:'name' }}">
-                <a href="{% url 'artifacts:detail' artifact.slug %}">
-                    <span>{{ artifact|bd:'name' }}</span>
-                    {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
+                <a class="d-block" href="{% url 'artifacts:detail' artifact.slug %}">
+                    <img class="card-img-top"
+                         src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
+                         alt="{{ artifact|bd:'name' }}">
+                    <div class="text-center">
+                        <span>{{ artifact|bd:'name' }}</span>
+                        {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
+                    </div>
                 </a>
             </div>
         {% endfor %}
