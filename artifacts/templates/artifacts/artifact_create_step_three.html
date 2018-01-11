@@ -19,7 +19,7 @@
             </h4>
         </div>
         <div class="col col-md-8">
-            {% include '_base_form.html' with form=form with_files=True submit_text=_('Donate item') labels=True formset=artifact_image_formset %}
+            {% include '_base_form.html' with form=form with_files=True button_color='red' submit_text=_('Donate item') labels=True formset=artifact_image_formset %}
         </div>
     </div>
 {% endblock %}

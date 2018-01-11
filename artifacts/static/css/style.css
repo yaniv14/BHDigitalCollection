@@ -117,6 +117,7 @@
 
 /* Generic */
 body {
+    color: #000000;
     font-family: 'Alef', "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -128,6 +129,19 @@ body {
     font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
 }
 
+.font-bold {
+    font-weight: bold;
+}
+
+.font-36 {
+    font-size: 2.25rem;
+}
+
+h4, .h4 {
+    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.75rem;
+}
+
 .text-blue {
     color: #47C3D3;
 }
@@ -137,7 +151,7 @@ body {
 }
 
 .text-red {
-    color: #CC5947;
+    color: #BE3426;
 }
 
 .text-dark-gray {
@@ -145,6 +159,10 @@ body {
 }
 
 /* Buttons */
+.round-btn {
+    border-radius: 2rem !important;
+}
+
 .btn-orange {
     color: #fff;
     background-color: #FFA400;
@@ -154,8 +172,8 @@ body {
 
 .btn-orange:hover {
     color: #fff;
-    background-color: #FFA400;
-    border-color: #FFA400;
+    background-color: #666666;
+    border-color: #666666;
 }
 
 .btn-orange:focus, .btn-orange.focus {
@@ -179,6 +197,40 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
+.btn-red {
+    color: #fff;
+    background-color: #BE3426;
+    border-color: #BE3426;
+    border-radius: 0;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background-color: #666666;
+    border-color: #666666;
+}
+
+.btn-orange:focus, .btn-orange.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-orange.disabled, .btn-orange:disabled {
+    background-color: #BE3426;
+    border-color: #BE3426;
+}
+
+.btn-orange:not([disabled]):not(.disabled):active, .btn-orange:not([disabled]):not(.disabled).active,
+.show > .btn-orange.dropdown-toggle {
+    color: #fff;
+    background-color: #BE3426;
+    border-color: #BE3426;
+}
+
+.btn-orange:not([disabled]):not(.disabled):active:focus, .btn-orange:not([disabled]):not(.disabled).active:focus,
+.show > .btn-orange.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
 .btn-blue {
     color: #fff;
     background-color: #47C3D3;
@@ -188,8 +240,8 @@ body {
 
 .btn-blue:hover {
     color: #fff;
-    background-color: #47C3D3;
-    border-color: #47C3D3;
+    background-color: #666666;
+    border-color: #666666;
 }
 
 .btn-blue:focus, .btn-blue.focus {
@@ -288,6 +340,8 @@ p.page-banner-credit {
 }
 
 .step_title .orange {
+    font-size: 2.125rem;
+    color: #666666;
     border-color: #FFA400;
 }
 
@@ -375,6 +429,76 @@ header .logo {
     font-size: 2.75rem;
 }
 
+/* Artifact detail */
+.artifact-detail main {
+    padding-bottom: 0;
+}
+
+.artifact-detail h1 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 3.5rem;
+}
+
+.artifact-detail h3 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 2.25rem;
+}
+
+.artifact-detail .description {
+    color: #000000;
+    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.9rem;
+}
+
+dt {
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+dd {
+    font-size: 1.75rem;
+}
+
+.part-of-the-story {
+    margin-top: 2rem;
+    padding: 4rem 1rem;
+    background-color: #eee;
+}
+
+/* Forms */
+label {
+    color: #666666;
+    font-size: 1.5rem;
+}
+
+.form-control {
+    color: #999999;
+    background-color: #e6e6e6;
+    border: 0;
+    border-radius: 0;
+    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+.form-control:focus {
+    font-style: normal;
+    color: #000000;
+    background-color: #FEE2B6;
+}
+
+textarea.form-control:focus {
+    background-color: #DBF0F4;
+}
+
+.text-muted {
+    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.875rem;
+    color: #666666 !important;
+}
+
 /* Main */
 main {
     padding: 4rem 0;
@@ -402,7 +526,7 @@ main {
 }
 
 .artifact-set .card.red img {
-    border-color: #CC5947;
+    border-color: #BE3426;
 }
 
 .artifact-set .card div {
@@ -475,7 +599,7 @@ main {
     line-height: 3rem;
     width: 3rem;
     vertical-align: middle;
-    background-color: gray;
+    background-color: #999999;
     color: #fff;
     font-size: 1.5rem;
     border-radius: 50%;
@@ -505,7 +629,7 @@ main {
 }
 
 .step_three {
-    background-color: #CC5947;
+    background-color: #BE3426;
 }
 
 .progress-map {

@@ -22,7 +22,7 @@
         <link href="{% static 'css/bootstrap' %}{% if LANGUAGE_BIDI %}_rtl{% endif %}.css" rel="stylesheet">
         <link href="{% static 'css/style' %}{% if LANGUAGE_BIDI %}_rtl{% endif %}.css" rel="stylesheet">
     </head>
-    <body>
+    <body{% block body_class %}{% endblock %}>
         <!--[if lte IE 8]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
             your browser</a>.</p>
