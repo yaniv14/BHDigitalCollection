@@ -8,7 +8,7 @@ class ILPhoneNumberMultiWidget(forms.MultiWidget):
     """
     template_name = 'ilphonenumber.html'
 
-    def __init__(self, attrs=None, area_attrs=None, number_attrs=None):
+    def __init__(self, attrs=None, area_attrs=None, number_attrs=None, bidi=False):
 
         IL_AREA_CODE = (
             ('', _('Area code')),
@@ -30,21 +30,34 @@ class ILPhoneNumberMultiWidget(forms.MultiWidget):
             ('08', '08'),
             ('09', '09'),
         )
-        widgets = (
-            forms.Select(
-                attrs=attrs if area_attrs is None else area_attrs,
-                choices=IL_AREA_CODE
-            ),
-            forms.TextInput(
-                attrs=attrs if number_attrs is None else number_attrs
-            ),
-        )
+        if bidi:
+            widgets = (
+                forms.TextInput(
+                    attrs=attrs if number_attrs is None else number_attrs
+                ),
+                forms.Select(
+                    attrs=attrs if area_attrs is None else area_attrs,
+                    choices=IL_AREA_CODE
+                ),
+            )
+        else:
+            widgets = (
+                forms.Select(
+                    attrs=attrs if area_attrs is None else area_attrs,
+                    choices=IL_AREA_CODE
+                ),
+                forms.TextInput(
+                    attrs=attrs if number_attrs is None else number_attrs
+                ),
+            )
         super().__init__(widgets)
+        self.bidi = bidi
 
     def decompress(self, value):
         if value:
+            if self.bidi:
+                return value.split('-')[::-1]  # reverse order base on form location
             return value.split('-')
-            # return value.split('-')[::-1]  # reverse order base on form location
         return [None, None]
 
     def value_from_datadict(self, data, files, name):
@@ -54,5 +67,11 @@ class ILPhoneNumberMultiWidget(forms.MultiWidget):
             values[index] = data[d]
         if values[0] == values[1] == '':
             return None
+        if self.bidi:
+            return '%s-%s' % tuple(values)[::-1]  # reverse order base on form location
         return '%s-%s' % tuple(values)
-        # return '%s-%s' % tuple(values)[::-1]  # reverse order base on form location
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        context['bidi'] = self.bidi
+        return context

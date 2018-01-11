@@ -335,15 +335,10 @@ header .logo {
 }
 
 .top-links .dropdown-menu {
-    border: 0;
-    background-color: transparent;
-    min-width: 0;
-    border-radius: 0;
 }
 
 .top-links .dropdown-menu .dropdown-item:focus,
 .top-links .dropdown-menu .dropdown-item:hover {
-    background-color: transparent;
 }
 
 .top-links #lang-form,

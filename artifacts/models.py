@@ -112,7 +112,8 @@ class Artifact(models.Model):
     origin_area = models.ForeignKey(OriginArea, verbose_name=_('Area'), on_delete=models.SET_NULL, blank=True,
                                     null=True, related_name='artifacts')
     is_displayed = models.BooleanField(_('Displayed in museum?'), default=False)
-    displayed_at = models.CharField(_('Artifact location in museum'), max_length=250, blank=True, null=True)
+    displayed_at_he = models.CharField(_('Artifact location in museum Hebrew'), max_length=250, blank=True, null=True)
+    displayed_at_en = models.CharField(_('Artifact location in museum English'), max_length=250, blank=True, null=True)
     donor_name_he = models.CharField(_('Donor name Hebrew'), max_length=250, blank=True, null=True)
     donor_name_en = models.CharField(_('Donor name English'), max_length=250, blank=True, null=True)
     display_donor_name = models.BooleanField(_('Display donor name?'), default=False)

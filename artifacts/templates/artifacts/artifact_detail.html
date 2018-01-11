@@ -54,7 +54,7 @@
                 <div class="col">
                     {% if artifact.is_displayed %}
                         <h4>{% trans 'Jewish Diaspora' %}</h4>
-                        <p>{% trans 'Displayed' %}  {{ artifact.displayed_at }}</p>
+                        <p>{% trans 'Displayed' %}  {{ artifact|bd:'displayed_at' }}</p>
                     {% endif %}
                 </div>
             </div>

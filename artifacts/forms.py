@@ -83,7 +83,8 @@ class ArtifactForm(UserArtifactForm):
             'display_donor_name',
             'is_featured',
             'is_displayed',
-            'displayed_at',
+            'displayed_at_he',
+            'displayed_at_en',
             'route_map',
             'route_he',
             'route_en',
@@ -108,7 +109,8 @@ class ArtifactForm(UserArtifactForm):
             'origin_city_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'is_displayed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'displayed_at': forms.TextInput(attrs={'class': 'form-control'}),
+            'displayed_at_he': forms.TextInput(attrs={'class': 'form-control'}),
+            'displayed_at_en': forms.TextInput(attrs={'class': 'form-control'}),
             'display_donor_name': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'route_map': forms.FileInput(attrs={'class': 'form-control-file'}),
             'route_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
@@ -248,7 +250,13 @@ class UserForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.logged = kwargs.pop('logged')
+        bidi = kwargs.pop('bidi')
         super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['phone_number'].widget = ILPhoneNumberMultiWidget(
+            bidi=bidi,
+            area_attrs={'class': 'form-control'},
+            number_attrs={'class': 'form-control', 'size': '7', 'maxlength': '7', 'placeholder': _('Mobile preferred')},
+        )
 
     def clean(self):
         cleaned_data = super().clean()

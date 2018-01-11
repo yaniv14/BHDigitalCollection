@@ -34,7 +34,7 @@
 
                 <div class="col">
                     {% if artifact.is_displayed %}
-                        {% trans 'Displayed' %}  {{ artifact.displayed_at }}
+                        {% trans 'Displayed' %}  {{ artifact|bd:'displayed_at' }}
                     {% endif %}
                 </div>
             </div>
