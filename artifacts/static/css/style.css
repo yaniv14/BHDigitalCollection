@@ -473,6 +473,10 @@ label {
     font-size: 1.5rem;
 }
 
+.form-control-file.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
 .form-control {
     color: #999999;
     background-color: #e6e6e6;
