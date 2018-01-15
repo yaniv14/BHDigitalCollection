@@ -17,22 +17,6 @@ from jewishdiaspora.base_views import JewishDiasporaUIMixin
 from users.models import User
 
 
-class PersonalInformationRegistrationPage(JewishDiasporaUIMixin, TemplateView):
-    template_name = 'artifacts/sign_in_first_page.html'
-
-
-class ArtifactInformationRegistrationPage(JewishDiasporaUIMixin, TemplateView):
-    template_name = 'artifacts/sign_in_second_page.html'
-
-
-class ArtifactsImagesRegistrationPage(JewishDiasporaUIMixin, TemplateView):
-    template_name = 'artifacts/sign_in_third_page.html'
-
-
-class TheNewForm(JewishDiasporaUIMixin, TemplateView):
-    template_name = 'artifacts/artifacts_donor_registration.html'
-
-
 def get_custom_context_data(self, context):
     filters = self.request.GET.get('filter', None)
     context['filters'] = filters
