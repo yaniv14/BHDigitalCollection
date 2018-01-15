@@ -23,9 +23,5 @@ urlpatterns = [
     path('type/create/', views.ArtifactTypeCreateView.as_view(), name='type_create'),
     path('type/update/<int:pk>/', views.ArtifactTypeUpdateView.as_view(), name='type_update'),
     path('type/delete/<int:pk>/', views.ArtifactTypeDeleteView.as_view(), name='type_delete'),
-    path('new/', views.TheNewForm.as_view(), name='artifacts_donors_registration'),
-    path('personal_info/', views.PersonalInformationRegistrationPage.as_view(), name='PersonalInformationRegistrationPage'),
-    path('artifact_info/', views.ArtifactInformationRegistrationPage.as_view(), name='ArtifactInformationRegistrationPage'),
-    path('artifact_images/', views.ArtifactsImagesRegistrationPage.as_view(), name='ArtifactsImagesRegistrationPage'),
     path('image/create/', views.ArtifactImageCreateView.as_view(), name='image_create'),
 ]
