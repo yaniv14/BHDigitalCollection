@@ -6,8 +6,6 @@ from django.utils.decorators import method_decorator
 class JewishDiasporaUIMixin(object):
     page_title = None
     page_name = None
-    page_description = None
-    form_description = None
     filterable = False
 
     def get_page_title(self):
@@ -20,15 +18,8 @@ class JewishDiasporaUIMixin(object):
             return self.page_name
         return ""
 
-    def get_page_description(self):
-        if self.page_description:
-            return self.page_description
-        return ""
-
-    def get_form_description(self):
-        if self.form_description:
-            return self.form_description
-        return ""
+    def get_filterable(self):
+        return self.filterable
 
     def is_msie(self):
         if settings.DEBUG:
@@ -40,9 +31,7 @@ class JewishDiasporaUIMixin(object):
         d = super(JewishDiasporaUIMixin, self).get_context_data(**kwargs)
         d['page_title'] = self.get_page_title()
         d['page_name'] = self.get_page_name()
-        d['page_description'] = self.get_page_description()
-        d['form_description'] = self.get_form_description()
-        d['filterable'] = self.filterable
+        d['filterable'] = self.get_filterable()
         return d
 
 
