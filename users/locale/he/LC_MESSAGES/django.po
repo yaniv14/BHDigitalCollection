@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-11 20:53+0200\n"
-"PO-Revision-Date: 2018-01-11 20:59+0200\n"
+"POT-Creation-Date: 2018-01-23 09:58+0200\n"
+"PO-Revision-Date: 2018-01-23 10:04+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -16,68 +16,112 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.5\n"
 
-#: forms.py:25
+#: .\forms.py:25
 msgid "Artifact contact form"
 msgstr "יצירת קשר"
 
-#: models.py:14
-msgid "Not specified"
-msgstr "לא צויין"
+#: .\forms.py:52 .\forms.py:55
+msgid "First and last name"
+msgstr ""
 
-#: models.py:15
-msgid "Borrow"
-msgstr "השאלה"
+#: .\forms.py:58
+msgid "Phone number"
+msgstr ""
 
-#: models.py:16
-msgid "Donate"
-msgstr "תרומה (מסירה)"
+#: .\forms.py:60
+msgid "Mobile preferred"
+msgstr ""
 
-#: models.py:21
-msgid "Full name"
-msgstr "שם מלא"
+#: .\forms.py:63
+msgid "Email address"
+msgstr ""
 
-#: models.py:22 models.py:45
-msgid "Phone"
-msgstr "טלפון"
+#: .\forms.py:67
+msgid "We will never send you spam"
+msgstr ""
 
-#: models.py:32
-msgid "New account at Jewish Diaspora"
-msgstr "חשבון חדש באתר בית התפוצות"
-
-#: models.py:33
-msgid "Hi, a new account was created for you, login info"
-msgstr "הי, חשבון חדש נוצר עבורך, פרטי החשבון"
-
-#: models.py:33 models.py:44
-msgid "Email"
-msgstr "אימייל"
-
-#: models.py:34
+#: .\forms.py:71 .\forms.py:77 .\forms.py:87 .\models.py:34
 msgid "Password"
 msgstr "סיסמא"
 
-#: models.py:43
+#: .\forms.py:81
+msgid "Verify Password"
+msgstr "אימות סיסמא"
+
+#: .\forms.py:97
+msgid "The passwords are not equal"
+msgstr "הסיסמאות שונות"
+
+#: .\models.py:14
+msgid "Not specified"
+msgstr "לא צויין"
+
+#: .\models.py:15
+msgid "Borrow"
+msgstr "השאלה"
+
+#: .\models.py:16
+msgid "Donate"
+msgstr "תרומה (מסירה)"
+
+#: .\models.py:21
+msgid "Full name"
+msgstr "שם מלא"
+
+#: .\models.py:22 .\models.py:45
+msgid "Phone"
+msgstr "טלפון"
+
+#: .\models.py:32
+msgid "New account at Jewish Diaspora"
+msgstr "חשבון חדש באתר בית התפוצות"
+
+#: .\models.py:33
+msgid "Hi, a new account was created for you, login info"
+msgstr "הי, חשבון חדש נוצר עבורך, פרטי החשבון"
+
+#: .\models.py:33 .\models.py:44
+msgid "Email"
+msgstr "אימייל"
+
+#: .\models.py:43
 msgid "Name"
 msgstr "שם"
 
-#: models.py:46
+#: .\models.py:46
 msgid "Artifact info"
 msgstr "תיאור הפריט"
 
-#: models.py:47
+#: .\models.py:47
 msgid "Intend type"
 msgstr "אופן"
 
-#: templates/registration/login.html:7 templates/registration/login.html:10
+#: .\templates\registration\login.html:7 .\templates\registration\login.html:10
 msgid "Login"
 msgstr "כניסה"
 
-#: templates/users/contact_form.html:19 views.py:15
+#: .\templates\users\contact_form.html:19 .\views.py:17
 msgid "Contact us"
 msgstr "צור קשר"
 
-#: views.py:18
+#: .\templates\users\my_account.html:8
+msgid "Update your account"
+msgstr "עדכן את חשבונך"
+
+#: .\templates\users\my_account.html:17
+msgid "Update"
+msgstr "עדכן"
+
+#: .\views.py:20
 msgid "Thank you, we will contact you shortly"
 msgstr "תודה, ניצור איתך קשר בהקדם"
+
+#: .\views.py:35
+msgid "Account Update"
+msgstr "עדכון חשבון"
+
+#: .\views.py:37
+msgid "Your account was updated successfully"
+msgstr "חשבונך עודכן בהצלחה"
