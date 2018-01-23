@@ -36,6 +36,6 @@ class JewishDiasporaUIMixin(object):
 
 
 class LoginRequiredMixin(object):
-    @method_decorator(login_required(login_url='login'))
+    @method_decorator(login_required(login_url='users:login'))
     def dispatch(self, request, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
