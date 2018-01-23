@@ -1,0 +1,20 @@
+{% extends 'artifacts/base.html' %}
+{% load static jewishdiaspora i18n %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8">
+            <h1 class="text-center">
+                <span class="orange"> {% trans 'Update your account' %}</span>
+            </h1>
+        </div>
+        <div class="col col-md-8">
+            {% for m in messages %}
+             <div class="alert alert-success">
+                {{ m }}
+             </div>
+            {% endfor %}
+            {% include '_base_form.html' with form=form submit_text=_('Update') labels=True button_color='orange' btn_location='right' %}
+        </div>
+    </div>
+{% endblock %}
