@@ -503,6 +503,10 @@ textarea.form-control:focus {
     color: #666666 !important;
 }
 
+select[name^="phone_number"].form-control:not([size]):not([multiple]) {
+    height: calc(2.5rem + 3px);
+}
+
 /* Main */
 main {
     padding: 4rem 0;

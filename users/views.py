@@ -32,7 +32,7 @@ class BHLoginView(LoginView):
 class MyAccount(LoginRequiredMixin, SuccessMessageMixin, JewishDiasporaUIMixin, FormView):
     template_name = 'users/my_account.html'
     form_class = MyUserAccount
-    success_url = reverse_lazy('users:myaccount')
+    success_url = reverse_lazy('users:my_account')
     page_title = _('Account Update')
     page_name = 'account_update'
     success_message = _('Your account was updated successfully')

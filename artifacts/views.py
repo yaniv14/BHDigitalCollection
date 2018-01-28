@@ -46,24 +46,24 @@ def set_filters(self, context):
     context['location_form'] = location_form
 
 
-def filter_data(self, mixin, is_private):
-    filters = self.request.GET.get('filter', None)
+def filter_data(request, qs, is_private):
+    filters = request.GET.get('filter', None)
     if filters == 'time':
-        time_from = self.request.GET.get('year_from', None)
-        time_to = self.request.GET.get('year_to', None)
+        time_from = request.GET.get('year_from', None)
+        time_to = request.GET.get('year_to', None)
         if time_from and time_to:
-            qs = mixin.get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=is_private)
-            return qs.filter(year_from__gte=int(time_from)).exclude(year_to__gt=int(time_to))
+            res = qs.filter(status=ArtifactStatus.APPROVED, is_private=is_private)
+            return res.filter(year_from__gte=int(time_from)).exclude(year_to__gt=int(time_to))
     elif filters == 'location':
-        location = self.request.GET.get('location', "")
-        qs = mixin.get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=is_private)
+        location = request.GET.get('location', "")
+        res = qs.filter(status=ArtifactStatus.APPROVED, is_private=is_private)
         if location.isdigit():
             loc = int(location)
         else:
             loc = 0
-        return qs.filter(Q(origin_country=location) | Q(origin_city_en=location) | Q(origin_city_he=location) | Q(
+        return res.filter(Q(origin_country=location) | Q(origin_city_en=location) | Q(origin_city_he=location) | Q(
             origin_area_id=loc))
-    return mixin.get_queryset().filter(status=ArtifactStatus.APPROVED, is_private=is_private)
+    return qs.filter(status=ArtifactStatus.APPROVED, is_private=is_private)
 
 
 class HomeView(JewishDiasporaUIMixin, ListView):
@@ -75,7 +75,7 @@ class HomeView(JewishDiasporaUIMixin, ListView):
     filterable = True
 
     def get_queryset(self):
-        return filter_data(self, super(JewishDiasporaUIMixin, self), False)
+        return filter_data(self.request, super().get_queryset(), False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -101,7 +101,7 @@ class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
     filterable = True
 
     def get_queryset(self):
-        return filter_data(self, super(JewishDiasporaUIMixin, self), True)
+        return filter_data(self.request, super().get_queryset(), True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -121,7 +121,7 @@ class ArtifactFullListView(JewishDiasporaUIMixin, ListView):
     filterable = True
 
     def get_queryset(self):
-        return filter_data(self, super(JewishDiasporaUIMixin, self), False)
+        return filter_data(self.request, super().get_queryset(), False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

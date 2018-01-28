@@ -66,7 +66,7 @@ class MyUserAccount(forms.Form):
                 'class': 'form-control',
                 'placeholder': _('We will never send you spam')
             }
-    ))
+        ))
     password = forms.CharField(
         label=_('Password'),
         max_length=30,
@@ -76,7 +76,7 @@ class MyUserAccount(forms.Form):
                 'class': 'form-control',
                 'placeholder': _('Password')
             }
-    ))
+        ))
     password2 = forms.CharField(
         label=_('Verify Password'),
         max_length=30,
@@ -86,7 +86,7 @@ class MyUserAccount(forms.Form):
                 'class': 'form-control',
                 'placeholder': _('Password')
             }
-    ))
+        ))
 
     def __init__(self, *args, **kwargs):
         self.logged = kwargs.pop('logged')
@@ -100,9 +100,9 @@ class MyUserAccount(forms.Form):
 
     def clean_password2(self):
         cleaned_data = super().clean()
-        password0 = cleaned_data.get('password')
+        password = cleaned_data.get('password')
         password2 = cleaned_data.get('password2')
-        if password0 != password2:
+        if password != password2:
             raise forms.ValidationError(
                 _("The passwords are not equal"),
                 code='invalid'
