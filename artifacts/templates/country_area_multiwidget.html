@@ -1,0 +1,12 @@
+{% for widget in widget.subwidgets %}
+    <div class="col-12">
+        <div class="form-{% if widget.attrs.label %}check{% else %}group{% endif %}">
+            {% include widget.template_name %}
+            {% if widget.attrs.label %}
+                <label class="form-check-label" for="id_{{ widget.name }}">
+                    {{ widget.attrs.label }}
+                </label>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

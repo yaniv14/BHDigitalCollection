@@ -1,0 +1,49 @@
+{% load i18n %}
+{% for widget in widget.subwidgets %}
+    {% if forloop.counter == 4 %}
+        <div class="col-12">
+            {% trans 'Or choose era' %}
+        </div>
+        <div class="col-12 period-picker">
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary btn-block" data-from-value="1700"
+                            data-to-value="1799">
+                        {% trans 'The 18th century' %}
+                    </button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-secondary btn-block" data-from-value="1800"
+                            data-to-value="1899">
+                        {% trans 'The 19th century' %}
+                    </button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Third group">
+                    <button type="button" class="btn btn-secondary btn-block" data-from-value="1900"
+                            data-to-value="1999">
+                        {% trans 'The 20th century' %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if forloop.first or forloop.counter == 4 %}
+        <div class="col-12 {% if forloop.first %}range-set{% else %}exact-set mt-4{% endif %}">
+    {% endif %}
+{% if forloop.counter == 3 %}
+    <div class="period-fields form-group label-period-fields">
+        {% trans 'To' %}
+    </div>
+{% endif %}
+<div class="period-fields form-{% if widget.attrs.label %}check{% else %}group{% endif %}">
+    {% include widget.template_name %}
+    {% if widget.attrs.label %}
+        <label class="form-check-label" for="id_{{ widget.name }}">
+            {{ widget.attrs.label }}
+        </label>
+    {% endif %}
+</div>
+{% if forloop.counter == 3 or forloop.last %}
+    </div>
+{% endif %}
+{% endfor %}
