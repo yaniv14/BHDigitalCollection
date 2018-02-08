@@ -223,6 +223,18 @@ class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
         if self.request.user.is_superuser:
             form.instance.status = ArtifactStatus.APPROVED
         else:
+            country_area = form.cleaned_data['country_area']
+            if country_area[0]:
+                form.instance.origin_country = country_area[1]
+            elif country_area[2]:
+                form.instance.origin_area_id = country_area[3]
+            period = form.cleaned_data['period']
+            if period[0]:
+                form.instance.year_from = int(period[1])
+                form.instance.year_to = int(period[2])
+            elif period[3]:
+                form.instance.year_from = int(period[4])
+                form.instance.year_to = int(period[4])
             form.instance.is_private = True
             form.instance.slug = slugify(form.cleaned_data['name_he'], True)
             form.instance.name_en = form.cleaned_data['name_he']

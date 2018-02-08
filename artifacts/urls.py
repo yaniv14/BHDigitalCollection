@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 
@@ -7,7 +7,7 @@ app_name = 'artifacts'
 urlpatterns = [
     path('users/', views.ArtifactUsersListView.as_view(), name='users'),
     path('all/', views.ArtifactFullListView.as_view(), name='all_artifacts'),
-    path('<slug:slug>/', views.ArtifactDetailView.as_view(), name='detail'),
+    re_path('(?P<slug>[-\w]+)/', views.ArtifactDetailView.as_view(), name='detail'),
     path('create/step/one/', views.ArtifactCreateStepOneView.as_view(), name='create_step_one'),
     path('create/step/two/', views.ArtifactCreateStepTwoView.as_view(), name='create_step_two'),
     path('<int:pk>/create/step/three/', views.ArtifactCreateStepThreeView.as_view(), name='create_step_three'),

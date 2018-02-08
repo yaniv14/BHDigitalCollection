@@ -90,18 +90,18 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 sps" data-sps-offset="691">
             <div class="collapse navbar-collapse" id="bottom-navbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item{% if page_name == 'home' %} active{% endif %}">
+                    <li class="nav-item{% if page_name == 'home' %} blue active{% endif %}">
                         <a class="nav-link" href="{% url 'home' %}">
                             {% trans 'Museum Collection' %}{% if page_name == 'home' %}
                                 <span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
-                    <li class="nav-item{% if page_name == 'users_artifact_list' %} active{% endif %}">
+                    <li class="nav-item{% if page_name == 'users_artifact_list' %} red active{% endif %}">
                         <a class="nav-link" href="{% url 'artifacts:users' %}">
                             {% trans 'Users Collection' %}{% if page_name == 'users_artifact_list' %}
                                 <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
-                    <li class="nav-item{% if page_name == 'all_artifact_list' %} active{% endif %}">
+                    <li class="nav-item{% if page_name == 'all_artifact_list' %} gray active{% endif %}">
                         <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">
                             {% trans 'All' %}{% if page_name == 'all_artifact_list' %}
                                 <span class="sr-only">(current)</span>{% endif %}</a>

@@ -4,20 +4,36 @@ from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 from django.utils.translation import ugettext_lazy as _
-from jewishdiaspora.fields import ILPhoneNumberMultiWidget
+from jewishdiaspora.fields import ILPhoneNumberMultiWidget, CountryOrAreaMultiWidget, PeriodMultiWidget
 from users.models import User
 from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial, ArtifactType
 
 
 class UserArtifactForm(forms.ModelForm):
+    country_area = forms.Field(label=_('Wheres from'), widget=CountryOrAreaMultiWidget(
+        area_attrs={'class': 'form-control'},
+        country_attrs={'class': 'form-control'},
+        area_radio_attrs={'label': _('Area or continent'), 'class': 'form-check-input'},
+        country_radio_attrs={'label': _('Country'), 'class': 'form-check-input'},
+    ), required=False)
+    period = forms.Field(label=_('Item period'), widget=PeriodMultiWidget(
+        year_from_attrs={'class': 'form-control', 'onkeypress': 'return event.charCode >= 48 && event.charCode <= 57'},
+        year_to_attrs={'class': 'form-control', 'onkeypress': 'return event.charCode >= 48 && event.charCode <= 57'},
+        exact_year_attrs={'class': 'form-control', 'onkeypress': 'return event.charCode >= 48 && event.charCode <= 57'},
+        exact_year_radio_attrs={'label': _('Exact year'), 'class': 'form-check-input'},
+        period_attrs={'label': _('Year range'), 'class': 'form-check-input'},
+    ), required=False)
+
     class Meta:
         model = Artifact
         fields = [
             'name_he',
-            'origin_country',
-            'origin_area',
-            'year_from',
-            'year_to',
+            'country_area',
+            # 'origin_country',
+            # 'origin_area',
+            'period',
+            # 'year_from',
+            # 'year_to',
             'description_he',
             'artifact_type',
             'artifact_materials',
@@ -25,11 +41,11 @@ class UserArtifactForm(forms.ModelForm):
             'donor_name_he',
         ]
         widgets = {
-            'name_he': forms.TextInput(attrs={'class': 'form-control'}),
-            'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
-            'origin_area': forms.Select(attrs={'class': 'form-control'}),
-            'year_from': forms.TextInput(attrs={'class': 'form-control'}),
-            'year_to': forms.TextInput(attrs={'class': 'form-control'}),
+            'name_he': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Item name')}),
+            # 'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
+            # 'origin_area': forms.Select(attrs={'class': 'form-control'}),
+            # 'year_from': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'year_to': forms.TextInput(attrs={'class': 'form-control'}),
             'description_he': forms.Textarea(attrs={'class': 'form-control'}),
             'artifact_type': forms.Select(attrs={'class': 'form-control'}),
             'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
@@ -38,10 +54,10 @@ class UserArtifactForm(forms.ModelForm):
         }
         labels = {
             'name_he': _('Title'),
-            'origin_country': _('Item origin'),
-            'origin_area': _('Area or continent'),
-            'year_from': _('Year from'),
-            'year_to': _('Year to'),
+            # 'origin_country': _('Item origin'),
+            # 'origin_area': _('Area or continent'),
+            # 'year_from': _('Year from'),
+            # 'year_to': _('Year to'),
             'description_he': _('Item story'),
             'artifact_type': _('Artifact type'),
             'artifact_materials': _('Material'),
@@ -51,6 +67,9 @@ class UserArtifactForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserArtifactForm, self).__init__(*args, **kwargs)
+
+        self.fields['country_area'].initial = [True, '', False, '']
+        self.fields['period'].initial = [True, '', '', False, '']
 
         if self.errors:
             for field in self.fields:
@@ -90,8 +109,8 @@ class ArtifactForm(UserArtifactForm):
             'route_en',
         ]
         widgets = {
-            'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
-            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl', 'placeholder': _('Item name')}),
+            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': _('Item name')}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
