@@ -704,6 +704,21 @@ main {
     height: 30px;
 }
 
+.carousel-items1 {
+    width: 100%;
+    height: calc(100vw / 2.782);
+    padding: 2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.carousel-indicators li {
+    text-indent: 0;
+    height: 30px;
+}
+
 /* Responsive */
 @media (min-width: 576px) {
     .card-columns {
