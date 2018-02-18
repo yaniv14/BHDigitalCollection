@@ -385,6 +385,18 @@ header .logo {
     right: 0;
 }
 
+.blue.active .nav-link::after {
+    border-bottom-color: #47C3D3 !important;
+}
+
+.red.active .nav-link::after {
+    border-bottom-color: #BE3426 !important;
+}
+
+.gray.actives .nav-link::after {
+    border-bottom-color: gray !important;
+}
+
 .no-btn {
     background-color: transparent;
     border: 0;
@@ -507,6 +519,32 @@ textarea.form-control:focus {
 
 select[name^="phone_number"].form-control:not([size]):not([multiple]) {
     height: calc(2.5rem + 3px);
+}
+
+.period-picker .btn-group {
+    width: calc(33.333% - (1rem / 3));
+}
+
+.range-set .period-fields.form-check {
+    float: right;
+    width: calc(100% / 3);
+}
+
+.range-set .period-fields.form-group {
+    float: right;
+    width: calc((100% / 3) - 2rem);
+}
+
+.range-set .period-fields.label-period-fields {
+    width: 4rem;
+    height: 2.7rem;
+    line-height: 2.7rem;
+    text-align: center;
+}
+
+.exact-set .period-fields {
+    float: right;
+    width: 50%;
 }
 
 /* Main */
@@ -663,6 +701,21 @@ main {
 
 .svg-icon.lang_switcher svg {
     width: auto;
+    height: 30px;
+}
+
+.carousel-items1 {
+    width: 100%;
+    height: calc(100vw / 2.782);
+    padding: 2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.carousel-indicators li {
+    text-indent: 0;
     height: 30px;
 }
 

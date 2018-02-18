@@ -1,5 +1,9 @@
 from django import forms
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
+from django_countries.data import COUNTRIES
+from django_countries.widgets import CountrySelectWidget
+
+from artifacts.models import OriginArea
 
 
 class ILPhoneNumberMultiWidget(forms.MultiWidget):
@@ -75,3 +79,77 @@ class ILPhoneNumberMultiWidget(forms.MultiWidget):
         context = super().get_context(name, value, attrs)
         context['bidi'] = self.bidi
         return context
+
+
+class CountryOrAreaMultiWidget(forms.MultiWidget):
+    template_name = 'country_area.html'
+
+    def __init__(
+            self,
+            attrs=None,
+            country_attrs=None,
+            country_radio_attrs=None,
+            area_radio_attrs=None,
+            area_attrs=None):
+        widgets = (
+            forms.CheckboxInput(
+                attrs=attrs if country_radio_attrs is None else country_radio_attrs
+            ),
+
+            CountrySelectWidget(
+                choices=((k, v) for k, v in COUNTRIES.items()),
+                attrs=attrs if country_attrs is None else country_attrs),
+
+            forms.CheckboxInput(attrs=attrs if area_radio_attrs is None else area_radio_attrs),
+
+            forms.Select(
+                attrs=attrs if area_attrs is None else area_attrs,
+                choices=[('', _('Area or continent'))] + [(x.id, x.title_he) for x in OriginArea.objects.all()]
+            )
+        )
+        super().__init__(widgets)
+
+    def decompress(self, value):
+        if value:
+            return value
+        return [None, None, None, None]
+
+
+class PeriodMultiWidget(forms.MultiWidget):
+    template_name = 'period.html'
+
+    def __init__(
+            self,
+            attrs=None,
+            year_from_attrs=None,
+            year_to_attrs=None,
+            period_attrs=None,
+            exact_year_radio_attrs=None,
+            exact_year_attrs=None):
+        widgets = (
+            forms.CheckboxInput(
+                attrs=attrs if period_attrs is None else period_attrs
+            ),
+
+            forms.TextInput(
+                attrs=attrs if year_from_attrs is None else year_from_attrs
+            ),
+
+            forms.TextInput(
+                attrs=attrs if year_to_attrs is None else year_to_attrs
+            ),
+
+            forms.CheckboxInput(
+                attrs=attrs if exact_year_radio_attrs is None else exact_year_radio_attrs
+            ),
+
+            forms.TextInput(
+                attrs=attrs if exact_year_attrs is None else exact_year_attrs
+            )
+        )
+        super().__init__(widgets)
+
+    def decompress(self, value):
+        if value:
+            return value
+        return [True, '', '', False, '']
