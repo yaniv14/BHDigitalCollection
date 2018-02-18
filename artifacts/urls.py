@@ -7,7 +7,6 @@ app_name = 'artifacts'
 urlpatterns = [
     path('users/', views.ArtifactUsersListView.as_view(), name='users'),
     path('all/', views.ArtifactFullListView.as_view(), name='all_artifacts'),
-    re_path('(?P<slug>[-\w]+)/', views.ArtifactDetailView.as_view(), name='detail'),
     path('create/step/one/', views.ArtifactCreateStepOneView.as_view(), name='create_step_one'),
     path('create/step/two/', views.ArtifactCreateStepTwoView.as_view(), name='create_step_two'),
     path('<int:pk>/create/step/three/', views.ArtifactCreateStepThreeView.as_view(), name='create_step_three'),
@@ -24,4 +23,5 @@ urlpatterns = [
     path('type/update/<int:pk>/', views.ArtifactTypeUpdateView.as_view(), name='type_update'),
     path('type/delete/<int:pk>/', views.ArtifactTypeDeleteView.as_view(), name='type_delete'),
     path('image/create/', views.ArtifactImageCreateView.as_view(), name='image_create'),
+    re_path('(?P<slug>[-\w]+)/', views.ArtifactDetailView.as_view(), name='detail'),
 ]
