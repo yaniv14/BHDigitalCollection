@@ -8,6 +8,9 @@ class BHUIMixin(object):
     page_name = None
     filterable = False
 
+    def set_filters(self):
+        return None
+    
     def get_page_title(self):
         if self.page_title:
             return self.page_title
@@ -32,6 +35,7 @@ class BHUIMixin(object):
         d['page_title'] = self.get_page_title()
         d['page_name'] = self.get_page_name()
         d['filterable'] = self.get_filterable()
+        d['filter'] = self.set_filters()
         return d
 
 
