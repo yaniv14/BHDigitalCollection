@@ -107,24 +107,27 @@
                                 <span class="sr-only">(current)</span>{% endif %}</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto" {% if not filterable %} style = "display:none" {% endif %}>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="filterDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% trans 'Filters' %}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filterDropdown" >
-                            <a class="dropdown-item" href="?filter=time">
-                                {% trans 'Time' %}
+                {% if filterable %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#filters" id="filterDropdown" role="button"
+                               data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                + {% trans 'Filters' %}
                             </a>
-                            <a class="dropdown-item" href="?filter=location">
-                                {% trans 'Location' %}
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
         </nav>
+        {% if filterable %}
+        <div class="collapse" id="filters">
+            <a class="filter-item" href="?filter=time">
+                {% trans 'Time' %}
+            </a>
+            <a class="filter-item" href="?filter=location">
+                {% trans 'Location' %}
+            </a>
+        </div>
+        {% endif %}
     </div>
 </header>
