@@ -1,3 +1,32 @@
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 300;
+    src: url(/static/fonts/rubik/Rubik-Light.ttf);
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/fonts/rubik/Rubik-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/static/fonts/rubik/Rubik-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/fonts/rubik/Rubik-Regular.ttf);
+    unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
 /* hebrew */
 @font-face {
     font-family: 'Alef';
@@ -118,9 +147,13 @@
 /* Generic */
 body {
     color: #000000;
-    font-family: 'Alef', "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Rubik', "Helvetica Neue", Arial, sans-serif;
     direction: rtl;
     text-align: right;
+}
+
+.rubik-font {
+    font-family: 'Rubik', "Helvetica Neue", Arial, sans-serif;
 }
 
 .alef-font {
@@ -140,7 +173,7 @@ body {
 }
 
 h4, .h4 {
-    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Rubik', "Helvetica Neue", Arial, sans-serif;
     font-size: 1.75rem;
 }
 
@@ -502,7 +535,7 @@ footer .footer-top {
 
 .artifact-detail .description {
     color: #000000;
-    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Rubik', "Helvetica Neue", Arial, sans-serif;
     font-size: 1.9rem;
 }
 
@@ -517,7 +550,6 @@ dd {
 
 .part-of-the-story {
 	color: #EDEDED;
-	font-family: Rubik;
 	font-size: 21px;
 	font-weight: bold;
 	line-height: 25px;
@@ -539,7 +571,7 @@ label {
     background-color: #e6e6e6;
     border: 0;
     border-radius: 0;
-    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Rubik', "Helvetica Neue", Arial, sans-serif;
     font-style: italic;
     font-size: 1.3rem;
 }
@@ -555,7 +587,7 @@ textarea.form-control:focus {
 }
 
 .text-muted {
-    font-family: 'Arimo', "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Rubik', "Helvetica Neue", Arial, sans-serif;
     font-size: 0.875rem;
     color: #666666 !important;
 }
