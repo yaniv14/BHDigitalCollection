@@ -483,6 +483,36 @@ footer .footer-top {
     font-size: 2.75rem;
 }
 
+/* Filter */
+#filters {
+    height: 185px;
+    width: 100%;
+}
+
+.filter-item {
+    height: 185px;
+    background-color: #F9F9F9;
+    width: calc(50% - 1.5px);
+    float: left;
+    line-height: 185px;
+    text-align: center;
+    vertical-align: middle;
+    color: #4A4A4A;
+    font-size: 20px;
+    border-right: 1.5px solid #fff;
+}
+
+.filter-item:last-child {
+    border-right: 0;
+    border-left: 1.5px solid #fff;
+}
+
+.filter-item:hover {
+    color: #4A4A4A;
+    text-decoration: none;
+    background-color: #EDF3F4;
+}
+
 /* Artifact detail */
 .artifact-detail main {
     padding-bottom: 0;
