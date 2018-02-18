@@ -72,6 +72,14 @@ class HomeView(BHUIMixin, ListView):
     context_object_name = 'artifacts'
     filterable = True
 
+    def set_filters(self):
+        filters = self.request.GET.get('filter', None)
+        if filters == 'time':
+            return YearForm(self.request.GET)
+        elif filters == 'location':
+            return LocationForm(self.request.GET)
+        return None
+    
     def get_queryset(self):
         return filter_data(self.request, super().get_queryset(), False)
 
