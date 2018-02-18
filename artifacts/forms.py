@@ -1,10 +1,8 @@
-import pdb
-
 from django import forms
 from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 from django.utils.translation import ugettext_lazy as _
-from jewishdiaspora.fields import ILPhoneNumberMultiWidget
+from bhdigitalcollection.fields import ILPhoneNumberMultiWidget
 from users.models import User
 from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial, ArtifactType
 

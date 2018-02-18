@@ -5,13 +5,12 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
-from jewishdiaspora.base_views import JewishDiasporaUIMixin
+from bhdigitalcollection.base_views import BHUIMixin, LoginRequiredMixin
 from users.forms import ContactForm, LoginForm, MyUserAccount
 from users.models import ArtifactContact
-from jewishdiaspora.base_views import JewishDiasporaUIMixin, LoginRequiredMixin
 
 
-class ContactView(JewishDiasporaUIMixin, SuccessMessageMixin, CreateView):
+class ContactView(BHUIMixin, SuccessMessageMixin, CreateView):
     template_name = 'users/contact_form.html'
     model = ArtifactContact
     success_url = reverse_lazy('contact')
@@ -29,7 +28,7 @@ class BHLoginView(LoginView):
     form_class = LoginForm
 
 
-class MyAccount(LoginRequiredMixin, SuccessMessageMixin, JewishDiasporaUIMixin, FormView):
+class MyAccount(LoginRequiredMixin, SuccessMessageMixin, BHUIMixin, FormView):
     template_name = 'users/my_account.html'
     form_class = MyUserAccount
     success_url = reverse_lazy('users:my_account')

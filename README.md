@@ -2,11 +2,11 @@
 
 * Clone repository from your own fork::
     
-        git clone git@github.com:your_user_name/JewishDiaspora.git
+        git clone git@github.com:your_user_name/BHDigitalCollection.git
 
 * Create a virtualenv:
 
-        mkvirtualenv diaspora
+        mkvirtualenv bh
 
 * Upgrade pip:
 

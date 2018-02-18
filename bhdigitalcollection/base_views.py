@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
-class JewishDiasporaUIMixin(object):
+class BHUIMixin(object):
     page_title = None
     page_name = None
     filterable = False
@@ -28,7 +28,7 @@ class JewishDiasporaUIMixin(object):
         return 'MSIE' in user_agent or 'Trident' in user_agent
 
     def get_context_data(self, **kwargs):
-        d = super(JewishDiasporaUIMixin, self).get_context_data(**kwargs)
+        d = super().get_context_data(**kwargs)
         d['page_title'] = self.get_page_title()
         d['page_name'] = self.get_page_name()
         d['filterable'] = self.get_filterable()
@@ -38,4 +38,4 @@ class JewishDiasporaUIMixin(object):
 class LoginRequiredMixin(object):
     @method_decorator(login_required(login_url='users:login'))
     def dispatch(self, request, *args, **kwargs):
-        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)

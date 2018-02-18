@@ -2,7 +2,7 @@ from authtools.forms import AuthenticationForm
 from django import forms
 from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
-from jewishdiaspora.fields import ILPhoneNumberMultiWidget
+from bhdigitalcollection.fields import ILPhoneNumberMultiWidget
 from .models import ArtifactContact
 
 

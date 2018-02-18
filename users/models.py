@@ -29,7 +29,7 @@ class User(AbstractEmailUser):
 
     def send_registration_email(self, password):
         return send_mail(
-            _('New account at Jewish Diaspora'),
+            _('New account at BH Digital Collection'),
             '{}\n{}: {}\n{}: {}'.format(_('Hi, a new account was created for you, login info'), _('Email'), self.email,
                                         _('Password'), password),
             settings.DEFAULT_FROM_EMAIL,

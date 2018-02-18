@@ -1,5 +1,3 @@
-import pdb
-
 from django.contrib.auth import login
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -13,7 +11,7 @@ from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet
     ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm
 from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
     ArtifactType
-from jewishdiaspora.base_views import JewishDiasporaUIMixin
+from bhdigitalcollection.base_views import BHUIMixin
 from users.models import User
 
 
@@ -66,7 +64,7 @@ def filter_data(request, qs, is_private):
     return qs.filter(status=ArtifactStatus.APPROVED, is_private=is_private)
 
 
-class HomeView(JewishDiasporaUIMixin, ListView):
+class HomeView(BHUIMixin, ListView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
     page_name = 'home'
@@ -86,13 +84,13 @@ class HomeView(JewishDiasporaUIMixin, ListView):
         return context
 
 
-class AboutView(JewishDiasporaUIMixin, TemplateView):
+class AboutView(BHUIMixin, TemplateView):
     template_name = 'artifacts/about.html'
     page_title = _('About')
     page_name = 'about'
 
 
-class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
+class ArtifactUsersListView(BHUIMixin, ListView):
     template_name = 'artifacts/users_artifact_list.html'
     model = Artifact
     context_object_name = 'artifacts'
@@ -112,7 +110,7 @@ class ArtifactUsersListView(JewishDiasporaUIMixin, ListView):
         return context
 
 
-class ArtifactFullListView(JewishDiasporaUIMixin, ListView):
+class ArtifactFullListView(BHUIMixin, ListView):
     template_name = 'artifacts/artifact_full_list.html'
     model = Artifact
     context_object_name = 'artifacts'
@@ -133,7 +131,7 @@ class ArtifactFullListView(JewishDiasporaUIMixin, ListView):
         return context
 
 
-class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
+class ArtifactDetailView(BHUIMixin, DetailView):
     model = Artifact
     context_object_name = 'artifact'
     page_title = _('Artifact detail')
@@ -145,7 +143,7 @@ class ArtifactDetailView(JewishDiasporaUIMixin, DetailView):
         return 'artifacts/artifact_detail.html'
 
 
-class ArtifactCreateStepOneView(JewishDiasporaUIMixin, FormView):
+class ArtifactCreateStepOneView(BHUIMixin, FormView):
     template_name = 'artifacts/artifact_create_step_one.html'
     form_class = UserForm
     success_url = reverse_lazy('artifacts:create_step_two')
@@ -189,7 +187,7 @@ class ArtifactCreateStepOneView(JewishDiasporaUIMixin, FormView):
         return super().form_valid(form)
 
 
-class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
+class ArtifactCreateStepTwoView(BHUIMixin, CreateView):
     template_name = 'artifacts/artifact_create_step_two.html'
     model = Artifact
     page_title = _('Artifact detail')
@@ -233,7 +231,7 @@ class ArtifactCreateStepTwoView(JewishDiasporaUIMixin, CreateView):
         return super().form_valid(form)
 
 
-class ArtifactCreateStepThreeView(JewishDiasporaUIMixin, FormView):
+class ArtifactCreateStepThreeView(BHUIMixin, FormView):
     template_name = 'artifacts/artifact_create_step_three.html'
     page_title = _('Artifact Images')
     page_name = 'artifact_images'
@@ -282,7 +280,7 @@ class ArtifactCreateStepThreeView(JewishDiasporaUIMixin, FormView):
         return context
 
 
-class OriginAreaDeleteView(JewishDiasporaUIMixin, DeleteView):
+class OriginAreaDeleteView(BHUIMixin, DeleteView):
     template_name = 'artifacts/origin_area_delete.html'
     model = OriginArea
     form_class = OriginAreaForm
@@ -291,7 +289,7 @@ class OriginAreaDeleteView(JewishDiasporaUIMixin, DeleteView):
     page_name = 'origin_area_delete'
 
 
-class OriginAreaCreateView(JewishDiasporaUIMixin, CreateView):
+class OriginAreaCreateView(BHUIMixin, CreateView):
     template_name = 'artifacts/origin_area_create.html'
     model = OriginArea
     form_class = OriginAreaForm
@@ -300,7 +298,7 @@ class OriginAreaCreateView(JewishDiasporaUIMixin, CreateView):
     page_name = 'origin_area_create'
 
 
-class OriginAreaUpdateView(JewishDiasporaUIMixin, UpdateView):
+class OriginAreaUpdateView(BHUIMixin, UpdateView):
     template_name = 'artifacts/origin_area_create.html'
     model = OriginArea
     form_class = OriginAreaForm
@@ -309,7 +307,7 @@ class OriginAreaUpdateView(JewishDiasporaUIMixin, UpdateView):
     page_name = 'origin_area_update'
 
 
-class OriginAreaListView(JewishDiasporaUIMixin, ListView):
+class OriginAreaListView(BHUIMixin, ListView):
     template_name = 'artifacts/origin_area_list.html'
     model = OriginArea
     context_object_name = 'areas'
@@ -317,7 +315,7 @@ class OriginAreaListView(JewishDiasporaUIMixin, ListView):
     page_name = 'origin_area_list'
 
 
-class ArtifactMaterialCreateView(JewishDiasporaUIMixin, CreateView):
+class ArtifactMaterialCreateView(BHUIMixin, CreateView):
     template_name = 'artifacts/artifact_material.html'
     model = ArtifactMaterial
     form_class = ArtifactMaterialForm
@@ -326,7 +324,7 @@ class ArtifactMaterialCreateView(JewishDiasporaUIMixin, CreateView):
     page_name = 'artifact_material_create'
 
 
-class ArtifactMaterialUpdateView(JewishDiasporaUIMixin, UpdateView):
+class ArtifactMaterialUpdateView(BHUIMixin, UpdateView):
     template_name = 'artifacts/artifact_material.html'
     model = ArtifactMaterial
     form_class = ArtifactMaterialForm
@@ -335,7 +333,7 @@ class ArtifactMaterialUpdateView(JewishDiasporaUIMixin, UpdateView):
     page_name = 'artifact_material_update'
 
 
-class ArtifactMaterialDeleteView(JewishDiasporaUIMixin, DeleteView):
+class ArtifactMaterialDeleteView(BHUIMixin, DeleteView):
     template_name = 'artifacts/artifact_material_delete.html'
     model = ArtifactMaterial
     form_class = ArtifactMaterialForm
@@ -344,13 +342,13 @@ class ArtifactMaterialDeleteView(JewishDiasporaUIMixin, DeleteView):
     page_name = 'origin_area_update'
 
 
-class ArtifactMaterialListView(JewishDiasporaUIMixin, ListView):
+class ArtifactMaterialListView(BHUIMixin, ListView):
     template_name = 'artifacts/artifact_material_list.html'
     model = ArtifactMaterial
     context_object_name = 'materials'
 
 
-class ArtifactTypeCreateView(JewishDiasporaUIMixin, CreateView):
+class ArtifactTypeCreateView(BHUIMixin, CreateView):
     template_name = 'artifacts/artifact_type.html'
     model = ArtifactType
     form_class = ArtifactTypeForm
@@ -359,7 +357,7 @@ class ArtifactTypeCreateView(JewishDiasporaUIMixin, CreateView):
     page_name = 'artifact_type_create'
 
 
-class ArtifactTypeUpdateView(JewishDiasporaUIMixin, UpdateView):
+class ArtifactTypeUpdateView(BHUIMixin, UpdateView):
     template_name = 'artifacts/artifact_type.html'
     model = ArtifactType
     form_class = ArtifactTypeForm
@@ -368,7 +366,7 @@ class ArtifactTypeUpdateView(JewishDiasporaUIMixin, UpdateView):
     page_name = 'artifact_type_update'
 
 
-class ArtifactTypeDeleteView(JewishDiasporaUIMixin, DeleteView):
+class ArtifactTypeDeleteView(BHUIMixin, DeleteView):
     template_name = 'artifacts/artifact_type_delete.html'
     model = ArtifactType
     form_class = ArtifactTypeForm
@@ -377,13 +375,13 @@ class ArtifactTypeDeleteView(JewishDiasporaUIMixin, DeleteView):
     page_name = 'artifact_type_delete'
 
 
-class ArtifactTypeListView(JewishDiasporaUIMixin, ListView):
+class ArtifactTypeListView(BHUIMixin, ListView):
     template_name = 'artifacts/artifact_type_list.html'
     model = ArtifactType
     context_object_name = 'types'
 
 
-class ArtifactImageCreateView(JewishDiasporaUIMixin, CreateView):
+class ArtifactImageCreateView(BHUIMixin, CreateView):
     template_name = 'artifacts/artifact_create_step_one.html'
     model = ArtifactImage
     success_url = reverse_lazy('artifacts:list')
