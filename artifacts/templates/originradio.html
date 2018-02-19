@@ -1,0 +1,14 @@
+{% load bhdigitalcollection %}
+{% with id=widget.attrs.id %}
+    <div{% if id %} id="{{ id }}"{% endif %}
+                    class="btn-group origin-radio btn-group-toggle{% if widget.attrs.class %} {{ widget.attrs.class }}{% endif %}"
+                    data-toggle="buttons">
+        {% for group, options, index in widget.optgroups %}
+            {% for option in options %}
+                <label class="btn btn-secondary" style="background-image: url({% get_origin_image option.value %})">
+                    {% include option.template_name with widget=option %} {{ option.label }}
+                </label>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endwith %}

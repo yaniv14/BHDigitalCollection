@@ -1,17 +1,5 @@
 {% load i18n %}
 
-{% if filters == 'time' %}
-    <form method="get" action="{{ request.path }}">
-        {{ filter_form }}
-        <button type="submit">
-            Go
-        </button>
-    </form>
-{% else %}
-    <form method="get" action="{{ request.path }}">
-        {{ location_form }}
-        <button type="submit">
-            Go
-        </button>
-    </form>
-{% endif %}
+<form method="get" action="{% url 'artifacts:artifacts_filter' %}">
+    {{ filter_form }}
+</form>

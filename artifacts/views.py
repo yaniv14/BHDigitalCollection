@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.utils import translation
 from django.utils.text import slugify
+from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,14 +19,11 @@ from users.models import User
 def get_custom_context_data(self, context):
     filters = self.request.GET.get('filter', None)
     context['filters'] = filters
-    year_form = YearForm(self.request.GET)
-    location_form = LocationForm(self.request.GET)
     if filters == 'time':
-        pass
+        filter_form = YearForm(self.request.GET)
     elif filters == 'location':
-        pass
-    context['filter_form'] = year_form
-    context['location_form'] = location_form
+        filter_form = LocationForm(self.request.GET)
+    context['filter_form'] = filter_form
     context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
                                                        is_featured=False)
     context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
@@ -34,14 +32,11 @@ def get_custom_context_data(self, context):
 def set_filters(self, context):
     filters = self.request.GET.get('filter', None)
     context['filters'] = filters
-    year_form = YearForm(self.request.GET)
-    location_form = LocationForm(self.request.GET)
     if filters == 'time':
-        pass
+        filter_form = YearForm(self.request.GET)
     elif filters == 'location':
-        pass
-    context['filter_form'] = year_form
-    context['location_form'] = location_form
+        filter_form = LocationForm(self.request.GET)
+    context['filter_form'] = filter_form
 
 
 def filter_data(request, qs, is_private):
@@ -79,7 +74,7 @@ class HomeView(BHUIMixin, ListView):
         elif filters == 'location':
             return LocationForm(self.request.GET)
         return None
-    
+
     def get_queryset(self):
         return filter_data(self.request, super().get_queryset(), False)
 
@@ -408,3 +403,21 @@ class ArtifactImageCreateView(BHUIMixin, CreateView):
     page_title = _('Artifact image create')
     page_name = 'artifact_image_create'
     fields = '__all__'
+
+
+class ArtifactFilterView(View):
+    http_method_names = ['get']
+
+    def get(self, request, *args, **kwargs):
+        filter = self.request.GET.get('filter')
+        location = self.request.GET.get('location')
+        year_from = self.request.GET.get('year_from')
+        year_to = self.request.GET.get('year_to')
+        if filter:
+            res = Artifact.objects.all()
+            if location:
+                res = res.filter(origin_area_id=int(location))
+            elif year_from and year_to:
+                res = res.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
+            return res
+        return Artifact.objects.none()

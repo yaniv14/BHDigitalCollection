@@ -7,7 +7,7 @@
             <h1>{{ page_title }}</h1>
         </div>
         <div class="col col-md-8">
-            {% include '_base_form.html' with form=form submit_text=_('Save') labels=True %}
+            {% include '_base_form.html' with form=form submit_text=_('Save') labels=True with_files=True %}
         </div>
     </div>
 {% endblock %}

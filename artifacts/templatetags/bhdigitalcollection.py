@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.utils import translation
 from django.utils.safestring import mark_safe
 
+from artifacts.models import OriginArea
+
 register = template.Library()
 
 
@@ -75,6 +77,12 @@ def get_base_url(url_name):
     if url_name == 'home':
         return reverse_lazy(url_name)
     return reverse_lazy('artifacts:{}'.format(url_name))
+
+
+@register.simple_tag
+def get_origin_image(origin_id):
+    obj = OriginArea.objects.get(pk=int(origin_id))
+    return obj.get_image_url()
 
 
 @register.filter

@@ -75,6 +75,11 @@ class OriginArea(models.Model):
     def __str__(self):
         return self.title_he if self.title_he else self.title_en
 
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        return ''
+
     def get_countries_list(self):
         return [
             {
