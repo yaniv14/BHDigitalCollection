@@ -18,6 +18,10 @@ p.page-banner-credit {
     right: 0;
 }
 
+.top-links .nav-link.nav-link-1-2-item.pipe:after {
+    left: 0;
+}
+
 /* Footer */
 .new-artifact {
     left: 3rem;
