@@ -3,6 +3,7 @@ from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 from django.utils.translation import ugettext_lazy as _
 from bhdigitalcollection.fields import ILPhoneNumberMultiWidget, CountryOrAreaMultiWidget, PeriodMultiWidget
+from bhdigitalcollection.widgets import OriginRadioSelect
 from users.models import User
 from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial, ArtifactType
 
@@ -234,12 +235,14 @@ class OriginAreaForm(forms.ModelForm):
         fields = [
             'title_he',
             'title_en',
-            'countries'
+            'countries',
+            'image',
         ]
         widgets = {
             'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'countries': LazySelectMultiple(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control-file'}),
         }
 
 
@@ -320,8 +323,15 @@ class YearForm(forms.Form):
 
 
 class LocationForm(forms.Form):
-    filter = forms.CharField(widget=forms.HiddenInput)
-    location = forms.CharField(label=_('Location'), widget=forms.TextInput, required=False)
+    filter = forms.CharField(widget=forms.RadioSelect)
+    location = forms.ChoiceField(
+        label=_('Location'),
+        widget=OriginRadioSelect,
+        required=False,
+        choices=(
+            (x.id, u'{} ({})'.format(x.title_he, x.get_artifacts_count())) for x in OriginArea.objects.all()
+        )
+    )
 
 
 class EmptyForm(forms.Form):

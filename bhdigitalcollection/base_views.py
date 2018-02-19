@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext_lazy as _
 
 
 class BHUIMixin(object):
@@ -8,9 +9,15 @@ class BHUIMixin(object):
     page_name = None
     filterable = False
 
+    filters_types = {
+        '': None,
+        'time': _('Period'),
+        'location': _('Area'),
+    }
+
     def set_filters(self):
         return None
-    
+
     def get_page_title(self):
         if self.page_title:
             return self.page_title
@@ -36,6 +43,8 @@ class BHUIMixin(object):
         d['page_name'] = self.get_page_name()
         d['filterable'] = self.get_filterable()
         d['filter'] = self.set_filters()
+        d['filter_type'] = self.filters_types.get(self.request.GET.get('filter', ''))
+        d['current_url_name'] = self.request.resolver_match.url_name
         return d
 
 

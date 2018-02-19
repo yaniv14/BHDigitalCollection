@@ -20,7 +20,12 @@
         <link href="{% static 'vendors/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
         {% block extrahead %}{% endblock %}
         <link href="{% static 'css/bootstrap' %}{% if LANGUAGE_BIDI %}_rtl{% endif %}.css" rel="stylesheet">
-        <link href="{% static 'css/style' %}{% if LANGUAGE_BIDI %}_rtl{% endif %}.css" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        {% if LANGUAGE_BIDI %}
+            <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
+        {% else %}
+            <link href="{% static 'css/ltr.css' %}" rel="stylesheet">
+        {% endif %}
     </head>
     <body{% block body_class %}{% endblock %}>
         <!--[if lte IE 8]>

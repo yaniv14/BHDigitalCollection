@@ -1,0 +1,74 @@
+/* Page header */
+.banner-text {
+    left: 0;
+}
+
+p.page-banner-credit {
+    left: 2rem;
+}
+
+/* Header */
+.header-bottom .navbar-light .navbar-nav .active > .nav-link::after,
+.header-bottom .navbar-light .navbar-nav .nav-link.active::after {
+    left: 0;
+}
+
+/* Footer */
+.new-artifact {
+    right: 3rem;
+}
+
+/* Filter */
+.filter-item {
+    float: right;
+    border-left: 1.5px solid #fff;
+}
+
+.filter-item:last-child {
+    border-left: 0;
+    border-right: 1.5px solid #fff;
+}
+
+/* Forms */
+.range-set .period-fields.form-check {
+    float: left;
+}
+
+.range-set .period-fields.form-group {
+    float: left;
+}
+
+.exact-set .period-fields {
+    float: left;
+}
+
+/* Main */
+.card.small {
+    float: left;
+}
+
+.card.small.first {
+    margin-right: 15px;
+}
+
+.card.small.last {
+    margin-left: 15px;
+}
+
+.step {
+    float: left;
+}
+
+.step::after {
+    right: -2rem;
+}
+
+/* Responsive */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

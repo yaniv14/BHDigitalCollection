@@ -7,8 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2018-02-19 16:38+0200\n"
 "PO-Revision-Date: 2018-02-18 11:37+0200\n"
+=======
+"POT-Creation-Date: 2018-02-19 14:46+0200\n"
+"PO-Revision-Date: 2018-02-19 14:47+0200\n"
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -30,7 +35,11 @@ msgstr "מאיפה הפריט"
 msgid "Area or continent"
 msgstr "אזור או יבשת"
 
+<<<<<<< HEAD
 #: .\forms.py:15 .\models.py:71 .\models.py:111
+=======
+#: artifacts/forms.py:15 artifacts/models.py:71 artifacts/models.py:116
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid "Country"
 msgstr "מדינה"
 
@@ -59,7 +68,11 @@ msgstr "כותרת"
 msgid "Item story"
 msgstr "סיפור הפריט"
 
+<<<<<<< HEAD
 #: .\forms.py:60 .\models.py:92
+=======
+#: artifacts/forms.py:60 artifacts/models.py:97
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid "Artifact type"
 msgstr "סוג הפריט"
 
@@ -87,6 +100,7 @@ msgstr "אשמח לקבל את עידכונים ודיוורים"
 msgid "You must approve that you have the rights for the pictures"
 msgstr "חובה לאשר שאתה בעל הזכויות על התמונות"
 
+<<<<<<< HEAD
 #: .\forms.py:247 .\forms.py:250
 msgid "First and last name"
 msgstr "שם מלא"
@@ -108,16 +122,44 @@ msgid "We will never send you spam"
 msgstr "לא נשלח ספאם או פרסומות"
 
 #: .\forms.py:265
+=======
+#: artifacts/forms.py:249 artifacts/forms.py:252
+msgid "First and last name"
+msgstr "שם מלא"
+
+#: artifacts/forms.py:255
+msgid "Phone number"
+msgstr "מספר טלפון"
+
+#: artifacts/forms.py:257 artifacts/forms.py:277
+msgid "Mobile preferred"
+msgstr "אפשר גם סלולרי"
+
+#: artifacts/forms.py:260
+msgid "Email address"
+msgstr "דואר אלקטרוני"
+
+#: artifacts/forms.py:264
+msgid "We will never send you spam"
+msgstr "לא נשלח ספאם או פרסומות"
+
+#: artifacts/forms.py:267
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid ""
 "These information is for contact reference only, it won't submitted to 3rd "
 "party without your consent"
 msgstr "פרטים אלו לצורך התקשרות בלבד. לא ינתנו לצד שלישי ללא הסכמתך"
 
+<<<<<<< HEAD
 #: .\forms.py:283
+=======
+#: artifacts/forms.py:285
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid ""
 "There is an existing account with that email address, please login first"
 msgstr "קיים חשבון עם כתובת מייל זו, נא לבצע התחברות למערכת"
 
+<<<<<<< HEAD
 #: .\forms.py:318 .\models.py:103
 msgid "Year from"
 msgstr "משנה"
@@ -127,6 +169,17 @@ msgid "Year to"
 msgstr "עד שנה"
 
 #: .\forms.py:324 .\templates\artifacts\_header.html:130
+=======
+#: artifacts/forms.py:320 artifacts/models.py:108
+msgid "Year from"
+msgstr "משנה"
+
+#: artifacts/forms.py:321 artifacts/models.py:109
+msgid "Year to"
+msgstr "עד שנה"
+
+#: artifacts/forms.py:326
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid "Location"
 msgstr "מהיכן הפריט"
 
@@ -162,7 +215,12 @@ msgstr "האוסף הדיגיטלי"
 msgid "All collections"
 msgstr "אוסף בית התפוצות"
 
+<<<<<<< HEAD
 #: .\models.py:42 .\templates\artifacts\_header.html:32 .\views.py:97
+=======
+#: artifacts/models.py:42 artifacts/templates/artifacts/_header.html:53
+#: artifacts/views.py:97
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid "About"
 msgstr "אודות"
 
@@ -198,6 +256,7 @@ msgstr "שם האזור בעברית"
 msgid "Title English"
 msgstr "שם האזור באנגלית"
 
+<<<<<<< HEAD
 #: .\models.py:94 .\templates\artifacts\artifact_detail.html:60
 #: .\templates\artifacts\user_artifact_detail.html:29
 msgid "Artifact material"
@@ -360,6 +419,174 @@ msgid "Main text English"
 msgstr "טקסט ראשי באנגלית"
 
 #: .\models.py:194
+=======
+#: artifacts/models.py:72
+msgid "Background image"
+msgstr "תמונת רקע"
+
+#: artifacts/models.py:99 artifacts/templates/artifacts/artifact_detail.html:60
+#: artifacts/templates/artifacts/user_artifact_detail.html:29
+msgid "Artifact material"
+msgstr "חומר הפריט"
+
+#: artifacts/models.py:101
+msgid "Status"
+msgstr "סטטוס"
+
+#: artifacts/models.py:103
+msgid "Privately owned artifact"
+msgstr "פריט רכוש פרטי"
+
+#: artifacts/models.py:104
+msgid "Featured"
+msgstr "מודגש"
+
+#: artifacts/models.py:105
+msgid "Name Hebrew"
+msgstr "שם בעברית"
+
+#: artifacts/models.py:106
+msgid "Name English"
+msgstr "שם באנגלית"
+
+#: artifacts/models.py:107
+msgid "Slug"
+msgstr "מה זה"
+
+#: artifacts/models.py:110
+msgid "Technical data Hebrew"
+msgstr "תיאור טכני בעברית"
+
+#: artifacts/models.py:111
+msgid "Technical data English"
+msgstr "תיאור טכני באנגלית"
+
+#: artifacts/models.py:112 artifacts/models.py:164 artifacts/models.py:196
+msgid "Description Hebrew"
+msgstr "תיאור"
+
+#: artifacts/models.py:113 artifacts/models.py:165 artifacts/models.py:197
+msgid "Description English"
+msgstr "תיאור"
+
+#: artifacts/models.py:114
+msgid "City Hebrew"
+msgstr "עיר בעברית"
+
+#: artifacts/models.py:115
+msgid "City English"
+msgstr "עיר באנגלית"
+
+#: artifacts/models.py:117
+msgid "Area"
+msgstr "אזור"
+
+#: artifacts/models.py:119
+msgid "Displayed in museum?"
+msgstr "האם מוצג במוזיאון?"
+
+#: artifacts/models.py:120
+msgid "Artifact location in museum Hebrew"
+msgstr "איפה מוצג במוזיאון בעברית"
+
+#: artifacts/models.py:121
+msgid "Artifact location in museum English"
+msgstr "איפה מוצג במוזיאון באנגלית"
+
+#: artifacts/models.py:122
+msgid "Donor name Hebrew"
+msgstr "שם התורם/משאיל"
+
+#: artifacts/models.py:123
+msgid "Donor name English"
+msgstr "שם התורם/משאיל"
+
+#: artifacts/models.py:124
+msgid "Display donor name?"
+msgstr "האם להציג שם התורם באתר?"
+
+#: artifacts/models.py:125
+msgid "Artifact route map"
+msgstr "מפת מסלול פריט"
+
+#: artifacts/models.py:127
+msgid "Artifact route Hebrew"
+msgstr "מסלול הפריט"
+
+#: artifacts/models.py:128
+msgid "Artifact route English"
+msgstr "מסלול הפריט"
+
+#: artifacts/models.py:162
+msgid "Artifact"
+msgstr "פריט"
+
+#: artifacts/models.py:163 artifacts/models.py:179 artifacts/models.py:193
+msgid "Image"
+msgstr "תמונה"
+
+#: artifacts/models.py:166 artifacts/models.py:198
+msgid "Credit Hebrew"
+msgstr "קרדיט לצלם"
+
+#: artifacts/models.py:167 artifacts/models.py:199
+msgid "Credit English"
+msgstr "קרדיט לצלם"
+
+#: artifacts/models.py:168
+msgid "Year/Era Hebrew"
+msgstr "שנה/תקופה בעברית"
+
+#: artifacts/models.py:169
+msgid "Year/Era English"
+msgstr "שנה/תקופה באנגלית"
+
+#: artifacts/models.py:170
+msgid "Image location Hebrew"
+msgstr "מיקום הצילום בעברית"
+
+#: artifacts/models.py:171
+msgid "Image location English"
+msgstr "מיקום הצילום באנגלית"
+
+#: artifacts/models.py:172
+msgid "Cover image?"
+msgstr "תמונת שער?"
+
+#: artifacts/models.py:180
+msgid "X"
+msgstr "X"
+
+#: artifacts/models.py:181
+msgid "Y"
+msgstr "Y"
+
+#: artifacts/models.py:182
+msgid "Width"
+msgstr "אורך"
+
+#: artifacts/models.py:183
+msgid "Height"
+msgstr "גובה"
+
+#: artifacts/models.py:184 artifacts/models.py:185
+msgid "Info"
+msgstr "מידע"
+
+#: artifacts/models.py:192
+msgid "Page"
+msgstr "עמוד"
+
+#: artifacts/models.py:194
+msgid "Main text Hebrew"
+msgstr "טקסט ראשי בעברית"
+
+#: artifacts/models.py:195
+msgid "Main text English"
+msgstr "טקסט ראשי באנגלית"
+
+#: artifacts/models.py:200
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid "Active?"
 msgstr "פעיל?"
 
@@ -423,6 +650,7 @@ msgstr "האוסף הדיגיטלי"
 msgid "All"
 msgstr "הכל"
 
+<<<<<<< HEAD
 #: .\templates\artifacts\_header.html:117
 msgid "Filters"
 msgstr "סינונים"
@@ -430,6 +658,24 @@ msgstr "סינונים"
 #: .\templates\artifacts\_header.html:127
 msgid "Time"
 msgstr "זמן"
+=======
+#: artifacts/templates/artifacts/_header.html:116
+#, python-format
+msgid "Filter by %(x)s"
+msgstr "סינון לפי %(x)s"
+
+#: artifacts/templates/artifacts/_header.html:123
+msgid "Filters"
+msgstr "סינונים"
+
+#: artifacts/templates/artifacts/_header.html:134
+msgid "Filter by time"
+msgstr "סינון לפי תקופה"
+
+#: artifacts/templates/artifacts/_header.html:137
+msgid "Filter by origin country"
+msgstr "סינון לפי ארץ מקור"
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 
 #: .\templates\artifacts\artifact_createPersonDetails.html:18
 #: .\templates\artifacts\artifact_material.html:10
@@ -583,6 +829,7 @@ msgstr "עד"
 msgid "Home"
 msgstr "דף הבית"
 
+<<<<<<< HEAD
 #: .\views.py:105
 msgid "Users artifacts list"
 msgstr "רשימת פרטי משתמשים"
@@ -644,8 +891,74 @@ msgid "Artifact type delete"
 msgstr "מחיקת סוג הפריט"
 
 #: .\views.py:408
+=======
+#: artifacts/views.py:105
+msgid "Users artifacts list"
+msgstr "רשימת פרטי משתמשים"
+
+#: artifacts/views.py:125
+msgid "All artifacts list"
+msgstr "רשימת פרטי משתמשים"
+
+#: artifacts/views.py:145 artifacts/views.py:201
+msgid "Artifact detail"
+msgstr "פרטי פריט"
+
+#: artifacts/views.py:158
+msgid "Artifact create"
+msgstr "יצירת פריט"
+
+#: artifacts/views.py:203
+msgid "Some Artifact Description"
+msgstr "תיאור קצר"
+
+#: artifacts/views.py:256
+msgid "Artifact Images"
+msgstr "תמונות הפריט"
+
+#: artifacts/views.py:308
+msgid "Origin area delete"
+msgstr "מחיקת תמונת פריט"
+
+#: artifacts/views.py:317
+msgid "Origin area create"
+msgstr "הוספת אזור"
+
+#: artifacts/views.py:326 artifacts/views.py:361
+msgid "Origin area update"
+msgstr "עדכון אזור"
+
+#: artifacts/views.py:334
+msgid "Origin area list"
+msgstr "רשימת אזורים"
+
+#: artifacts/views.py:343
+msgid "Artifact material create"
+msgstr "חומר פריט"
+
+#: artifacts/views.py:352
+msgid "Artifact material update"
+msgstr "חומר הפריט"
+
+#: artifacts/views.py:376
+msgid "Artifact type create"
+msgstr "יצירת סוג פריט"
+
+#: artifacts/views.py:385
+msgid "Artifact type update"
+msgstr "עדכון סוג הפריט"
+
+#: artifacts/views.py:394
+msgid "Artifact type delete"
+msgstr "מחיקת סוג הפריט"
+
+#: artifacts/views.py:408
+>>>>>>> 898057d88331b8f8564a28c551298929a5a317bc
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
+
+#~ msgid "Time"
+#~ msgstr "זמן"
 
 #~ msgid "Personal Information"
 #~ msgstr "קצת פרטים עליך"

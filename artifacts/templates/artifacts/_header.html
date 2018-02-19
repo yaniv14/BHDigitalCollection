@@ -111,23 +111,31 @@
                 </ul>
                 {% if filterable %}
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#filters" id="filterDropdown" role="button"
-                               data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                + {% trans 'Filters' %}
-                            </a>
-                        </li>
+                        {% if filter_type %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% get_base_url current_url_name %}">
+                                    <span class="filter-indicator">x</span> {% blocktrans with x=filter_type %}Filter by {{ x }}{% endblocktrans %}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#filters" id="filterDropdown" role="button"
+                                   data-toggle="collapse" aria-controls="filters" aria-expanded="false">
+                                    <span class="filter-indicator">+</span> {% trans 'Filters' %}
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 {% endif %}
             </div>
         </nav>
-        {% if filterable %}
+        {% if filterable and not filter_type %}
         <div class="collapse" id="filters">
             <a class="filter-item" href="?filter=time">
-                {% trans 'Time' %}
+                {% trans 'Filter by time' %}
             </a>
             <a class="filter-item" href="?filter=location">
-                {% trans 'Location' %}
+                {% trans 'Filter by origin country' %}
             </a>
         </div>
         {% endif %}
