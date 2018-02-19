@@ -234,12 +234,14 @@ class OriginAreaForm(forms.ModelForm):
         fields = [
             'title_he',
             'title_en',
-            'countries'
+            'countries',
+            'image',
         ]
         widgets = {
             'title_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'title_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'countries': LazySelectMultiple(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control-file'}),
         }
 
 

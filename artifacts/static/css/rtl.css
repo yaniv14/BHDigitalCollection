@@ -1,0 +1,79 @@
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Page header */
+.banner-text {
+    right: 0;
+}
+
+p.page-banner-credit {
+    right: 2rem;
+}
+
+/* Header */
+.header-bottom .navbar-light .navbar-nav .active > .nav-link::after,
+.header-bottom .navbar-light .navbar-nav .nav-link.active::after {
+    right: 0;
+}
+
+/* Footer */
+.new-artifact {
+    left: 3rem;
+}
+
+/* Filter */
+.filter-item {
+    float: left;
+    border-right: 1.5px solid #fff;
+}
+
+.filter-item:last-child {
+    border-right: 0;
+    border-left: 1.5px solid #fff;
+}
+
+/* Forms */
+.range-set .period-fields.form-check {
+    float: right;
+}
+
+.range-set .period-fields.form-group {
+    float: right;
+}
+
+.exact-set .period-fields {
+    float: right;
+}
+
+/* Main */
+.card.small {
+    float: right;
+}
+
+.card.small.first {
+    margin-left: 15px;
+}
+
+.card.small.last {
+    margin-right: 15px;
+}
+
+.step {
+    float: right;
+}
+
+.step::after {
+    left: -2rem;
+}
+
+/* Responsive */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

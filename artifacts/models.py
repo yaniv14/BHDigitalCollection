@@ -69,6 +69,8 @@ class OriginArea(models.Model):
     title_he = models.CharField(_('Title Hebrew'), max_length=250)
     title_en = models.CharField(_('Title English'), max_length=250)
     countries = CountryField(_('Country'), multiple=True, blank=True)
+    image = models.ImageField(_('Background image'), upload_to=upload_func, blank=True, null=True,
+                              validators=[validate_image_file_extension])
 
     def __str__(self):
         return self.title_he if self.title_he else self.title_en
@@ -81,6 +83,9 @@ class OriginArea(models.Model):
                 'flag': x.flag
             } for x in self.countries
         ]
+
+    def get_artifacts_count(self):
+        return self.artifacts.count()
 
 
 class Artifact(models.Model):
@@ -117,7 +122,8 @@ class Artifact(models.Model):
     donor_name_he = models.CharField(_('Donor name Hebrew'), max_length=250, blank=True, null=True)
     donor_name_en = models.CharField(_('Donor name English'), max_length=250, blank=True, null=True)
     display_donor_name = models.BooleanField(_('Display donor name?'), default=False)
-    route_map = models.ImageField(_('Artifact route map'), upload_to=upload_func, blank=True, null=True, validators=[validate_image_file_extension])
+    route_map = models.ImageField(_('Artifact route map'), upload_to=upload_func, blank=True, null=True,
+                                  validators=[validate_image_file_extension])
     route_he = models.CharField(_('Artifact route Hebrew'), max_length=500, blank=True, null=True)
     route_en = models.CharField(_('Artifact route English'), max_length=500, blank=True, null=True)
 

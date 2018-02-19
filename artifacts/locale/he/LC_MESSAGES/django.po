@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 11:34+0200\n"
-"PO-Revision-Date: 2018-02-18 11:37+0200\n"
+"POT-Creation-Date: 2018-02-19 12:43+0200\n"
+"PO-Revision-Date: 2018-02-19 12:40+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -127,7 +127,7 @@ msgstr "משנה"
 msgid "Year to"
 msgstr "עד שנה"
 
-#: artifacts/forms.py:324 artifacts/templates/artifacts/_header.html:123
+#: artifacts/forms.py:324 artifacts/templates/artifacts/_header.html:137
 msgid "Location"
 msgstr "מהיכן הפריט"
 
@@ -164,7 +164,7 @@ msgid "All collections"
 msgstr "אוסף בית התפוצות"
 
 #: artifacts/models.py:42 artifacts/templates/artifacts/_header.html:53
-#: artifacts/views.py:89
+#: artifacts/views.py:97
 msgid "About"
 msgstr "אודות"
 
@@ -426,11 +426,16 @@ msgstr "האוסף הדיגיטלי"
 msgid "All"
 msgstr "הכל"
 
-#: artifacts/templates/artifacts/_header.html:115
+#: artifacts/templates/artifacts/_header.html:116
+#, python-format
+msgid "Filter by %(x)s"
+msgstr "סינון לפי %(x)s"
+
+#: artifacts/templates/artifacts/_header.html:123
 msgid "Filters"
 msgstr "סינונים"
 
-#: artifacts/templates/artifacts/_header.html:120
+#: artifacts/templates/artifacts/_header.html:134
 msgid "Time"
 msgstr "זמן"
 
@@ -586,67 +591,67 @@ msgstr "עד"
 msgid "Home"
 msgstr "דף הבית"
 
-#: artifacts/views.py:97
+#: artifacts/views.py:105
 msgid "Users artifacts list"
 msgstr "רשימת פרטי משתמשים"
 
-#: artifacts/views.py:117
+#: artifacts/views.py:125
 msgid "All artifacts list"
 msgstr "רשימת פרטי משתמשים"
 
-#: artifacts/views.py:137 artifacts/views.py:193
+#: artifacts/views.py:145 artifacts/views.py:201
 msgid "Artifact detail"
 msgstr "פרטי פריט"
 
-#: artifacts/views.py:150
+#: artifacts/views.py:158
 msgid "Artifact create"
 msgstr "יצירת פריט"
 
-#: artifacts/views.py:195
+#: artifacts/views.py:203
 msgid "Some Artifact Description"
 msgstr "תיאור קצר"
 
-#: artifacts/views.py:248
+#: artifacts/views.py:256
 msgid "Artifact Images"
 msgstr "תמונות הפריט"
 
-#: artifacts/views.py:300
+#: artifacts/views.py:308
 msgid "Origin area delete"
 msgstr "מחיקת תמונת פריט"
 
-#: artifacts/views.py:309
+#: artifacts/views.py:317
 msgid "Origin area create"
 msgstr "הוספת אזור"
 
-#: artifacts/views.py:318 artifacts/views.py:353
+#: artifacts/views.py:326 artifacts/views.py:361
 msgid "Origin area update"
 msgstr "עדכון אזור"
 
-#: artifacts/views.py:326
+#: artifacts/views.py:334
 msgid "Origin area list"
 msgstr "רשימת אזורים"
 
-#: artifacts/views.py:335
+#: artifacts/views.py:343
 msgid "Artifact material create"
 msgstr "חומר פריט"
 
-#: artifacts/views.py:344
+#: artifacts/views.py:352
 msgid "Artifact material update"
 msgstr "חומר הפריט"
 
-#: artifacts/views.py:368
+#: artifacts/views.py:376
 msgid "Artifact type create"
 msgstr "יצירת סוג פריט"
 
-#: artifacts/views.py:377
+#: artifacts/views.py:385
 msgid "Artifact type update"
 msgstr "עדכון סוג הפריט"
 
-#: artifacts/views.py:386
+#: artifacts/views.py:394
 msgid "Artifact type delete"
 msgstr "מחיקת סוג הפריט"
 
-#: artifacts/views.py:400
+#: artifacts/views.py:408
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
 

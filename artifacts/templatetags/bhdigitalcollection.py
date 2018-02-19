@@ -1,6 +1,7 @@
 from django import template
 from django.forms import CheckboxInput, FileInput, RadioSelect, CheckboxSelectMultiple, SelectMultiple, Select
 from django.template.loader import render_to_string
+from django.urls import reverse_lazy
 from django.utils import translation
 from django.utils.safestring import mark_safe
 
@@ -67,6 +68,13 @@ def svg_icon(icon_name, class_name='', from_upload=False, rtl=False, lang=True):
 def bidi(instance, field):
     lang = translation.get_language()[:2]
     return getattr(instance, field + "_" + lang)
+
+
+@register.simple_tag
+def get_base_url(url_name):
+    if url_name == 'home':
+        return reverse_lazy(url_name)
+    return reverse_lazy('artifacts:{}'.format(url_name))
 
 
 @register.filter
