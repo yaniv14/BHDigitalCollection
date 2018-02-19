@@ -425,7 +425,7 @@ header .header-top {
     width: 100%;
     height: calc(100vw / 2.782);
     padding: 2rem;
-    background-image: url(/static/images/1920x690.png);
+    background-image: url(/static/images/1440x579.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -473,6 +473,7 @@ footer .footer-top {
 .no-btn {
     background-color: transparent;
     border: 0;
+    color: #D4D5D9;
 }
 
 .top-links .dropdown-menu {
@@ -486,9 +487,21 @@ footer .footer-top {
 .top-links .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    line-height: 60px;
-    font-size: 1.625rem;
-    color: #fff;
+    line-height: 22px;
+    font-size: 18px;
+    color: #D4D5D9;
+    font-family: Rubik;
+}
+.top-links .nav-link.nav-link-1-2-item {
+    padding: 0.5rem;
+    position: relative;
+}
+
+.top-links .nav-link.nav-link-1-2-item.pipe:after {
+    content: '|';
+    position: absolute;
+    left: 0;
+    top: 8px;
 }
 
 .top-links .nav-link.dropdown-toggle {
@@ -500,21 +513,6 @@ footer .footer-top {
     display: none;
 }
 
-.new-artifact {
-    position: absolute;
-    bottom: 1rem;
-    left: 3rem;
-    border-radius: 50%;
-    color: #000;
-    background-color: #fff;
-    width: 150px;
-    height: 150px;
-    line-height: 1;
-    text-align: center;
-    padding: 31px 0;
-    font-weight: bold;
-    font-size: 2.75rem;
-}
 
 /* Artifact detail */
 .artifact-detail main {

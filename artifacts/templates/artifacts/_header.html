@@ -27,11 +27,21 @@
                         </div>
                     </li>
                 {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1-2-item pipe" href="{% url 'about' %}">
+                        {% trans 'About' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1-2-item" href="{% url 'contact' %}">
+                        {% trans 'Contact Us' %}
+                    </a>
+                </li>
                 {% if user.is_authenticated %}
                     {% comment %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logout' %}">
-                            {% trans 'Log Out' %}
+                            {% trans 'Logout' %}
                         </a>
                     </li>
                     {% endcomment %}
@@ -43,29 +53,24 @@
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:login' %}">
-                            {% trans 'Log In' %}
+                            {% trans 'Login' %}
                         </a>
                     </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">
-                        {% trans 'About' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contact' %}">
-                        {% trans 'Contact Us' %}
-                    </a>
-                </li>
                 <li class="nav-item">
                     <form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}"/>
                         <input name="language" type="hidden" id="id_language"
                                value="{{ LANGUAGE_BIDI|yesno:'en,he' }}"/>
                         <button type="submit" class="no-btn">
-                            {% svg_icon 'langueges' 'lang_switcher' lang=False %}
+                            {% trans 'עב' %}
                         </button>
                     </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#FFFFFF;font-weight: bold;" href="{% url 'artifacts:create_step_one' %}">
+                        {% trans 'Upload artifact' %}
+                    </a>
                 </li>
             </ul>
         </div>
@@ -82,9 +87,6 @@
                 {{ page_banner|bd:'credit' }}
             </p>
         {% endif %}
-        <a href="{% url 'artifacts:create_step_one' %}" class="new-artifact">
-            {% trans 'Upload artifact' %}
-        </a>
     </div>
     <div class="header-bottom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 sps" data-sps-offset="691">
