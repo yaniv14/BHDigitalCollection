@@ -1,0 +1,36 @@
+{% load static i18n bhdigitalcollection %}
+
+{% for artifact in artifacts %}
+    <div class="row">
+        <div class="col-12 col-md-6 artifact-set order-md-{% cycle '1' '12' %}">
+            <div class="card big">
+                <a class="d-block" href="{% url 'artifacts:detail' artifact.slug %}">
+                    <img class="img-fluid"
+                         src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
+                         alt="{{ artifact|bd:'name' }}">
+                    <div class="text-center" href="{% url 'artifacts:detail' artifact.slug %}">
+                        {{ artifact|bd:'name' }}
+                        <span>{{ artifact.origin_country.name }}{% if artifact.get_years %},
+                            {{ artifact.get_years }}{% endif %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% for a in none_featured|slice_qs:forloop.counter0 %}
+            {% if forloop.first %}<div class="col-12 col-md-6 artifact-set order-md-{% cycle '12' '1' %}">{% endif %}
+                <div class="card small">
+                    <a class="d-block" href="{% url 'artifacts:detail' a.slug %}">
+                        <img class="img-fluid"
+                             src="{% if a.get_cover_image %}{{ a.get_cover_image.url }}{% endif %}"
+                             alt="{{ a|bd:'name' }}">
+                        <div class="text-center">
+                            {{ a|bd:'name' }}
+                            <span>{{ a.origin_country.name }}{% if a.get_years %},
+                                {{ a.get_years }}{% endif %}</span>
+                        </div>
+                    </a>
+                </div>
+            {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}

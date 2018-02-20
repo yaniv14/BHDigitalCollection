@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 class BHUIMixin(object):
     page_title = None
     page_name = None
+    page_banner = False
     filterable = False
 
     filters_types = {
@@ -15,7 +16,7 @@ class BHUIMixin(object):
         'location': _('Area'),
     }
 
-    def set_filters(self):
+    def set_filter_form(self):
         return None
 
     def get_page_title(self):
@@ -27,6 +28,11 @@ class BHUIMixin(object):
         if self.page_name:
             return self.page_name
         return ""
+
+    def get_page_banner(self):
+        if self.page_banner:
+            return self.page_banner
+        return False
 
     def get_filterable(self):
         return self.filterable
@@ -41,8 +47,9 @@ class BHUIMixin(object):
         d = super().get_context_data(**kwargs)
         d['page_title'] = self.get_page_title()
         d['page_name'] = self.get_page_name()
+        d['page_banner'] = self.get_page_banner()
         d['filterable'] = self.get_filterable()
-        d['filter'] = self.set_filters()
+        d['filter_form'] = self.set_filter_form()
         d['filter_type'] = self.filters_types.get(self.request.GET.get('filter', ''))
         d['current_url_name'] = self.request.resolver_match.url_name
         return d

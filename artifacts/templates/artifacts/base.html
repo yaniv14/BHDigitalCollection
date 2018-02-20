@@ -33,9 +33,11 @@
             your browser</a>.</p>
         <![endif]-->
         {% block header %}{% include 'artifacts/_header.html' %}{% endblock %}
-        {% if filters %}
-            {% block filters %}
-                {% include 'artifacts/_filters.html' with filters=filters %}
+        {% if filter_form %}
+            {% block filter %}
+                <div class="form-filters">
+                    {% include 'artifacts/_filters.html' %}
+                </div>
             {% endblock %}
         {% endif %}
         {% block main %}

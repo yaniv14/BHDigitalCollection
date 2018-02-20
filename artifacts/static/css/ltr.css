@@ -33,6 +33,10 @@ p.page-banner-credit {
     border-right: 1.5px solid #fff;
 }
 
+.form-filters .origin-radio label {
+    margin-right: 10px;
+}
+
 /* Forms */
 .range-set .period-fields.form-check {
     float: left;

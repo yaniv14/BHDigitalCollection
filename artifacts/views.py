@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.utils import translation
 from django.utils.text import slugify
@@ -14,29 +15,6 @@ from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner
     ArtifactType
 from bhdigitalcollection.base_views import BHUIMixin
 from users.models import User
-
-
-def get_custom_context_data(self, context):
-    filters = self.request.GET.get('filter', None)
-    context['filters'] = filters
-    if filters == 'time':
-        filter_form = YearForm(self.request.GET)
-    elif filters == 'location':
-        filter_form = LocationForm(self.request.GET)
-    context['filter_form'] = filter_form
-    context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
-                                                       is_featured=False)
-    context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
-
-
-def set_filters(self, context):
-    filters = self.request.GET.get('filter', None)
-    context['filters'] = filters
-    if filters == 'time':
-        filter_form = YearForm(self.request.GET)
-    elif filters == 'location':
-        filter_form = LocationForm(self.request.GET)
-    context['filter_form'] = filter_form
 
 
 def filter_data(request, qs, is_private):
@@ -63,27 +41,30 @@ class HomeView(BHUIMixin, ListView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
     page_name = 'home'
+    page_banner = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
     model = Artifact
     context_object_name = 'artifacts'
     filterable = True
 
-    def set_filters(self):
-        filters = self.request.GET.get('filter', None)
-        if filters == 'time':
-            return YearForm(self.request.GET)
-        elif filters == 'location':
-            return LocationForm(self.request.GET)
+    def set_filter_form(self):
+        filter_type = self.request.GET.get('filter', None)
+        if filter_type == 'time':
+            return YearForm(self.request.GET, bidi=translation.get_language_bidi())
+        elif filter_type == 'location':
+            return LocationForm(self.request.GET, bidi=translation.get_language_bidi())
         return None
 
     def get_queryset(self):
-        return filter_data(self.request, super().get_queryset(), False)
+        qs = super().get_queryset()
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return qs.filter(is_private=False)
+        return qs.filter(status=ArtifactStatus.APPROVED, is_private=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        set_filters(self, context)
         context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
                                                            is_featured=False)
-        context['page_banner'] = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
         return context
 
 
@@ -99,6 +80,7 @@ class ArtifactUsersListView(BHUIMixin, ListView):
     context_object_name = 'artifacts'
     page_title = _('Users artifacts list')
     page_name = 'users_artifact_list'
+    page_banner = PageBanner.objects.filter(active=True, page='users_collections').order_by('?').first()
     filterable = True
 
     def get_queryset(self):
@@ -106,10 +88,8 @@ class ArtifactUsersListView(BHUIMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        set_filters(self, context)
         context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
                                                            is_featured=False)
-        context['page_banner'] = PageBanner.objects.filter(active=True, page='users_collections').order_by('?').first()
         return context
 
 
@@ -120,17 +100,15 @@ class ArtifactFullListView(BHUIMixin, ListView):
     page_title = _('All artifacts list')
     page_name = 'all_artifact_list'
     filterable = True
+    page_banner = PageBanner.objects.filter(active=True, page='all_collections').order_by('?').first()
 
     def get_queryset(self):
         return filter_data(self.request, super().get_queryset(), False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        set_filters(self, context)
         context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
                                                            is_featured=True)
-        context['page_banner'] = PageBanner.objects.filter(active=True, page='all_collections').order_by('?').first()
         return context
 
 
@@ -414,10 +392,16 @@ class ArtifactFilterView(View):
         year_from = self.request.GET.get('year_from')
         year_to = self.request.GET.get('year_to')
         if filter:
-            res = Artifact.objects.all()
+            artifacts = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False)
+            none_featured = artifacts.filter(is_featured=False)
+            artifacts = artifacts.filter(is_featured=True)
             if location:
-                res = res.filter(origin_area_id=int(location))
+                artifacts = artifacts.filter(origin_area_id=int(location))
+                none_featured = none_featured.filter(origin_area_id=int(location))
             elif year_from and year_to:
-                res = res.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
-            return res
-        return Artifact.objects.none()
+                artifacts = artifacts.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
+                none_featured = none_featured.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
+        else:
+            none_featured, artifacts = Artifact.objects.none()
+
+        return render(request, 'artifacts/_artifacts.html', {'artifacts': artifacts, 'none_featured': none_featured})

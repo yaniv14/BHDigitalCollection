@@ -1,20 +1,39 @@
 {% extends 'artifacts/base.html' %}
 {% load static bhdigitalcollection i18n %}
 
-{% block content %}
-    <div class="row justify-content-md-center">
-        <div class="col col-md-8">
-            <div class="steps clearfix">
-                <span class="step">1</span>
-                <span class="step step_two">2</span>
-                <span class="step">3</span>
+{% block main %}
+    <main>
+        <div class="justify-content-md-center">
+            <div class="form-header">
+                <div class="col col-md-8">
+                    <div class="steps clearfix">
+                        <div class="step-item">
+                            <span class="step">1</span> {% trans 'About yourself' %}
+                        </div>
+                        <div class="step-item">
+                            <span class="step current_step">2</span> <span class="step_active">{% trans 'Info about your item' %}</span>
+                        </div>
+                        <div class="step-item">
+                            <span class="step">3</span> {% trans 'Item pictures' %}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 class="text-center step_title">
-                <span class="blue">2. {% trans 'Info about your item' %}</span>
-            </h1>
+            <div class="container">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <h1 class="step_title pt-5">
+                        {% trans 'Info about your item' %}
+                    </h1>
+                    <div class="form-description">
+                        {% blocktrans trimmed %}
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        {% endblocktrans %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 offset-md-3">
+                    {% include '_base_form.html' with form=form submit_text=_('Continue') labels=True full_size=True button_color='blue' btn_location='right' %}
+                </div>
+            </div>
         </div>
-        <div class="col col-md-8">
-            {% include '_base_form.html' with form=form submit_text=_('Continue') labels=True button_color='blue' btn_location='right' %}
-        </div>
-    </div>
+    </main>
 {% endblock %}

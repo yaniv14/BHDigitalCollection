@@ -16,9 +16,9 @@
     {% endfor %}
     {% for field in form.visible_fields %}
         {% if field|is_checkbox %}
-            <div class="form-check">
-                <label class="form-check-label">
-                    {{ field }}
+            <div class="custom-control custom-checkbox">
+                {{ field }}
+                <label class="custom-control-label">
                     {{ field.label }}
                 </label>
                 {% if field.help_text %}
@@ -42,7 +42,7 @@
         </div>
     {% endfor %}
     <div class="form-group{% if btn_location %} text-{{ btn_location }}{% endif %}">
-        <button type="submit" class="btn btn-{{ button_color|default:"primary" }}">
+        <button type="submit" class="btn btn-{{ button_color|default:"primary" }}{% if full_size %} btn-block{% endif %}">
             {{ submit_text|default:_('Submit') }}
         </button>
         {% if login_form %}

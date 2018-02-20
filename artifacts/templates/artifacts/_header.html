@@ -1,115 +1,117 @@
 {% load i18n static bhdigitalcollection %}
 
 <header>
-    <div class="header-top"{% if page_banner %} style="background-image: url({{ page_banner.image.url }});"{% endif %}>
-        <div class="logo float-left">
-            <a href="{% url 'home' %}">
-                {% svg_icon 'logo' rtl=LANGUAGE_BIDI %}
-            </a>
-        </div>
-        <div class="top-links float-right">
-            <ul class="nav justify-content-end">
-                {% if user.is_superuser %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adminMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% trans 'Admin menu' %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="adminMenuDropdown">
-                            <a class="dropdown-item" href="{% url 'artifacts:material_list' %}">
-                                {% trans 'Materials' %}
-                            </a>
-                            <a class="dropdown-item" href="{% url 'artifacts:type_list' %}">
-                                {% trans 'Types' %}
-                            </a>
-                            <a class="dropdown-item" href="{% url 'artifacts:origin_area_list' %}">
-                                {% trans 'Areas' %}
-                            </a>
-                        </div>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1-2-item pipe" href="{% url 'about' %}">
-                        {% trans 'About' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1-2-item" href="{% url 'contact' %}">
-                        {% trans 'Contact Us' %}
-                    </a>
-                </li>
-                {% if user.is_authenticated %}
-                    {% comment %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:logout' %}">
-                            {% trans 'Logout' %}
-                        </a>
-                    </li>
-                    {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:my_account' %}">
-                            {% trans 'My Account' %}
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:login' %}">
-                            {% trans 'Login' %}
-                        </a>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    <form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                        <input name="language" type="hidden" id="id_language"
-                               value="{{ LANGUAGE_BIDI|yesno:'en,he' }}"/>
-                        <button type="submit" class="no-btn">
-                            {% trans 'עב' %}
-                        </button>
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color:#FFFFFF;font-weight: bold;" href="{% url 'artifacts:create_step_one' %}">
-                        {% trans 'Upload artifact' %}
-                    </a>
-                </li>
-            </ul>
-        </div>
-        {% if page_banner %}
-            <div class="banner-text">
-                <h1 class="page-banner-title">
-                    {{ page_banner|bd:'main_text' }}
-                </h1>
-                <h2 class="page-banner-subtitle arimo-font">
-                    {{ page_banner|bd:'description' }}
-                </h2>
+    <div class="header-top clearfix{% if not page_banner %} no-banner{% endif %}"{% if page_banner %} style="background-image: url({{ page_banner.image.url }});"{% endif %}>
+        <div class="container">
+            <div class="logo float-left">
+                <a href="{% url 'home' %}">
+                    {% svg_icon 'logo' rtl=LANGUAGE_BIDI %}
+                </a>
             </div>
-            <p class="page-banner-credit">
-                {{ page_banner|bd:'credit' }}
-            </p>
-        {% endif %}
-    </div>
-    <div class="header-bottom">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 sps" data-sps-offset="691">
-            <div class="collapse navbar-collapse" id="bottom-navbar">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item{% if page_name == 'home' %} blue active{% endif %}">
-                        <a class="nav-link" href="{% url 'home' %}">
-                            {% trans 'Museum Collection' %}{% if page_name == 'home' %}
-                                <span class="sr-only">(current)</span>{% endif %}
+            <div class="top-links float-right">
+                <ul class="nav justify-content-end">
+                    {% if user.is_superuser %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="adminMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% trans 'Admin menu' %}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="adminMenuDropdown">
+                                <a class="dropdown-item" href="{% url 'artifacts:material_list' %}">
+                                    {% trans 'Materials' %}
+                                </a>
+                                <a class="dropdown-item" href="{% url 'artifacts:type_list' %}">
+                                    {% trans 'Types' %}
+                                </a>
+                                <a class="dropdown-item" href="{% url 'artifacts:origin_area_list' %}">
+                                    {% trans 'Areas' %}
+                                </a>
+                            </div>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-1-2-item pipe" href="{% url 'about' %}">
+                            {% trans 'About' %}
                         </a>
                     </li>
-                    <li class="nav-item{% if page_name == 'users_artifact_list' %} red active{% endif %}">
-                        <a class="nav-link" href="{% url 'artifacts:users' %}">
-                            {% trans 'Users Collection' %}{% if page_name == 'users_artifact_list' %}
-                                <span class="sr-only">(current)</span>{% endif %}</a>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-1-2-item" href="{% url 'contact' %}">
+                            {% trans 'Contact Us' %}
+                        </a>
                     </li>
-                    <li class="nav-item{% if page_name == 'all_artifact_list' %} gray active{% endif %}">
-                        <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">
-                            {% trans 'All' %}{% if page_name == 'all_artifact_list' %}
-                                <span class="sr-only">(current)</span>{% endif %}</a>
+                    {% if user.is_authenticated %}
+                        {% comment %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:logout' %}">
+                                {% trans 'Logout' %}
+                            </a>
+                        </li>
+                        {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:my_account' %}">
+                                {% trans 'My Account' %}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">
+                                {% trans 'Login' %}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <form id="lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                            <input name="language" type="hidden" id="id_language"
+                                   value="{{ LANGUAGE_BIDI|yesno:'en,he' }}"/>
+                            <button type="submit" class="no-btn pointer">
+                                {{ LANGUAGE_BIDI|yesno:'EN,HE' }}
+                            </button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#FFFFFF;font-weight: bold;" href="{% url 'artifacts:create_step_one' %}">
+                            {% trans 'Upload artifact' %}
+                        </a>
                     </li>
                 </ul>
-                {% if filterable %}
+            </div>
+            {% if page_banner %}
+                <div class="banner-text">
+                    <h1 class="page-banner-title">
+                        {{ page_banner|bd:'main_text' }}
+                    </h1>
+                    <h2 class="page-banner-subtitle arimo-font">
+                        {{ page_banner|bd:'description' }}
+                    </h2>
+                </div>
+                <p class="page-banner-credit">
+                    {{ page_banner|bd:'credit' }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    {% if filterable %}
+        <div class="header-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 sps" data-sps-offset="691">
+                <div class="collapse navbar-collapse" id="bottom-navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item{% if page_name == 'home' %} blue active{% endif %}">
+                            <a class="nav-link" href="{% url 'home' %}">
+                                {% trans 'Museum Collection' %}{% if page_name == 'home' %}
+                                    <span class="sr-only">(current)</span>{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item{% if page_name == 'users_artifact_list' %} red active{% endif %}">
+                            <a class="nav-link" href="{% url 'artifacts:users' %}">
+                                {% trans 'Users Collection' %}{% if page_name == 'users_artifact_list' %}
+                                    <span class="sr-only">(current)</span>{% endif %}</a>
+                        </li>
+                        <li class="nav-item{% if page_name == 'all_artifact_list' %} gray active{% endif %}">
+                            <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">
+                                {% trans 'All' %}{% if page_name == 'all_artifact_list' %}
+                                    <span class="sr-only">(current)</span>{% endif %}</a>
+                        </li>
+                    </ul>
                     <ul class="navbar-nav ml-auto">
                         {% if filter_type %}
                             <li class="nav-item">
@@ -126,18 +128,18 @@
                             </li>
                         {% endif %}
                     </ul>
-                {% endif %}
-            </div>
-        </nav>
-        {% if filterable and not filter_type %}
-        <div class="collapse" id="filters">
-            <a class="filter-item" href="?filter=time">
-                {% trans 'Filter by time' %}
-            </a>
-            <a class="filter-item" href="?filter=location">
-                {% trans 'Filter by origin country' %}
-            </a>
+                </div>
+            </nav>
+            {% if not filter_type %}
+                <div class="collapse" id="filters">
+                    <a class="filter-item" href="?filter=time">
+                        {% trans 'Filter by time' %}
+                    </a>
+                    <a class="filter-item" href="?filter=location">
+                        {% trans 'Filter by origin country' %}
+                    </a>
+                </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
+    {% endif %}
 </header>

@@ -1,5 +1,13 @@
 {% load i18n %}
 
-<form method="get" action="{% url 'artifacts:artifacts_filter' %}">
-    {{ filter_form }}
-</form>
+<div class="container">
+    <form method="get" action="{% url 'artifacts:artifacts_filter' %}">
+        {% for hidden in filter_form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in filter_form.visible_fields %}
+            {{ field.errors }}
+            {{ field }}
+        {% endfor %}
+    </form>
+</div>

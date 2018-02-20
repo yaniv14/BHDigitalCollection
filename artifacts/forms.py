@@ -65,7 +65,7 @@ class UserArtifactForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(UserArtifactForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.fields['country_area'].initial = [True, '', False, '']
         self.fields['period'].initial = [True, '', '', False, '']
@@ -129,7 +129,7 @@ class ArtifactForm(UserArtifactForm):
             'is_displayed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'displayed_at_he': forms.TextInput(attrs={'class': 'form-control'}),
             'displayed_at_en': forms.TextInput(attrs={'class': 'form-control'}),
-            'display_donor_name': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'display_donor_name': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'route_map': forms.FileInput(attrs={'class': 'form-control-file'}),
             'route_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'route_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
@@ -155,7 +155,7 @@ class UserArtifactImageForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(UserArtifactImageForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         if self.errors:
             for field in self.fields:
                 if field in self.errors:
@@ -271,7 +271,7 @@ class UserForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.logged = kwargs.pop('logged')
         bidi = kwargs.pop('bidi')
-        super(UserForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['phone_number'].widget = ILPhoneNumberMultiWidget(
             bidi=bidi,
             area_attrs={'class': 'form-control'},
@@ -323,15 +323,20 @@ class YearForm(forms.Form):
 
 
 class LocationForm(forms.Form):
-    filter = forms.CharField(widget=forms.RadioSelect)
+    filter = forms.CharField(widget=forms.HiddenInput)
     location = forms.ChoiceField(
         label=_('Location'),
         widget=OriginRadioSelect,
-        required=False,
-        choices=(
-            (x.id, u'{} ({})'.format(x.title_he, x.get_artifacts_count())) for x in OriginArea.objects.all()
-        )
+        required=False
     )
+
+    def __init__(self, *args, **kwargs):
+        bidi = kwargs.pop('bidi')
+        super().__init__(*args, **kwargs)
+        self.fields['location'].choices = (
+            (x.id, u'{} ({})'.format(getattr(x, 'title_he' if bidi else 'title_en'), x.get_artifacts_count())) for x in
+            OriginArea.objects.all()
+        )
 
 
 class EmptyForm(forms.Form):
