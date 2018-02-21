@@ -27,4 +27,25 @@ $(function () {
             }
         });
     });
+    $('#id_year_from,#id_year_to').on('change', function (e) {
+        e.preventDefault();
+        var input = $(this);
+        var form = input.parents('form');
+        var formUrl = form.attr('action');
+        $.ajax({
+            url: formUrl,
+            type: "GET",
+            data: {
+                filter: form.find('input[name="filter"]').val(),
+                year_from: form.find('input[name="year_from"]').val(),
+                year_to: form.find('input[name="year_to"]').val()
+            },
+            success: function (data, textStatus, jqXHR) {
+                $('#artifacts-list').html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    });
 });

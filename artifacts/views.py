@@ -49,7 +49,7 @@ class HomeView(BHUIMixin, ListView):
     def set_filter_form(self):
         filter_type = self.request.GET.get('filter', None)
         if filter_type == 'time':
-            return YearForm(self.request.GET, bidi=translation.get_language_bidi())
+            return YearForm(self.request.GET)
         elif filter_type == 'location':
             return LocationForm(self.request.GET, bidi=translation.get_language_bidi())
         return None

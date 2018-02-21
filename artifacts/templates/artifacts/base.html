@@ -20,6 +20,9 @@
         <link href="{% static 'vendors/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
         {% block extrahead %}{% endblock %}
         <link href="{% static 'css/bootstrap' %}{% if LANGUAGE_BIDI %}_rtl{% endif %}.css" rel="stylesheet">
+        {% if filterable %}
+            <link href="{% static 'vendors/noUiSlider/nouislider.css' %}" rel="stylesheet">
+        {% endif %}
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
         {% if LANGUAGE_BIDI %}
             <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
@@ -60,6 +63,10 @@
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/scrollPosStyler.js' %}"></script>
         <script src="{% static 'js/bhdigitalcollection.js' %}"></script>
+        {% if filterable %}
+            <script src="{% static 'vendors/noUiSlider/nouislider.min.js' %}"></script>
+            <script src="{% static 'js/slider.js' %}"></script>
+        {% endif %}
         <script>
             $(function () {
                 ScrollPosStyler.init({

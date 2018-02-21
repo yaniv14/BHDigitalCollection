@@ -318,12 +318,12 @@ class ArtifactTypeForm(forms.ModelForm):
 
 class YearForm(forms.Form):
     filter = forms.CharField(widget=forms.HiddenInput)
-    year_from = forms.CharField(label=_('Year from'), widget=forms.NumberInput, required=False)
-    year_to = forms.CharField(label=_('Year to'), widget=forms.NumberInput, required=False)
+    year_from = forms.CharField(widget=forms.HiddenInput, required=False)
+    year_to = forms.CharField(widget=forms.HiddenInput, required=False)
 
-    def __init__(self, *args, **kwargs):
-        bidi = kwargs.pop('bidi')
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     bidi = kwargs.pop('bidi')
+    #     super().__init__(*args, **kwargs)
 
 
 class LocationForm(forms.Form):

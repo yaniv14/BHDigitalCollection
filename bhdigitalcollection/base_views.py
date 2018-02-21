@@ -51,6 +51,7 @@ class BHUIMixin(object):
         d['filterable'] = self.get_filterable()
         d['filter_form'] = self.set_filter_form()
         d['filter_type'] = self.filters_types.get(self.request.GET.get('filter', ''))
+        d['filter_type_name'] = self.request.GET.get('filter', '')
         d['current_url_name'] = self.request.resolver_match.url_name
         return d
 

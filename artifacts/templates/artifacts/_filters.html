@@ -1,5 +1,18 @@
 {% load i18n %}
-
+{% if filter_type_name == 'time' %}
+    <div id="year-range"></div>
+    <div id="quick-years">
+        <button type="button" class="btn btn-outline-gray" data-lower="1800" data-higher="1899">
+            {% trans '19th Century' %}
+        </button>
+        <button type="button" class="btn btn-outline-gray" data-lower="1700" data-higher="1799">
+            {% trans '18th Century' %}
+        </button>
+        <button type="button" class="btn btn-outline-gray" data-lower="1950" data-higher="1959">
+            {% trans 'The 50s' %}
+        </button>
+    </div>
+{% endif %}
 <div class="container">
     <form method="get" action="{% url 'artifacts:artifacts_filter' %}">
         {% for hidden in filter_form.hidden_fields %}
