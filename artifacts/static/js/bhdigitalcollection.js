@@ -13,7 +13,10 @@ $(function () {
         $.ajax({
             url: formUrl,
             type: "GET",
-            data: form.serializeArray(),
+            data: {
+                filter: form.find('input[name="filter"]').val(),
+                location: btn.find('input[type="radio"]').val()
+            },
             success: function (data, textStatus, jqXHR) {
                 $('#artifacts-list').html(data);
                 btn.prop('disabled', false);

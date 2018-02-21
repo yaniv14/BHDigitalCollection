@@ -6,6 +6,7 @@
         {% for group, options, index in widget.optgroups %}
             {% for option in options %}
                 <label class="btn btn-secondary" style="background-image: url({% get_origin_image option.value %})">
+                    <div class="mask"></div>
                     {% include option.template_name with widget=option %} {{ option.label }}
                 </label>
             {% endfor %}

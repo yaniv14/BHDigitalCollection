@@ -321,6 +321,10 @@ class YearForm(forms.Form):
     year_from = forms.CharField(label=_('Year from'), widget=forms.NumberInput, required=False)
     year_to = forms.CharField(label=_('Year to'), widget=forms.NumberInput, required=False)
 
+    def __init__(self, *args, **kwargs):
+        bidi = kwargs.pop('bidi')
+        super().__init__(*args, **kwargs)
+
 
 class LocationForm(forms.Form):
     filter = forms.CharField(widget=forms.HiddenInput)
