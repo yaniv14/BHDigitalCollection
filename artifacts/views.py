@@ -9,9 +9,9 @@ from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.utils.translation import ugettext_lazy as _
 
-from artifacts.forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
+from .forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
     ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm
-from artifacts.models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
+from .models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
     ArtifactType
 from bhdigitalcollection.base_views import BHUIMixin
 from users.models import User
@@ -37,6 +37,12 @@ def filter_data(request, qs, is_private):
     return qs.filter(status=ArtifactStatus.APPROVED, is_private=is_private)
 
 
+class AboutView(BHUIMixin, TemplateView):
+    template_name = 'artifacts/about.html'
+    page_title = _('About')
+    page_name = 'about'
+
+
 class HomeView(BHUIMixin, ListView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
@@ -49,9 +55,9 @@ class HomeView(BHUIMixin, ListView):
     def set_filter_form(self):
         filter_type = self.request.GET.get('filter', None)
         if filter_type == 'time':
-            return YearForm(self.request.GET)
+            return YearForm(initial={'filter': filter_type})
         elif filter_type == 'location':
-            return LocationForm(self.request.GET, bidi=translation.get_language_bidi())
+            return LocationForm(initial={'filter': filter_type}, bidi=translation.get_language_bidi())
         return None
 
     def get_queryset(self):
@@ -68,12 +74,6 @@ class HomeView(BHUIMixin, ListView):
         return context
 
 
-class AboutView(BHUIMixin, TemplateView):
-    template_name = 'artifacts/about.html'
-    page_title = _('About')
-    page_name = 'about'
-
-
 class ArtifactUsersListView(BHUIMixin, ListView):
     template_name = 'artifacts/users_artifact_list.html'
     model = Artifact
@@ -84,7 +84,20 @@ class ArtifactUsersListView(BHUIMixin, ListView):
     filterable = True
 
     def get_queryset(self):
-        return filter_data(self.request, super().get_queryset(), True)
+        qs = super().get_queryset()
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return qs.filter(is_private=True)
+        return qs.filter(status=ArtifactStatus.APPROVED, is_private=True)
+
+    def set_filter_form(self):
+        filter_type = self.request.GET.get('filter', None)
+        if filter_type == 'time':
+            return YearForm(initial={'is_private': True, 'filter': filter_type})
+        elif filter_type == 'location':
+            return LocationForm(initial={'is_private': True, 'filter': filter_type},
+                                bidi=translation.get_language_bidi())
+        return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -102,13 +115,25 @@ class ArtifactFullListView(BHUIMixin, ListView):
     filterable = True
     page_banner = PageBanner.objects.filter(active=True, page='all_collections').order_by('?').first()
 
+    def set_filter_form(self):
+        filter_type = self.request.GET.get('filter', None)
+        if filter_type == 'time':
+            return YearForm(initial={'all': True, 'filter': filter_type})
+        elif filter_type == 'location':
+            return LocationForm(initial={'all': True, 'filter': filter_type},
+                                bidi=translation.get_language_bidi())
+        return None
+
     def get_queryset(self):
-        return filter_data(self.request, super().get_queryset(), False)
+        qs = super().get_queryset()
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return qs
+        return qs.filter(status=ArtifactStatus.APPROVED)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
-                                                           is_featured=True)
+        context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED)
         return context
 
 
@@ -389,19 +414,31 @@ class ArtifactFilterView(View):
     def get(self, request, *args, **kwargs):
         filter = self.request.GET.get('filter')
         location = self.request.GET.get('location')
+        is_private = self.request.GET.get('is_private')
+        all_artifacts = self.request.GET.get('all')
         year_from = self.request.GET.get('year_from')
         year_to = self.request.GET.get('year_to')
         if filter:
-            artifacts = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False)
+            artifacts = Artifact.objects.filter(status=ArtifactStatus.APPROVED,
+                                                is_private=True if is_private else False)
+            user_artifacts = artifacts
             none_featured = artifacts.filter(is_featured=False)
             artifacts = artifacts.filter(is_featured=True)
             if location:
                 artifacts = artifacts.filter(origin_area_id=int(location))
+                user_artifacts = user_artifacts.filter(origin_area_id=int(location))
                 none_featured = none_featured.filter(origin_area_id=int(location))
             elif year_from and year_to:
                 artifacts = artifacts.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
+                user_artifacts = user_artifacts.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
                 none_featured = none_featured.filter(year_from__gte=int(year_from)).exclude(year_to__gt=int(year_to))
         else:
-            none_featured, artifacts = Artifact.objects.none()
+            none_featured = Artifact.objects.none()
+            artifacts = Artifact.objects.none()
+            user_artifacts = Artifact.objects.none()
 
+        if is_private:
+            return render(request, 'artifacts/_user_artifacts.html', {'artifacts': user_artifacts})
+        if all_artifacts:
+            return render(request, 'artifacts/_full_artifacts.html', {'artifacts': Artifact.objects.all()})
         return render(request, 'artifacts/_artifacts.html', {'artifacts': artifacts, 'none_featured': none_featured})

@@ -15,6 +15,7 @@ $(function () {
             type: "GET",
             data: {
                 filter: form.find('input[name="filter"]').val(),
+                is_private: form.find('input[name="is_private"]').val(),
                 location: btn.find('input[type="radio"]').val()
             },
             success: function (data, textStatus, jqXHR) {
@@ -37,6 +38,7 @@ $(function () {
             type: "GET",
             data: {
                 filter: form.find('input[name="filter"]').val(),
+                is_private: form.find('input[name="is_private"]').val(),
                 year_from: form.find('input[name="year_from"]').val(),
                 year_to: form.find('input[name="year_to"]').val()
             },

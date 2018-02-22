@@ -1,7 +1,7 @@
 from django import template
 from django.forms import CheckboxInput, FileInput, RadioSelect, CheckboxSelectMultiple, SelectMultiple, Select
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils import translation
 from django.utils.safestring import mark_safe
 
@@ -89,6 +89,13 @@ def get_origin_image(origin_id):
 def bd(instance, field):
     lang = translation.get_language()[:2]
     return getattr(instance, field + "_" + lang)
+
+
+@register.filter
+def get_slug_or_none(artifact):
+    if artifact.slug:
+        return reverse('artifacts:detail', args=[artifact.slug,])
+    return '#'
 
 
 @register.filter
