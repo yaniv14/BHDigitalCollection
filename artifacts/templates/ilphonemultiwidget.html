@@ -1,5 +1,5 @@
 {% for widget in widget.subwidgets %}
-    <div class="col">
+    <div class="col-{% if forloop.first %}9{% else %}3{% endif %}">
         {% include widget.template_name %}
     </div>
 {% endfor %}

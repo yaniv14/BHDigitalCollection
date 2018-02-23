@@ -234,11 +234,14 @@ class ArtifactCreateStepTwoView(BHUIMixin, CreateView):
                 form.instance.origin_area_id = country_area[3]
             period = form.cleaned_data['period']
             if period[0]:
-                form.instance.year_from = int(period[1])
-                form.instance.year_to = int(period[2])
+                if period[1].isdigit():
+                    form.instance.year_from = int(period[1])
+                if period[2].isdigit():
+                    form.instance.year_to = int(period[2])
             elif period[3]:
-                form.instance.year_from = int(period[4])
-                form.instance.year_to = int(period[4])
+                if period[4].isdigit():
+                    form.instance.year_from = int(period[4])
+                    form.instance.year_to = int(period[4])
             form.instance.is_private = True
             form.instance.slug = slugify(form.cleaned_data['name_he'], True)
             form.instance.name_en = form.cleaned_data['name_he']
