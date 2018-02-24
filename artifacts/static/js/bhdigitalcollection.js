@@ -1,4 +1,37 @@
+function fixArtifactHeight() {
+    $('#artifacts-list').find('.small .card-body').each(function () {
+        if ($(this).innerHeight() > 64) {
+            $(this).parents('.row').addClass('fix-height');
+        }
+    })
+}
+
+var hamburger = {
+    navToggle: document.querySelector('.nav-toggle'),
+    nav: document.getElementById('hamburger-menu'),
+
+    doToggle: function (e) {
+        if (e.target.nodeName === 'A' || e.target.nodeName === 'BUTTON') {
+            return;
+        }
+        e.preventDefault();
+        this.navToggle.classList.toggle('expanded');
+        this.nav.classList.toggle('expanded');
+    }
+};
+
+hamburger.navToggle.addEventListener('click', function (e) {
+    hamburger.doToggle(e);
+});
+hamburger.nav.addEventListener('click', function (e) {
+    hamburger.doToggle(e);
+});
+
 $(function () {
+    fixArtifactHeight();
+    $('.close-user-menu').click(function () {
+        $('.user-menu-btn').trigger('click');
+    });
     $('#filters').on('hidden.bs.collapse', function () {
         $('.filter-indicator').removeClass('clicked');
     }).on('show.bs.collapse', function () {

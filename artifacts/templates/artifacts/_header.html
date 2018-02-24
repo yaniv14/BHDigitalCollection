@@ -2,13 +2,16 @@
 
 <header>
     <div class="header-top clearfix{% if not page_banner %} no-banner{% endif %}"{% if page_banner %} style="background-image: url({{ page_banner.image.url }});"{% endif %}>
+        <div class="nav-toggle">
+            <div class="nav-toggle-bar"></div>
+        </div>
         <div class="container">
             <div class="logo float-left">
                 <a href="{% url 'home' %}">
                     {% svg_icon 'logo' rtl=LANGUAGE_BIDI %}
                 </a>
             </div>
-            <div class="top-links float-right">
+            <div id="hamburger-menu" class="top-links float-right">
                 <ul class="nav justify-content-end">
                     {% if user.is_superuser %}
                         <li class="nav-item dropdown">
@@ -69,7 +72,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#FFFFFF;font-weight: bold;" href="{% url 'artifacts:create_step_one' %}">
+                        <a class="nav-link upload-item" href="{% url 'artifacts:create_step_one' %}">
                             {% trans 'Upload artifact' %}
                         </a>
                     </li>
@@ -77,7 +80,7 @@
             </div>
             {% if page_banner %}
                 <div class="banner-text">
-                    <h1 class="page-banner-title">
+                    <h1 class="page-banner-title suezone-font">
                         {{ page_banner|bd:'main_text' }}
                     </h1>
                     <h2 class="page-banner-subtitle arimo-font">
@@ -112,7 +115,7 @@
                                     <span class="sr-only">(current)</span>{% endif %}</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto filter-result">
                         {% if filter_type %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% get_base_url current_url_name %}">

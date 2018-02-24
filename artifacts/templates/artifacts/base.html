@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <main>
+                        <main{% if filterable %} class="pt-4 pb-4"{% endif %}>
                             {% block content %}BASE CONTENT{% endblock %}
                         </main>
                     </div>

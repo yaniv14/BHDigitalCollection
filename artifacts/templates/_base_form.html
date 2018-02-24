@@ -18,7 +18,7 @@
         {% if field|is_checkbox %}
             <div class="custom-control custom-checkbox">
                 {{ field }}
-                <label class="custom-control-label">
+                <label class="custom-control-label" for="{{ field.id_for_label }}">
                     {{ field.label }}
                 </label>
                 {% if field.help_text %}

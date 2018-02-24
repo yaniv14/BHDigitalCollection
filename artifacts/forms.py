@@ -109,7 +109,7 @@ class ArtifactForm(UserArtifactForm):
         ]
         widgets = {
             'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl', 'placeholder': _('Item name')}),
-            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': _('Item name')}),
+            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': ' English-Item name'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
@@ -122,11 +122,11 @@ class ArtifactForm(UserArtifactForm):
             'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'donor_name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
-            'is_featured': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'is_featured': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'origin_city_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'origin_city_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
-            'is_displayed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'is_displayed': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'displayed_at_he': forms.TextInput(attrs={'class': 'form-control'}),
             'displayed_at_en': forms.TextInput(attrs={'class': 'form-control'}),
             'display_donor_name': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),

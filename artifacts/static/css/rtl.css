@@ -22,6 +22,11 @@ p.page-banner-credit {
     left: 0;
 }
 
+/* Hamburger menu */
+.nav-toggle {
+    left: 0.5rem;
+}
+
 /* Footer */
 .new-artifact {
     left: 3rem;
@@ -55,6 +60,23 @@ p.page-banner-credit {
     float: right;
 }
 
+.main-form-title {
+    text-align: right;
+}
+
+.main-form-subtitle {
+    text-align: right;
+}
+
+#quick-years button {
+    margin-left: 0.5rem;
+}
+
+/* NoUiSlider */
+.noUi-connect, .noUi-origin {
+    left: 15px;
+}
+
 /* Main */
 .card.small {
     float: right;
@@ -84,4 +106,30 @@ p.page-banner-credit {
 }
 
 @media (min-width: 1200px) {
+}
+
+@media (max-width: 767px) {
+    .top-links #lang-form button {
+        right: 1rem;
+    }
+
+    p.page-banner-credit {
+        right: 1rem;
+    }
+
+    #hamburger-menu {
+        -webkit-transition: left 0.5s ease;
+        -moz-transition: left 0.5s ease;
+        -ms-transition: left 0.5s ease;
+        -o-transition: left 0.5s ease;
+        transition: left 0.5s ease;
+        background: #fff;
+        border-right: 1px solid #ccc;
+        left: -50vw;
+    }
+
+    #hamburger-menu.expanded {
+        left: 0;
+    }
+
 }
