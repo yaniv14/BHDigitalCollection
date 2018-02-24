@@ -109,7 +109,8 @@ class ArtifactForm(UserArtifactForm):
         ]
         widgets = {
             'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl', 'placeholder': _('Item name')}),
-            'name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': ' English-Item name'}),
+            'name_en': forms.TextInput(
+                attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': ' English-Item name'}),
             'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
             'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
@@ -346,3 +347,11 @@ class LocationForm(forms.Form):
 class EmptyForm(forms.Form):
     def is_valid(self):
         return True
+
+
+class ImageCroppingForm(forms.Form):
+    small_thumbnail = forms.CharField(max_length=800, widget=forms.HiddenInput, required=False)
+    small_thumbnail_vertical = forms.CharField(max_length=800, widget=forms.HiddenInput, required=False)
+    big_thumbnail = forms.CharField(max_length=800, widget=forms.HiddenInput, required=False)
+    cover = forms.CharField(max_length=800, widget=forms.HiddenInput, required=False)
+    footer = forms.CharField(max_length=800, widget=forms.HiddenInput, required=False)

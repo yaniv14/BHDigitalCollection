@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import login
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -10,9 +12,10 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.utils.translation import ugettext_lazy as _
 
 from .forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
-    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm
+    ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm, \
+    ImageCroppingForm
 from .models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
-    ArtifactType
+    ArtifactType, ArtifactImageCrop
 from bhdigitalcollection.base_views import BHUIMixin
 from users.models import User
 
@@ -309,6 +312,86 @@ class ArtifactCreateStepThreeView(BHUIMixin, FormView):
                 prefix='artifact_image_formset'
             )
         return context
+
+
+class CropImageFormView(BHUIMixin, FormView):
+    template_name = 'artifacts/image-crop.html'
+    page_title = _('Image crop')
+    page_name = 'image_crop'
+    form_class = ImageCroppingForm
+    success_url = reverse_lazy('home')
+
+    def get_initial(self):
+        try:
+            image_obj = ArtifactImage.objects.get(pk=int(self.kwargs['pk']))
+            try:
+                obj = image_obj.crops
+            except ArtifactImageCrop.DoesNotExist:
+                obj = None
+            if obj:
+                d = {
+                    'small_thumbnail': obj.small_thumbnail,
+                    'small_thumbnail_vertical': obj.small_thumbnail_vertical,
+                    'big_thumbnail': obj.big_thumbnail,
+                    'cover': obj.cover,
+                    'footer': obj.footer,
+                }
+            else:
+                d = {}
+        except ArtifactImage.DoesNotExist:
+            d = {}
+        return d
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        small_thumbnail_str = data.get('small_thumbnail', '{}')
+        small_thumbnail_vertical_str = data.get('small_thumbnail_vertical', '{}')
+        big_thumbnail_str = data.get('big_thumbnail', '{}')
+        cover_str = data.get('cover', '{}')
+        footer_str = data.get('footer', '{}')
+        try:
+            small_thumbnail = json.loads(small_thumbnail_str)
+        except TypeError:
+            small_thumbnail = {}
+        try:
+            small_thumbnail_vertical = json.loads(small_thumbnail_vertical_str)
+        except TypeError:
+            small_thumbnail_vertical = {}
+        try:
+            big_thumbnail = json.loads(big_thumbnail_str)
+        except TypeError:
+            big_thumbnail = {}
+        try:
+            cover = json.loads(cover_str)
+        except TypeError:
+            cover = {}
+        try:
+            footer = json.loads(footer_str)
+        except TypeError:
+            footer = {}
+        obj, created = ArtifactImageCrop.objects.get_or_create(image_id=int(self.kwargs['pk']))
+        obj.small_thumbnail = small_thumbnail
+        obj.small_thumbnail_vertical = small_thumbnail_vertical
+        obj.big_thumbnail = big_thumbnail
+        obj.cover = cover
+        obj.footer = footer
+        obj.save()
+
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        d = super().get_context_data(**kwargs)
+        try:
+            obj = ArtifactImage.objects.get(pk=int(self.kwargs['pk']))
+            d['image'] = obj.image.url
+            try:
+                d['object'] = obj.crops
+            except ArtifactImageCrop.DoesNotExist:
+                d['object'] = None
+        except ArtifactImage.DoesNotExist:
+            d['object'] = None
+
+        return d
 
 
 class OriginAreaDeleteView(BHUIMixin, DeleteView):

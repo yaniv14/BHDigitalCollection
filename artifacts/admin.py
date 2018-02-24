@@ -19,6 +19,11 @@ class PageBannerAdmin(admin.ModelAdmin):
     list_display_links = ('page', 'main_text_he', 'main_text_en', 'credit_he', 'credit_en', 'active')
 
 
+class ArtifactImageCropAdmin(admin.ModelAdmin):
+    list_display = ('image', 'small_thumbnail', 'small_thumbnail_vertical', 'big_thumbnail', 'cover', 'footer')
+    list_display_links = ('image', 'small_thumbnail', 'small_thumbnail_vertical', 'big_thumbnail', 'cover', 'footer')
+
+
 class OriginAreaAdmin(admin.ModelAdmin):
     list_display = ('title_he', 'title_en', 'countries_list')
     list_display_links = ('title_he', 'title_en', 'countries_list')
@@ -32,5 +37,6 @@ class OriginAreaAdmin(admin.ModelAdmin):
 admin.site.register(models.Artifact, ArtifactAdmin)
 admin.site.register(models.ArtifactType)
 admin.site.register(models.ArtifactMaterial)
+admin.site.register(models.ArtifactImageCrop, ArtifactImageCropAdmin)
 admin.site.register(models.PageBanner, PageBannerAdmin)
 admin.site.register(models.OriginArea, OriginAreaAdmin)
