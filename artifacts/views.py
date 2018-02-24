@@ -43,6 +43,12 @@ class AboutView(BHUIMixin, TemplateView):
     page_name = 'about'
 
 
+class PartOfTheStoryView(BHUIMixin, TemplateView):
+    template_name = 'artifacts/part-of-the-story.html'
+    page_title = _('Part of the story')
+    page_name = 'part_of_the_story'
+
+
 class HomeView(BHUIMixin, ListView):
     template_name = 'artifacts/home.html'
     page_title = _('Home')
@@ -256,8 +262,12 @@ class ArtifactCreateStepThreeView(BHUIMixin, FormView):
     template_name = 'artifacts/artifact_create_step_three.html'
     page_title = _('Artifact Images')
     page_name = 'artifact_images'
-    success_url = reverse_lazy('home')
     form_class = EmptyForm
+
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse_lazy('home')
+        return reverse_lazy('part_of_the_story')
 
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:

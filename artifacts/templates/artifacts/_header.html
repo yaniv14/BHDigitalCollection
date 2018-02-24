@@ -81,14 +81,14 @@
             {% if page_banner %}
                 <div class="banner-text">
                     <h1 class="page-banner-title suezone-font">
-                        {{ page_banner|bd:'main_text' }}
+                        {{ page_banner|bd:'main_text'|default_if_none:'' }}
                     </h1>
                     <h2 class="page-banner-subtitle arimo-font">
-                        {{ page_banner|bd:'description' }}
+                        {{ page_banner|bd:'description'|default_if_none:'' }}
                     </h2>
                 </div>
                 <p class="page-banner-credit">
-                    {{ page_banner|bd:'credit' }}
+                    {{ page_banner|bd:'credit'|default_if_none:'' }}
                 </p>
             {% endif %}
         </div>
