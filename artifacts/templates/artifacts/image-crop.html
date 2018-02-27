@@ -1,0 +1,82 @@
+{% extends 'artifacts/base.html' %}
+{% load static bhdigitalcollection i18n %}
+
+{% block extrahead %}
+    <link href="{% static 'vendors/cropper/cropper.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="justify-content-md-center">
+            <div class="container">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <form id="image-crop-form" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form.non_field_errors.as_text }}
+                            </div>
+                        {% endif %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        {% for field in form.visible_fields %}
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="invalid-feedback">{{ field.errors.as_text }}</div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="form-group{% if btn_location %} text-{{ btn_location }}{% endif %}">
+                            <button type="submit" class="btn btn-primary">
+                                {% trans 'Save' %}
+                            </button>
+                        </div>
+                    </form>
+                    <div class="btn-group" role="group" aria-label="Cropping buttons">
+                        <button type="button" data-sizename="small_thumbnail" data-width="240" data-height="240" class="btn btn-warning" data-toggle="modal" data-target="#imageCropModal">
+                            {% trans 'Set small thumbnail' %}
+                        </button>
+                        <button type="button" data-sizename="small_thumbnail_vertical" data-width="240" data-height="300" class="btn btn-warning" data-toggle="modal" data-target="#imageCropModal">
+                            {% trans 'Set small thumbnail vertical' %}
+                        </button>
+                        <button type="button" data-sizename="big_thumbnail" data-width="540" data-height="540" class="btn btn-warning" data-toggle="modal" data-target="#imageCropModal">
+                            {% trans 'Set big_thumbnail' %}
+                        </button>
+                        <button type="button" data-sizename="cover" data-width="1920" data-height="690" class="btn btn-warning" data-toggle="modal" data-target="#imageCropModal">
+                            {% trans 'Set cover' %}
+                        </button>
+                        <button type="button" data-sizename="footer" data-width="1920" data-height="240" class="btn btn-warning" data-toggle="modal" data-target="#imageCropModal">
+                            {% trans 'Set footer' %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block modals %}
+    <div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="imageCropModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="{{ image }}" id="id_image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        {% trans 'Close' %}
+                    </button>
+                    <button type="button" class="btn btn-primary get-crop-data">
+                        {% trans 'Save changes' %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'vendors/cropper/cropper.min.js' %}"></script>
+    <script src="{% static 'js/cropper.js' %}"></script>
+{% endblock %}

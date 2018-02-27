@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.postgres.fields import JSONField
 from django.core.validators import validate_image_file_extension
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -192,6 +193,18 @@ class ArtifactImageCoord(models.Model):
 
     def __str__(self):
         return f'[{self.x},{self.y}] {self.image.artifact.name_he}'
+
+
+class ArtifactImageCrop(models.Model):
+    image = models.OneToOneField(ArtifactImage, verbose_name=_('Image'), on_delete=models.CASCADE, related_name='crops')
+    small_thumbnail = JSONField(verbose_name=_('Small thumbnail square'), blank=True, null=True)
+    small_thumbnail_vertical = JSONField(verbose_name=_('Small thumbnail vertical'), blank=True, null=True)
+    big_thumbnail = JSONField(verbose_name=_('Big thumbnail'), blank=True, null=True)
+    cover = JSONField(verbose_name=_('Cover'), blank=True, null=True)
+    footer = JSONField(verbose_name=_('Footer'), blank=True, null=True)
+
+    def __str__(self):
+        return f'[{self.image.artifact.name_he}] {self.image.id}'
 
 
 class PageBanner(models.Model):

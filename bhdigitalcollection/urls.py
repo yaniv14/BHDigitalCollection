@@ -21,6 +21,7 @@ urlpatterns += i18n_patterns(
     path('', views.HomeView.as_view(), name='home'),
     path('contact', user_views.ContactView.as_view(), name='contact'),
     path('about', views.AboutView.as_view(), name='about'),
+    path('part-of-the-story', views.PartOfTheStoryView.as_view(), name='part_of_the_story'),
     path('artifact/', include('artifacts.urls')),
     path('accounts/', include('users.urls')),
     path('jsi18n/', JavaScriptCatalog.as_view(packages=['artifacts']), name='javascript-catalog'),
