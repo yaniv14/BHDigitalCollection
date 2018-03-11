@@ -137,6 +137,42 @@ class ArtifactForm(UserArtifactForm):
         }
 
 
+class ArtifactUpdateForm(ArtifactForm):
+    class Meta(ArtifactForm.Meta):
+        fields = ArtifactForm.Meta.fields + [
+            'is_private',
+        ]
+        widgets = {
+            'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl', 'placeholder': _('Item name')}),
+            'name_en': forms.TextInput(
+                attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': ' English-Item name'}),
+            'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
+            'origin_area': forms.Select(attrs={'class': 'form-control'}),
+            'year_from': forms.TextInput(attrs={'class': 'form-control'}),
+            'year_to': forms.TextInput(attrs={'class': 'form-control'}),
+            'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'description_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'artifact_type': forms.Select(attrs={'class': 'form-control'}),
+            'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'technical_data_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'donor_name_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'is_featured': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
+            'origin_city_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'origin_city_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            'is_displayed': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
+            'is_private': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
+            'displayed_at_he': forms.TextInput(attrs={'class': 'form-control'}),
+            'displayed_at_en': forms.TextInput(attrs={'class': 'form-control'}),
+            'display_donor_name': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
+            'route_map': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'route_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
+            'route_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
+        }
+
+
 class UserArtifactImageForm(forms.ModelForm):
     class Meta:
         model = ArtifactImage

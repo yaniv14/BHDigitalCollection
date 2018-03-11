@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth import login
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -13,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginAreaForm, EmptyForm, \
     ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm, \
-    ImageCroppingForm
+    ImageCroppingForm, ArtifactUpdateForm
 from .models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
     ArtifactType, ArtifactImageCrop
 from bhdigitalcollection.base_views import BHUIMixin
@@ -259,6 +260,55 @@ class ArtifactCreateStepTwoView(BHUIMixin, CreateView):
             form.instance.donor_name_en = form.cleaned_data['donor_name_he']
 
         return super().form_valid(form)
+
+
+class ArtifactUpdateView(SuccessMessageMixin, BHUIMixin, UpdateView):
+    template_name = 'artifacts/artifact_update.html'
+    model = Artifact
+    page_title = _('Artifact update')
+    page_name = 'artifact_update'
+    success_message = _('Update successfully')
+
+    def get_form_class(self):
+        return ArtifactUpdateForm
+
+    def get_success_url(self):
+        return reverse('artifacts:artifact_update', args=[self.get_object().id])
+
+    def form_valid(self, form):
+        form.instance.uploaded_by = self.request.user
+
+        if self.request.user.is_superuser:
+            form.instance.status = ArtifactStatus.APPROVED
+        else:
+            country_area = form.cleaned_data['country_area']
+            if country_area[0]:
+                form.instance.origin_country = country_area[1]
+            elif country_area[2]:
+                form.instance.origin_area_id = country_area[3]
+            period = form.cleaned_data['period']
+            if period[0]:
+                if period[1].isdigit():
+                    form.instance.year_from = int(period[1])
+                if period[2].isdigit():
+                    form.instance.year_to = int(period[2])
+            elif period[3]:
+                if period[4].isdigit():
+                    form.instance.year_from = int(period[4])
+                    form.instance.year_to = int(period[4])
+            form.instance.is_private = True
+            form.instance.slug = slugify(form.cleaned_data['name_he'], True)
+            form.instance.name_en = form.cleaned_data['name_he']
+            form.instance.description_en = form.cleaned_data['description_he']
+            form.instance.technical_data_en = form.cleaned_data['technical_data_he']
+            form.instance.donor_name_en = form.cleaned_data['donor_name_he']
+
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        d = super().get_context_data(**kwargs)
+        d['images'] = self.get_object().images.all()
+        return d
 
 
 class ArtifactCreateStepThreeView(BHUIMixin, FormView):

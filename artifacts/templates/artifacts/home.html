@@ -18,6 +18,11 @@
                                 </span>
                             </a>
                         </div>
+                        {% if request.user.is_superuser %}
+                            <a class="btn btn-info edit-artifact-btn" href="{% url 'artifacts:artifact_update' artifact.id %}">
+                                {% trans 'Edit' %}
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
                 {% for a in none_featured|slice_qs:forloop.counter0 %}
@@ -35,6 +40,11 @@
                             </span>
                         </a>
                     </div>
+                    {% if request.user.is_superuser %}
+                        <a class="btn btn-info edit-artifact-btn" href="{% url 'artifacts:artifact_update' a.id %}">
+                            {% trans 'Edit' %}
+                        </a>
+                    {% endif %}
                 </div>
                 {% if forloop.last %}</div>{% endif %}
                 {% endfor %}

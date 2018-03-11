@@ -3,6 +3,11 @@ body {
     text-align: right;
 }
 
+/* Buttons */
+.edit-artifact-btn {
+    right: 0;
+}
+
 /* Page header */
 .banner-text {
     right: 0;

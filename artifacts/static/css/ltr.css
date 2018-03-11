@@ -7,6 +7,11 @@ p.page-banner-credit {
     left: 2rem;
 }
 
+/* Buttons */
+.edit-artifact-btn {
+    left: 0;
+}
+
 /* Header */
 .header-bottom .navbar-light .navbar-nav .active > .nav-link::after,
 .header-bottom .navbar-light .navbar-nav .nav-link.active::after {

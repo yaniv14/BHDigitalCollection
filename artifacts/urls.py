@@ -10,6 +10,7 @@ urlpatterns = [
     path('artifacts-filter/', views.ArtifactFilterView.as_view(), name='artifacts_filter'),
     path('create/step/one/', views.ArtifactCreateStepOneView.as_view(), name='create_step_one'),
     path('create/step/two/', views.ArtifactCreateStepTwoView.as_view(), name='create_step_two'),
+    path('update/<int:pk>/', views.ArtifactUpdateView.as_view(), name='artifact_update'),
     path('<int:pk>/create/step/three/', views.ArtifactCreateStepThreeView.as_view(), name='create_step_three'),
     path('crop-image/<int:pk>/', views.CropImageFormView.as_view(), name='crop_image'),
     path('area/list/', views.OriginAreaListView.as_view(), name='origin_area_list'),
