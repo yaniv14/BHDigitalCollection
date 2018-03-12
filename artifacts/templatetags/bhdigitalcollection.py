@@ -1,4 +1,6 @@
+import os
 from django import template
+from django.conf import settings
 from django.forms import CheckboxInput, FileInput, RadioSelect, CheckboxSelectMultiple, SelectMultiple, Select
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
@@ -94,10 +96,19 @@ def bd(instance, field):
 @register.filter
 def get_slug_or_none(artifact):
     if artifact.slug:
-        return reverse('artifacts:detail', args=[artifact.slug,])
+        return reverse('artifacts:detail', args=[artifact.slug, ])
     return '#'
 
 
 @register.filter
 def slice_qs(qs, arg):
     return qs[int(arg * 4):int(arg * 4) + 4]
+
+
+@register.filter
+def get_thumb(image, size):
+    if not image.image:
+        return ''
+    if image.has_thumb_size(size):
+        return os.path.join(settings.MEDIA_URL, image.get_thumb_path(size))
+    return image.image.url

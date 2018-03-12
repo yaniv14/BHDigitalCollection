@@ -1,4 +1,6 @@
 import json
+from collections import OrderedDict
+from json import JSONDecodeError
 
 from django.contrib.auth import login
 from django.contrib.messages.views import SuccessMessageMixin
@@ -16,7 +18,7 @@ from .forms import ArtifactForm, UserArtifactForm, ArtifactImageFormSet, OriginA
     ArtifactMaterialForm, UserForm, UserArtifactImageFormSet, ArtifactTypeForm, YearForm, LocationForm, \
     ImageCroppingForm, ArtifactUpdateForm
 from .models import Artifact, ArtifactStatus, ArtifactImage, PageBanner, OriginArea, ArtifactMaterial, \
-    ArtifactType, ArtifactImageCrop
+    ArtifactType
 from bhdigitalcollection.base_views import BHUIMixin
 from users.models import User
 
@@ -374,17 +376,14 @@ class CropImageFormView(BHUIMixin, FormView):
     def get_initial(self):
         try:
             image_obj = ArtifactImage.objects.get(pk=int(self.kwargs['pk']))
-            try:
-                obj = image_obj.crops
-            except ArtifactImageCrop.DoesNotExist:
-                obj = None
-            if obj:
+            thumbs = image_obj.thumbnails
+            if thumbs:
                 d = {
-                    'small_thumbnail': obj.small_thumbnail,
-                    'small_thumbnail_vertical': obj.small_thumbnail_vertical,
-                    'big_thumbnail': obj.big_thumbnail,
-                    'cover': obj.cover,
-                    'footer': obj.footer,
+                    'small_thumbnail': thumbs.get('small_thumbnail', {}),
+                    'small_thumbnail_vertical': thumbs.get('small_thumbnail_vertical', {}),
+                    'big_thumbnail': thumbs.get('big_thumbnail', {}),
+                    'cover': thumbs.get('cover', {}),
+                    'footer': thumbs.get('footer', {}),
                 }
             else:
                 d = {}
@@ -401,43 +400,83 @@ class CropImageFormView(BHUIMixin, FormView):
         footer_str = data.get('footer', '{}')
         try:
             small_thumbnail = json.loads(small_thumbnail_str)
+        except JSONDecodeError:
+            small_thumbnail = None
         except TypeError:
-            small_thumbnail = {}
+            small_thumbnail = None
         try:
             small_thumbnail_vertical = json.loads(small_thumbnail_vertical_str)
+        except JSONDecodeError:
+            small_thumbnail_vertical = None
         except TypeError:
-            small_thumbnail_vertical = {}
+            small_thumbnail_vertical = None
         try:
             big_thumbnail = json.loads(big_thumbnail_str)
+        except JSONDecodeError:
+            big_thumbnail = None
         except TypeError:
-            big_thumbnail = {}
+            big_thumbnail = None
         try:
             cover = json.loads(cover_str)
+        except JSONDecodeError:
+            cover = None
         except TypeError:
-            cover = {}
+            cover = None
         try:
             footer = json.loads(footer_str)
+        except JSONDecodeError:
+            footer = None
         except TypeError:
-            footer = {}
-        obj, created = ArtifactImageCrop.objects.get_or_create(image_id=int(self.kwargs['pk']))
-        obj.small_thumbnail = small_thumbnail
-        obj.small_thumbnail_vertical = small_thumbnail_vertical
-        obj.big_thumbnail = big_thumbnail
-        obj.cover = cover
-        obj.footer = footer
-        obj.save()
+            footer = None
+        image_obj = ArtifactImage.objects.get(pk=int(self.kwargs['pk']))
+        thumb_dict = OrderedDict()
+        if small_thumbnail:
+            thumb_dict['small_thumbnail'] = [
+                small_thumbnail.get('x'),
+                small_thumbnail.get('y'),
+                small_thumbnail.get('x') + small_thumbnail.get('width'),
+                small_thumbnail.get('y') + small_thumbnail.get('height'),
+            ]
+        if small_thumbnail_vertical:
+            thumb_dict['small_thumbnail_vertical'] = [
+                small_thumbnail_vertical.get('x'),
+                small_thumbnail_vertical.get('y'),
+                small_thumbnail_vertical.get('x') + small_thumbnail_vertical.get('width'),
+                small_thumbnail_vertical.get('y') + small_thumbnail_vertical.get('height'),
+            ]
+        if big_thumbnail:
+            thumb_dict['big_thumbnail'] = [
+                big_thumbnail.get('x'),
+                big_thumbnail.get('y'),
+                big_thumbnail.get('x') + big_thumbnail.get('width'),
+                big_thumbnail.get('y') + big_thumbnail.get('height'),
+            ]
+        if cover:
+            thumb_dict['cover'] = [
+                cover.get('x'),
+                cover.get('y'),
+                cover.get('x') + cover.get('width'),
+                cover.get('y') + cover.get('height'),
+            ]
+        if footer:
+            thumb_dict['footer'] = [
+                footer.get('x'),
+                footer.get('y'),
+                footer.get('x') + footer.get('width'),
+                footer.get('y') + footer.get('height'),
+            ]
+        image_obj.thumbnails = thumb_dict
+        image_obj.save()
+        image_obj.generate_thumbnails()
 
-        return super().form_invalid(form)
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         d = super().get_context_data(**kwargs)
         try:
             obj = ArtifactImage.objects.get(pk=int(self.kwargs['pk']))
             d['image'] = obj.image.url
-            try:
-                d['object'] = obj.crops
-            except ArtifactImageCrop.DoesNotExist:
-                d['object'] = None
+            d['object'] = obj.thumbnails
         except ArtifactImage.DoesNotExist:
             d['object'] = None
 

@@ -10,6 +10,9 @@
         <div class="justify-content-md-center">
             <div class="container">
                 <div class="col-12 col-md-8 offset-md-2">
+                    <div class="img-wrapper text-center">
+                        <img src="{{ image }}" class="img-fluid">
+                    </div>
                     <form id="image-crop-form" method="post" autocomplete="off">
                         {% csrf_token %}
                         {% if form.non_field_errors %}
@@ -32,7 +35,7 @@
                             </button>
                         </div>
                     </form>
-                    <div class="btn-group" role="group" aria-label="Cropping buttons">
+                    <div class="btn-group mb-5" role="group" aria-label="Cropping buttons">
                         <button type="button" data-sizename="small_thumbnail" data-width="240" data-height="240" class="btn btn-warning" data-toggle="modal" data-target="#imageCropModal">
                             {% trans 'Set small thumbnail' %}
                         </button>

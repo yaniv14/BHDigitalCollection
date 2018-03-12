@@ -1,3 +1,5 @@
+import os
+from PIL import Image
 from django.conf import settings
 from django.contrib.postgres.fields import JSONField
 from django.core.validators import validate_image_file_extension
@@ -154,14 +156,22 @@ class Artifact(models.Model):
     def get_cover_image(self):
         image = self.images.filter(is_cover=True).first()
         if image:
-            return image.image
+            return image
         # Fallback to not cover image
         image = self.images.filter(is_cover=False).first()
         if image:
-            return image.image
+            return image
 
-        # return some default image instead
         return None
+
+
+THUMBNAIL_TYPES = {
+    'small_thumbnail': [240, 240],
+    'small_thumbnail_vertical': [240, 300],
+    'big_thumbnail': [540, 540],
+    'cover': [1920, 690],
+    'footer': [1920, 240],
+}
 
 
 class ArtifactImage(models.Model):
@@ -176,9 +186,33 @@ class ArtifactImage(models.Model):
     location_he = models.CharField(_('Image location Hebrew'), max_length=200, blank=True, null=True)
     location_en = models.CharField(_('Image location English'), max_length=200, blank=True, null=True)
     is_cover = models.BooleanField(_('Cover image?'), default=False)
+    thumbnails = JSONField(verbose_name=_('Small thumbnail square'), blank=True, null=True)
 
     def __str__(self):
         return f'[{self.id}] {self.artifact.name_he}'
+
+    def has_thumb_size(self, size):
+        if not self.thumbnails:
+            return False
+        return True if self.thumbnails.get(size) else False
+
+    def get_thumb_path(self, k):
+        name, ext = os.path.splitext(self.image.name)
+        path, image_name = os.path.split(name)
+        if not os.path.exists(f"{path}/CACHE"):
+            os.makedirs(f"{path}/CACHE")
+        return f"{path}/CACHE/{image_name}_{k}{ext}"
+
+    def generate_thumbnails(self):
+        for k, size in THUMBNAIL_TYPES.items():
+            box = self.thumbnails.get(k)
+            if not box:
+                continue
+            im = Image.open(self.image.file)
+            piece = im.crop(box)
+            piece = piece.resize(size)
+            new_path = os.path.join(settings.MEDIA_ROOT, self.get_thumb_path(k))
+            piece.save(new_path)
 
 
 class ArtifactImageCoord(models.Model):
@@ -192,18 +226,6 @@ class ArtifactImageCoord(models.Model):
 
     def __str__(self):
         return f'[{self.x},{self.y}] {self.image.artifact.name_he}'
-
-
-class ArtifactImageCrop(models.Model):
-    image = models.OneToOneField(ArtifactImage, verbose_name=_('Image'), on_delete=models.CASCADE, related_name='crops')
-    small_thumbnail = JSONField(verbose_name=_('Small thumbnail square'), blank=True, null=True)
-    small_thumbnail_vertical = JSONField(verbose_name=_('Small thumbnail vertical'), blank=True, null=True)
-    big_thumbnail = JSONField(verbose_name=_('Big thumbnail'), blank=True, null=True)
-    cover = JSONField(verbose_name=_('Cover'), blank=True, null=True)
-    footer = JSONField(verbose_name=_('Footer'), blank=True, null=True)
-
-    def __str__(self):
-        return f'[{self.image.artifact.name_he}] {self.image.id}'
 
 
 class PageBanner(models.Model):

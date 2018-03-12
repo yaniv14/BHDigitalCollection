@@ -8,7 +8,7 @@
                 <div class="col-12 col-md-6 artifact-set order-md-{% cycle '1' '12' %}">
                     <div class="card big">
                         <a class="img-container d-block" href="{{ artifact|get_slug_or_none }}">
-                            <span style="background-image: url({% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %});"></span>
+                            <span style="background-image: url({% if artifact.get_cover_image %}{{ artifact.get_cover_image|get_thumb:'big_thumbnail' }}{% endif %});"></span>
                         </a>
                         <div class="card-body">
                             <a class="d-block" href="{{ artifact|get_slug_or_none }}">
@@ -30,7 +30,7 @@
                         <div class="col-12 col-md-6 artifact-set order-md-{% cycle '12' '1' %}">{% endif %}
                 <div class="card small">
                     <a class="d-block img-container" href="{{ a|get_slug_or_none }}">
-                        <span style="background-image: url({% if a.get_cover_image %}{{ a.get_cover_image.url }}{% endif %});"></span>
+                        <span style="background-image: url({% if a.get_cover_image %}{{ a.get_cover_image|get_thumb:'small_thumbnail' }}{% endif %});"></span>
                     </a>
                     <div class="card-body">
                         <a class="d-block" href="{{ a|get_slug_or_none }}">

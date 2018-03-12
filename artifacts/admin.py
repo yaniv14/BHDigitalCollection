@@ -37,6 +37,5 @@ class OriginAreaAdmin(admin.ModelAdmin):
 admin.site.register(models.Artifact, ArtifactAdmin)
 admin.site.register(models.ArtifactType)
 admin.site.register(models.ArtifactMaterial)
-admin.site.register(models.ArtifactImageCrop, ArtifactImageCropAdmin)
 admin.site.register(models.PageBanner, PageBannerAdmin)
 admin.site.register(models.OriginArea, OriginAreaAdmin)

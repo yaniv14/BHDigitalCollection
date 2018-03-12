@@ -1175,6 +1175,26 @@ main {
     width: auto;
 }
 
+.thumbs {
+    display: block;
+    position: relative;
+}
+
+.check-it {
+    position: absolute;
+    top: 0;
+    display: block;
+}
+
+.img-wrapper {
+    max-height: 150px;
+    margin-top: 2rem;
+}
+
+.img-wrapper img {
+    max-height: 150px;
+}
+
 /* Responsive */
 @media (min-width: 576px) {
     .card-columns {

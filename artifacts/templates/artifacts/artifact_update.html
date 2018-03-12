@@ -21,11 +21,16 @@
             <div class="col-12 col-md-6 offset-md-3">
                 {% include '_base_form.html' with form=form submit_text=_('Update') labels=True full_size=True button_color='blue' btn_location='right' %}
             </div>
-            <div class="col-12 col-md-6 offset-md-3">
+            <div class="col-12 col-md-6 offset-md-3 clearfix pb-4">
                 <h4>{% trans 'Crop images' %}</h4>
                 {% for image in images %}
-                    <a href="{% url 'artifacts:crop_image' image.id %}">
-                        <img src="{{ image.image.url }}" class="rounded float-left" width="150" height="150">
+                    <a class="thumbs" href="{% url 'artifacts:crop_image' image.id %}">
+                        <img src="{{ image.image.url }}" class="rounded float-left" width="100" height="100">
+                        {% if image.thumbnails %}
+                            <span class="check-it">
+                                <i class="fa fa-check fa-2x"></i>
+                            </span>
+                        {% endif %}
                     </a>
                 {% endfor %}
             </div>
