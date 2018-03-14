@@ -8,3 +8,4 @@ Pillow==5.0.0
 psycopg2-binary==2.7.4
 pytz==2018.3
 silly==1.1.0
+pycountry==18.2.23

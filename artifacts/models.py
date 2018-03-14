@@ -110,6 +110,7 @@ class Artifact(models.Model):
                                               default=ArtifactStatus.PENDING)
     is_private = models.BooleanField(_('Privately owned artifact'), default=False)
     is_featured = models.BooleanField(_('Featured'), default=False)
+    item_no = models.CharField(_('Item No'), max_length=250, blank=True)
     name_he = models.CharField(_('Name Hebrew'), max_length=250)
     name_en = models.CharField(_('Name English'), max_length=250)
     slug = models.SlugField(_('Slug'), max_length=250, allow_unicode=True, blank=True)
@@ -129,6 +130,8 @@ class Artifact(models.Model):
     displayed_at_en = models.CharField(_('Artifact location in museum English'), max_length=250, blank=True, null=True)
     donor_name_he = models.CharField(_('Donor name Hebrew'), max_length=250, blank=True, null=True)
     donor_name_en = models.CharField(_('Donor name English'), max_length=250, blank=True, null=True)
+    credit_he = models.CharField(_('Artifact credit Hebrew'), max_length=500, blank=True)
+    credit_en = models.CharField(_('Artifact credit English'), max_length=500, blank=True)
     display_donor_name = models.BooleanField(_('Display donor name?'), default=False)
     route_map = models.ImageField(_('Artifact route map'), upload_to=upload_func, blank=True, null=True,
                                   validators=[validate_image_file_extension])
