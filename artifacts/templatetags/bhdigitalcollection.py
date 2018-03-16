@@ -112,3 +112,21 @@ def get_thumb(image, size):
     if image.has_thumb_size(size):
         return os.path.join(settings.MEDIA_URL, image.get_thumb_path(size))
     return image.image.url
+
+
+def get_thumb_or_image(image, size):
+    if not image.image:
+        return ''
+    if image.has_thumb_size(size):
+        return os.path.join(settings.MEDIA_URL, image.get_thumb_path(size))
+    return image.image.url
+
+
+@register.simple_tag
+def private_or_collection_image(artifact):
+    if artifact.get_cover_image():
+        if artifact.is_private:
+            return artifact.get_cover_image().image.url
+        else:
+            return get_thumb_or_image(artifact.get_cover_image(), 'small_thumbnail_vertical')
+    return ''

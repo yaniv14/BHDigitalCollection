@@ -83,6 +83,11 @@ p.page-banner-credit {
 }
 
 /* Main */
+.artifact-set .card.red {
+    float: right;
+    margin-left: 30px;
+}
+
 .card.small {
     float: right;
 }

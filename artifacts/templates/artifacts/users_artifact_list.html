@@ -2,18 +2,21 @@
 {% load static i18n bhdigitalcollection %}
 
 {% block content %}
-    <div id="artifacts-list" class="card-columns artifact-set">
+    <div id="artifacts-list" class="clearfix artifact-set">
         {% for artifact in artifacts %}
             <div class="card red">
-                <a class="d-block" href="{{ artifact|get_slug_or_none }}">
+                <a class="img-container d-block" href="{{ artifact|get_slug_or_none }}">
                     <img class="card-img-top"
-                         src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.url }}{% endif %}"
+                         src="{% if artifact.get_cover_image %}{{ artifact.get_cover_image.image.url }}{% endif %}"
                          alt="{{ artifact|bd:'name' }}">
-                    <div class="text-center">
-                        <span>{{ artifact|bd:'name' }}</span>
-                        {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
-                    </div>
                 </a>
+                <div class="card-body">
+                    <a class="d-block" href="{{ artifact|get_slug_or_none }}">
+                        <span>{{ artifact|bd:'name' }}</span>
+                        {{ artifact.origin_country.name }}{% if artifact.get_years %},
+                            {{ artifact.get_years }}{% endif %}
+                    </a>
+                </div>
             </div>
         {% endfor %}
     </div>

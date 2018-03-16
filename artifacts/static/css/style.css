@@ -913,13 +913,14 @@ main {
 
 }
 
-.artifact-set .card {
-    /*text-align: center;*/
+.artifact-set .card.red {
+    display: block;
+    width: calc(25% - 30px);
 }
 
 .artifact-set .card a.img-container {
     overflow: hidden;
-    padding: 1rem;
+    /*padding: 1rem;*/
     background-color: #F7F7F7;
 }
 
@@ -944,8 +945,8 @@ main {
 }
 
 .artifact-set .card img {
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
     mix-blend-mode: multiply;
 }
 
@@ -1382,5 +1383,19 @@ main {
     .artifact-set .card .card-body a, .artifact-set .card .card-body {
         font-size: 1.1rem;
         line-height: 1.3rem;
+    }
+
+    .artifact-set .card.red {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .artifact-set .card.big a.img-container span {
+        min-height: calc(100vw - 4rem);
+    }
+
+    .artifact-set .card.small a.img-container {
+        height: calc(50vw - 2rem);
     }
 }
