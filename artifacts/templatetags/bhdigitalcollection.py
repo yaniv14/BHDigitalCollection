@@ -123,10 +123,10 @@ def get_thumb_or_image(image, size):
 
 
 @register.simple_tag
-def private_or_collection_image(artifact):
+def private_or_collection_image(artifact, size):
     if artifact.get_cover_image():
         if artifact.is_private:
             return artifact.get_cover_image().image.url
         else:
-            return get_thumb_or_image(artifact.get_cover_image(), 'small_thumbnail_vertical')
+            return get_thumb_or_image(artifact.get_cover_image(), size)
     return ''

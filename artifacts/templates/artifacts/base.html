@@ -17,7 +17,7 @@
         {% endblock %}
         <link rel="icon" type="image/png" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
-        <link href="{% static 'vendors/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+        {% comment %}<link href="{% static 'vendors/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">{% endcomment %}
         <link href="{% static 'css/bootstrap' %}{% if LANGUAGE_BIDI %}_rtl{% endif %}.css" rel="stylesheet">
         {% if filterable %}
             <link href="{% static 'vendors/noUiSlider/nouislider.css' %}" rel="stylesheet">
@@ -29,6 +29,7 @@
             <link href="{% static 'css/ltr.css' %}" rel="stylesheet">
         {% endif %}
         {% block extrahead %}{% endblock %}
+        <script defer src="{% static 'vendors/fontawesome-free-5.0.8/svg-with-js/js/fontawesome-all.js' %}"></script>
     </head>
     <body{% block body_class %}{% endblock %}>
         <!--[if lte IE 8]>
@@ -55,7 +56,11 @@
             </div>
         {% endblock %}
         {% block footer %}
-            {% include 'artifacts/_footer.html' %}
+            {% if page_name == 'artifact_detail' %}
+                {% include 'artifacts/_artifact_footer.html' %}
+            {% else %}
+                {% include 'artifacts/_footer.html' %}
+            {% endif %}
         {% endblock %}
         {% block modals %}{% endblock %}
         <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>

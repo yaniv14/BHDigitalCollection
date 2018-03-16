@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-14 14:13+0200\n"
-"PO-Revision-Date: 2018-03-14 14:17+0200\n"
+"POT-Creation-Date: 2018-03-16 10:23+0200\n"
+"PO-Revision-Date: 2018-03-16 10:24+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -197,8 +197,8 @@ msgid "Background image"
 msgstr "תמונת רקע"
 
 #: artifacts/models.py:107
-#: artifacts/templates/artifacts/artifact_detail.html:60
-#: artifacts/templates/artifacts/user_artifact_detail.html:29
+#: artifacts/templates/artifacts/artifact_detail.html:77
+#: artifacts/templates/artifacts/user_artifact_detail.html:40
 msgid "Artifact material"
 msgstr "חומר הפריט"
 
@@ -246,11 +246,11 @@ msgstr "תיאור טכני בעברית"
 msgid "Technical data English"
 msgstr "תיאור טכני באנגלית"
 
-#: artifacts/models.py:121 artifacts/models.py:183 artifacts/models.py:239
+#: artifacts/models.py:121 artifacts/models.py:184 artifacts/models.py:240
 msgid "Description Hebrew"
 msgstr "תיאור"
 
-#: artifacts/models.py:122 artifacts/models.py:184 artifacts/models.py:240
+#: artifacts/models.py:122 artifacts/models.py:185 artifacts/models.py:241
 msgid "Description English"
 msgstr "תיאור"
 
@@ -310,79 +310,79 @@ msgstr "מסלול הפריט"
 msgid "Artifact route English"
 msgstr "מסלול הפריט"
 
-#: artifacts/models.py:181
+#: artifacts/models.py:182
 msgid "Artifact"
 msgstr "פריט"
 
-#: artifacts/models.py:182 artifacts/models.py:222 artifacts/models.py:236
+#: artifacts/models.py:183 artifacts/models.py:223 artifacts/models.py:237
 msgid "Image"
 msgstr "תמונה"
 
-#: artifacts/models.py:185 artifacts/models.py:241
+#: artifacts/models.py:186 artifacts/models.py:242
 msgid "Credit Hebrew"
 msgstr "קרדיט לצלם"
 
-#: artifacts/models.py:186 artifacts/models.py:242
+#: artifacts/models.py:187 artifacts/models.py:243
 msgid "Credit English"
 msgstr "קרדיט לצלם"
 
-#: artifacts/models.py:187
+#: artifacts/models.py:188
 msgid "Year/Era Hebrew"
 msgstr "שנה/תקופה בעברית"
 
-#: artifacts/models.py:188
+#: artifacts/models.py:189
 msgid "Year/Era English"
 msgstr "שנה/תקופה באנגלית"
 
-#: artifacts/models.py:189
+#: artifacts/models.py:190
 msgid "Image location Hebrew"
 msgstr "מיקום הצילום בעברית"
 
-#: artifacts/models.py:190
+#: artifacts/models.py:191
 msgid "Image location English"
 msgstr "מיקום הצילום באנגלית"
 
-#: artifacts/models.py:191
+#: artifacts/models.py:192
 msgid "Cover image?"
 msgstr "תמונת שער?"
 
-#: artifacts/models.py:192
+#: artifacts/models.py:193
 msgid "Small thumbnail square"
 msgstr "חיתוך ריבוע קטן"
 
-#: artifacts/models.py:223
+#: artifacts/models.py:224
 msgid "X"
 msgstr "X"
 
-#: artifacts/models.py:224
+#: artifacts/models.py:225
 msgid "Y"
 msgstr "Y"
 
-#: artifacts/models.py:225
+#: artifacts/models.py:226
 msgid "Width"
 msgstr "אורך"
 
-#: artifacts/models.py:226
+#: artifacts/models.py:227
 msgid "Height"
 msgstr "גובה"
 
-#: artifacts/models.py:227 artifacts/models.py:228
+#: artifacts/models.py:228 artifacts/models.py:229
 msgid "Info"
 msgstr "מידע"
 
-#: artifacts/models.py:235
+#: artifacts/models.py:236
 msgid "Page"
 msgstr "עמוד"
 
-#: artifacts/models.py:237
+#: artifacts/models.py:238
 msgid "Main text Hebrew"
 msgstr "טקסט ראשי בעברית"
 
-#: artifacts/models.py:238
+#: artifacts/models.py:239
 msgid "Main text English"
 msgstr "טקסט ראשי באנגלית"
 
-#: artifacts/models.py:243
+#: artifacts/models.py:244
 msgid "Active?"
 msgstr "פעיל?"
 
@@ -393,6 +393,18 @@ msgstr "שלח"
 #: artifacts/templates/_base_form.html:50
 msgid "Forgot password"
 msgstr "שכחתי סיסמה"
+
+#: artifacts/templates/artifacts/_artifact_footer.html:7
+msgid "you are part of the story"
+msgstr "גם אתם חלק מהסיפור"
+
+#: artifacts/templates/artifacts/_artifact_footer.html:10
+msgid "Do you have an interesting item"
+msgstr "יש גם לכם פריט מעניין"
+
+#: artifacts/templates/artifacts/_artifact_footer.html:13
+msgid "Share with us"
+msgstr "שתפו איתנו"
 
 #: artifacts/templates/artifacts/_filters.html:6
 msgid "19th Century"
@@ -405,19 +417,6 @@ msgstr "המאה ה-18"
 #: artifacts/templates/artifacts/_filters.html:12
 msgid "The 50s"
 msgstr "שנות ה-50"
-
-#: artifacts/templates/artifacts/_footer.html:13
-#: artifacts/templates/artifacts/artifact_detail.html:104
-#: artifacts/templates/artifacts/user_artifact_detail.html:73
-msgid "you are part of the story"
-msgstr "גם אתם חלק מהסיפור"
-
-#: artifacts/templates/artifacts/_footer.html:16
-#: artifacts/templates/artifacts/_header.html:77
-#: artifacts/templates/artifacts/artifact_detail.html:107
-#: artifacts/templates/artifacts/user_artifact_detail.html:74
-msgid "Upload artifact"
-msgstr "העלו פריט"
 
 #: artifacts/templates/artifacts/_header.html:19
 msgid "Admin menu"
@@ -442,6 +441,10 @@ msgstr "צור קשר"
 #: artifacts/templates/artifacts/_header.html:55
 msgid "My Account"
 msgstr "החשבון שלי"
+
+#: artifacts/templates/artifacts/_header.html:77
+msgid "Upload artifact"
+msgstr "העלו פריט"
 
 #: artifacts/templates/artifacts/_header.html:104
 msgid "Museum Collection"
@@ -545,49 +548,36 @@ msgstr "המשך"
 msgid "Donate item"
 msgstr "תרמו פריט"
 
-#: artifacts/templates/artifacts/artifact_detail.html:41
-#: artifacts/templates/artifacts/user_artifact_detail.html:12
-msgid "Read more"
-msgstr "קרא עוד"
-
-#: artifacts/templates/artifacts/artifact_detail.html:51
-#: artifacts/templates/artifacts/user_artifact_detail.html:20
+#: artifacts/templates/artifacts/artifact_detail.html:57
 msgid "More information"
 msgstr "מידע נוסף"
 
-#: artifacts/templates/artifacts/artifact_detail.html:54
-#: artifacts/templates/artifacts/user_artifact_detail.html:23
+#: artifacts/templates/artifacts/artifact_detail.html:62
+#: artifacts/templates/artifacts/user_artifact_detail.html:25
 msgid "Donor name"
 msgstr "שם התורם/משאיל"
 
-#: artifacts/templates/artifacts/artifact_detail.html:56
-#: artifacts/templates/artifacts/user_artifact_detail.html:25
+#: artifacts/templates/artifacts/artifact_detail.html:67
+#: artifacts/templates/artifacts/user_artifact_detail.html:30
 msgid "Origin"
 msgstr "ארץ מקור"
 
-#: artifacts/templates/artifacts/artifact_detail.html:58
-#: artifacts/templates/artifacts/user_artifact_detail.html:27
+#: artifacts/templates/artifacts/artifact_detail.html:72
+#: artifacts/templates/artifacts/user_artifact_detail.html:35
 msgid "Year"
 msgstr "שנה/תקופה"
 
-#: artifacts/templates/artifacts/artifact_detail.html:69
-#: artifacts/templates/artifacts/user_artifact_detail.html:46
-msgid "Technical data about the item"
-msgstr "תיאור טכני"
-
-#: artifacts/templates/artifacts/artifact_detail.html:85
-msgid "Jewish Diaspora"
-msgstr "בית התפוצות"
-
-#: artifacts/templates/artifacts/artifact_detail.html:86
-#: artifacts/templates/artifacts/user_artifact_detail.html:37
+#: artifacts/templates/artifacts/artifact_detail.html:91
 msgid "Displayed"
 msgstr "מוצג במוזיאון"
 
-#: artifacts/templates/artifacts/artifact_detail.html:93
-#: artifacts/templates/artifacts/user_artifact_detail.html:62
-msgid "Artifacts loaded by donors"
-msgstr "פריטים שגולשים העלו"
+#: artifacts/templates/artifacts/artifact_detail.html:91
+msgid "Beit Hatfusot"
+msgstr "בית התפוצות"
+
+#: artifacts/templates/artifacts/artifact_detail.html:96
+msgid "Tags"
+msgstr "תגיות"
 
 #: artifacts/templates/artifacts/artifact_material_list.html:13
 msgid "Add new material"
@@ -663,6 +653,30 @@ msgstr "שם"
 #: artifacts/templates/artifacts/part-of-the-story.html:6
 msgid "Thank you for your part of the story"
 msgstr "תודה שאתם חלק מהסיפור"
+
+#: artifacts/templates/artifacts/user_artifact_detail.html:21
+msgid "Read more"
+msgstr "קרא עוד"
+
+#: artifacts/templates/artifacts/user_artifact_detail.html:51
+msgid "uploaded by"
+msgstr "הועלה ע\"י"
+
+#: artifacts/templates/artifacts/user_artifact_detail.html:53
+msgid "more about community"
+msgstr "עוד על קהילת"
+
+#: artifacts/templates/artifacts/user_artifact_detail.html:56
+msgid "share"
+msgstr "שתפו"
+
+#: artifacts/templates/artifacts/user_artifact_detail.html:72
+msgid "Maybe you would like these"
+msgstr "אולי יעניין אותן גם"
+
+#: artifacts/templates/artifacts/user_artifact_detail.html:73
+msgid "from the same origin"
+msgstr "פריטים מאותו מקום"
 
 #: artifacts/templates/period_multiwidget.html:5
 msgid "Or choose era"
@@ -768,6 +782,12 @@ msgstr "מחיקת סוג הפריט"
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
 
+#~ msgid "Technical data about the item"
+#~ msgstr "תיאור טכני"
+
+#~ msgid "Artifacts loaded by donors"
+#~ msgstr "פריטים שגולשים העלו"
+
 #~ msgid "Log In"
 #~ msgstr "כניסה"
 
@@ -823,9 +843,6 @@ msgstr "יצירת תמונת פריט"
 #~| msgid "Artifact type"
 #~ msgid "Artifact Type"
 #~ msgstr "סוג הפריט"
-
-#~ msgid "Tags"
-#~ msgstr "תגיות"
 
 #, fuzzy
 #~| msgid "Donor name"

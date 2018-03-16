@@ -1,6 +1,6 @@
 *.orig
 *.py[cod]
-.idea/
+/.idea/
 local_settings.py
 /uploads/
 *~
@@ -16,4 +16,3 @@ local/
 bin/
 include/
 db.sqlite3
-/static

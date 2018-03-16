@@ -6,7 +6,7 @@
         {% for artifact in artifacts %}
             <div class="card blue{% if not artifact.is_private %} bh{% endif %}">
                 <a class="d-block" href="{{ artifact|get_slug_or_none }}">
-                    <img class="img-fluid" src="{% private_or_collection_image artifact %}" alt="{{ artifact|bd:'name' }}">
+                    <img class="img-fluid" src="{% private_or_collection_image artifact 'small_thumbnail_vertical' %}" alt="{{ artifact|bd:'name' }}">
                 </a>
                 <div class="card-body">
                     <a class="d-block" href="{{ artifact|get_slug_or_none }}">

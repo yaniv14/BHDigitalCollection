@@ -4,109 +4,115 @@
 {% block body_class %} class="artifact-detail"{% endblock %}
 
 {% block main %}
-<main>
-    <div id="carousel_artifacts" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            {% for image in artifact.images.all %}
-            <li data-target="#carousel_artifacts" data-slide-to="{{forloop.counter0}}" {% if forloop.first %}
-                class="active" {% endif %}>
-                <img class="img-fluid" src="{{ image.image.url }}">
-            </li>
-            {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-            {% for image in artifact.images.all %}
-            <div class="carousel-items1  carousel-item{% if forloop.first %} active{% endif %}"
-                 style="background-image: url({{ image.image.url }});">
+    <main>
+        <div id="carousel_artifacts" class="carousel slide" data-ride="carousel">
+            {% if artifact.images.all|length > 1 %}
+                <ol class="carousel-indicators">
+                    {% for image in artifact.images.all %}
+                        <li data-target="#carousel_artifacts" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}
+                            class="active" {% endif %}>
+                            <img class="img-fluid" src="{{ image.image.url }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            {% endif %}
+            <div class="carousel-inner">
+                {% for image in artifact.images.all %}
+                    <div class="carousel-items1  carousel-item{% if forloop.first %} active{% endif %}"
+                         style="background-image: url({{ image.image.url }});">
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-
+            {% if artifact.images.all|length > 1 %}
+                <a class="carousel-control-prev" href="#carousel_artifacts" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel_artifacts" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            {% endif %}
         </div>
-        <a class="carousel-control-prev" href="#carousel_artifacts" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel_artifacts" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <div class="container text-center">
-        <h1>
-            {{ artifact|bd:'name' }}
-        </h1>
-        <div class="sub-title">
-            {{ artifact.origin_country.name }}, {{ artifact.year_from }}-{{ artifact.year_to }}
-        </div>
-        <p class="description">{{ artifact|bd:'description'|linebreaksbr }}</p>
-        <a class="header-more" href="#">
-            <b>{% trans 'Read more' %}</b>
-        </a>
-
-    </div>
-    <br/>
-    <div class="progress-map mb-4" style="background-image: url({% static 'images/map123.jpg' %});"></div>
-
-    <div class="container">
-        <h3>{% trans 'More information' %}</h3>
-        <div class="row">
-            <div class="col-8">
-                <hr/>
-                <dl class="row">
-                    <dt class="col-sm-3">{% trans 'Donor name' %}</dt>
-                    <dd class="col-sm-9">{{ artifact|bd:'donor_name' }}</dd>
-                </dl>
-                <hr/>
-                <dl class="row">
-                    <dt class="col-sm-3">{% trans 'Origin' %}</dt>
-                    <dd class="col-sm-9">{{ artifact.origin_country.name }}</dd>
-                </dl>
-                <hr/>
-                <dl class="row">
-                    <dt class="col-sm-3">{% trans 'Year' %}</dt>
-                    <dd class="col-sm-9">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
-                </dl>
-                <hr/>
-                <dl class="row">
-                    <dt class="col-sm-3">{% trans 'Artifact material' %}</dt>
-                    <dd class="col-sm-9">
-                        {% for material in artifact.artifact_materials.all %}
-                        {{ material }}
-                        {% endfor %}
-                    </dd>
-                </dl>
-                <hr/>
+        <div class="container text-center">
+            <h1>
+                {{ artifact|bd:'name' }}
+            </h1>
+            <div class="sub-title">
+                {{ artifact.origin_country.name }}, {{ artifact.year_from }}-{{ artifact.year_to }}
             </div>
-
-            <div class="col-4">
-                {% if artifact.is_displayed %}
-                <hr/>
-                <div class="displayed-at"> {% trans 'Displayed' %} {{ artifact|bd:'displayed_at' }}, {% trans 'Jewish Diaspora' %}</div>
-                <hr/>
-                {% endif %}
-                <div class="header-more">
-                    {% trans 'Tags' %}
+            <p class="description">{{ artifact|bd:'description'|linebreaksbr }}</p>
+            {% comment %}
+            <a class="header-more" href="#">
+                <b>{% trans 'Read more' %}</b>
+            </a>
+            {% endcomment %}
+        </div>
+        <br/>
+        {% if artifact.route_map %}
+            <div class="progress-map mb-4" style="background-image: url({{ artifact.route_map.url }});"></div>
+        {% endif %}
+        <div class="container">
+            <h3>{% trans 'More information' %}</h3>
+            <div class="row">
+                <div class="col-8">
+                    <hr/>
+                    <dl class="row">
+                        <dt class="col-sm-3">{% trans 'Donor name' %}</dt>
+                        <dd class="col-sm-9">{{ artifact|bd:'donor_name' }}</dd>
+                    </dl>
+                    <hr/>
+                    <dl class="row">
+                        <dt class="col-sm-3">{% trans 'Origin' %}</dt>
+                        <dd class="col-sm-9">{{ artifact.origin_country.name }}</dd>
+                    </dl>
+                    <hr/>
+                    <dl class="row">
+                        <dt class="col-sm-3">{% trans 'Year' %}</dt>
+                        <dd class="col-sm-9">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
+                    </dl>
+                    <hr/>
+                    <dl class="row">
+                        <dt class="col-sm-3">{% trans 'Artifact material' %}</dt>
+                        <dd class="col-sm-9">
+                            {% for material in artifact.artifact_materials.all %}
+                                {{ material }}
+                            {% endfor %}
+                        </dd>
+                    </dl>
+                    <hr/>
                 </div>
-
-                {% for tag in artifact.get_all_tags %}
-                <span class="badge badge-secondary badge-color">
+                <div class="col-4">
+                    {% if artifact.is_displayed %}
+                        <hr/>
+                        <div class="displayed-at">
+                            <i class="fas fa-map-marker"></i>&nbsp;&nbsp;
+                            {% trans 'Displayed' %} {{ artifact|bd:'displayed_at'|default_if_none:'' }}, {% trans 'Beit Hatfusot' %}
+                        </div>
+                        <hr/>
+                    {% endif %}
+                    <div class="header-more">
+                        {% trans 'Tags' %}
+                    </div>
+                    {% for tag in artifact.get_all_tags %}
+                        <span class="badge badge-secondary badge-color">
                     {{ tag }}
                 </span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% comment %}
+        <div class="container">
+            <h3>{% trans 'Artifacts loaded by donors' %}</h3>
+            <div class="row">
+                {% for image in artifact.images.all %}
+                    <div class="col-6 col-md-3">
+                        <img src="{{ image.image.url }}" class="rounded img-thumbnail" alt="{{ artifact.name }}">
+                    </div>
                 {% endfor %}
             </div>
         </div>
-    </div>
-
-    <div class="container">
-        <h3>{% trans 'Artifacts loaded by donors' %}</h3>
-        <div class="row">
-            {% for image in artifact.images.all %}
-            <div class="col-6 col-md-3">
-                <img src="{{ image.image.url }}" class="rounded img-thumbnail" alt="{{ artifact.name }}">
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-</main>
+        {% endcomment %}
+    </main>
 {% endblock %}

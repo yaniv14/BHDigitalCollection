@@ -5,6 +5,35 @@
 
 {% block main %}
     <main>
+        <div id="carousel_artifacts" class="carousel slide" data-ride="carousel">
+            {% if artifact.images.all|length > 1 %}
+                <ol class="carousel-indicators">
+                    {% for image in artifact.images.all %}
+                        <li data-target="#carousel_artifacts" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}
+                            class="active" {% endif %}>
+                            <img class="img-fluid" src="{{ image.image.url }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            {% endif %}
+            <div class="carousel-inner">
+                {% for image in artifact.images.all %}
+                    <div class="carousel-items1  carousel-item{% if forloop.first %} active{% endif %}"
+                         style="background-image: url({{ image.image.url }});">
+                    </div>
+                {% endfor %}
+            </div>
+            {% if artifact.images.all|length > 1 %}
+                <a class="carousel-control-prev" href="#carousel_artifacts" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel_artifacts" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            {% endif %}
+        </div>
         <div class="container">
             <h1 class="artifact-name">
                 {{ artifact|bd:'name' }}
@@ -17,9 +46,11 @@
             <div class="row">
                 <div class="col-9">
                     <div class="description">{{ artifact|bd:'description'|linebreaksbr }}</div>
+                    {% comment %}
                     <a class="header-more" href="#">
                        <b>{% trans 'Read more' %}</b>
                     </a>
+                    {% endcomment %}
                     <hr/>
                     <dl class="row">
                         <dt class="col-sm-4">{% trans 'Donor name' %}</dt>
@@ -40,7 +71,7 @@
                         <dt class="col-sm-4">{% trans 'Artifact material' %}</dt>
                         <dd class="col-sm-8">
                             {% for material in artifact.artifact_materials.all %}
-                            {{ material }}
+                                {{ material }}
                             {% endfor %}
                         </dd>
                     </dl>
@@ -48,28 +79,33 @@
                 </div>
                 <div class="col-3">
                     <div class="upload-share">
-                        <div>  {% trans 'uploaded by' %}  {{ artifact|bd:'donor_name' }}  </div>
-                        <div>
-                            <a  href="#">  {% trans 'more about community' %}  {{ artifact.origin_country.name }} </a>
-                        </div>
-                        <div>
-                             <a  href="#"> {% trans 'share' %} </a>
-                        </div>
+                        <p>
+                            {% trans 'uploaded by' %} {{ artifact|bd:'donor_name' }}
+                        </p>
+                        <p>
+                            <a href="#">
+                                {% trans 'more about community' %} {{ artifact.origin_country.name }}
+                            </a>
+                        </p>
+                        <p>
+                             <a href="#">
+                                 {% trans 'share' %}
+                             </a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="row">
             {% for tag in artifact.get_all_tags %}
                 <span class="tag-rect">
                     {{ tag }}
                 </span>
             {% endfor %}
-            </div>
         </div>
         <div class="container">
             <h4 class="header-more">{% trans 'Maybe you would like these' %}</h4>
+            {% comment %}
             <h4 class="header-more">{% trans 'from the same origin' %}</h4>
             <div class="row">
                 {% for image in artifact.images.all %}
@@ -79,6 +115,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {% endcomment %}
         </div>
     </main>
 {% endblock %}

@@ -1,6 +1,7 @@
 Django==2.0.3
 django-authtools==1.6.0
-django-countries==5.1.1
+#django-countries==5.1.1
+#git+https://github.com/yaniv14/django-countries
 django-extensions==1.9.9
 django-taggit==0.22.1
 ipython==6.2.1
