@@ -154,7 +154,8 @@ class Artifact(models.Model):
     def get_all_tags(self):
         artifact_type = [self.artifact_type.title_he] if self.artifact_type else []
         artifact_materials = [x.title_he for x in self.artifact_materials.all()]
-        return artifact_materials + artifact_type
+        artifact_origin = [self.origin_country.name ] if self.origin_country else []
+        return artifact_materials + artifact_type + artifact_origin
 
     def get_cover_image(self):
         image = self.images.filter(is_cover=True).first()

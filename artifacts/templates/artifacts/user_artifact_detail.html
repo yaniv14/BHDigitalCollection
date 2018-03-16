@@ -1,65 +1,76 @@
 {% extends 'artifacts/base.html' %}
 {% load static i18n bhdigitalcollection %}
 
+{% block body_class %} class="artifact-detail"{% endblock %}
+
 {% block main %}
     <main>
-        <div class="container text-center">
-            <h1>
+        <div class="container">
+            <h1 class="artifact-name">
                 {{ artifact|bd:'name' }}
             </h1>
-            <p>{{ artifact|bd:'description'|linebreaksbr }}</p>
-            <a href="#">
-                <b>{% trans 'Read more' %}</b>
-            </a>
+            <div class="sub-title">
+                {{ artifact.origin_country.name }}, {{ artifact.year_from }}-{{ artifact.year_to }}
+            </div>
         </div>
-        <div class="progress-map mb-4" style="background-image: url({% static 'images/map123.jpg' %});"></div>
-
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h3>{% trans 'More information' %}</h3>
+                <div class="col-9">
+                    <div class="description">{{ artifact|bd:'description'|linebreaksbr }}</div>
+                    <a class="header-more" href="#">
+                       <b>{% trans 'Read more' %}</b>
+                    </a>
                     <hr/>
                     <dl class="row">
                         <dt class="col-sm-4">{% trans 'Donor name' %}</dt>
                         <dd class="col-sm-8">{{ artifact|bd:'donor_name' }}</dd>
+                    </dl>
+                    <hr/>
+                    <dl class="row">
                         <dt class="col-sm-4">{% trans 'Origin' %}</dt>
-                        <dd class="col-sm-8">{{ artifact.origin_country }}</dd>
+                        <dd class="col-sm-8">{{ artifact.origin_country.name }}</dd>
+                    </dl>
+                    <hr/>
+                    <dl class="row">
                         <dt class="col-sm-4">{% trans 'Year' %}</dt>
                         <dd class="col-sm-8">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
+                    </dl>
+                    <hr/>
+                    <dl class="row">
                         <dt class="col-sm-4">{% trans 'Artifact material' %}</dt>
-                        <dd class="col-sm-8">{{ artifact.artifact_materials.all }}</dd>
+                        <dd class="col-sm-8">
+                            {% for material in artifact.artifact_materials.all %}
+                            {{ material }}
+                            {% endfor %}
+                        </dd>
                     </dl>
                     <hr/>
                 </div>
-
-                <div class="col">
-                    {% if artifact.is_displayed %}
-                        {% trans 'Displayed' %}  {{ artifact|bd:'displayed_at' }}
-                    {% endif %}
+                <div class="col-3">
+                    <div class="upload-share">
+                        <div>  {% trans 'uploaded by' %}  {{ artifact|bd:'donor_name' }}  </div>
+                        <div>
+                            <a  href="#">  {% trans 'more about community' %}  {{ artifact.origin_country.name }} </a>
+                        </div>
+                        <div>
+                             <a  href="#"> {% trans 'share' %} </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="container">
             <div class="row">
-                <div class="col-12 mb-1">
-                    <h4>{% trans 'Technical data about the item' %}</h4>
-                    <p>
-                        {{ artifact|bd:'technical_data'|linebreaksbr }}
-                    </p>
-                </div>
-                <div class="col-12 mb-3">
-                    {% for tag in artifact.get_all_tags %}
-                        <span class="badge badge-pill badge-secondary">
-                            {{ tag }}
-                        </span>
-                    {% endfor %}
-                </div>
+            {% for tag in artifact.get_all_tags %}
+                <span class="tag-rect">
+                    {{ tag }}
+                </span>
+            {% endfor %}
             </div>
         </div>
-
         <div class="container">
-            <h4>{% trans 'Artifacts loaded by donors' %}</h4>
+            <h4 class="header-more">{% trans 'Maybe you would like these' %}</h4>
+            <h4 class="header-more">{% trans 'from the same origin' %}</h4>
             <div class="row">
                 {% for image in artifact.images.all %}
                     <div class="col-6 col-md-3">
@@ -68,10 +79,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
-        <div class="container">
-            <h2>{% trans 'you are part of the story' %}</h2>
-            <p style="border-radius: 50px;color:gray;background:white;width:150px;margin:10px;text-align:center;">{% trans 'Upload artifact' %}</p>
         </div>
     </main>
 {% endblock %}

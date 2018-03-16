@@ -1,0 +1,18 @@
+{% load i18n static bhdigitalcollection %}
+<footer>
+    <div class="footer-top" style="background-image: url({% private_or_collection_image artifact 'footer' %})">
+        <div class="container">
+            <div class="part-of-the-story text-center">
+                <p>
+                    {% trans 'you are part of the story' %}
+                </p>
+                <p>
+                    {% trans 'Do you have an interesting item' %}?
+                </p>
+                <a class="btn square-btn btn-outline-blue" href="{% url 'artifacts:create_step_one' %}">
+                    {% trans 'Share with us' %}
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

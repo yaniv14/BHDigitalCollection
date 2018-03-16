@@ -31,13 +31,15 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
     <div class="container text-center">
         <h1>
             {{ artifact|bd:'name' }}
         </h1>
+        <div class="sub-title">
+            {{ artifact.origin_country.name }}, {{ artifact.year_from }}-{{ artifact.year_to }}
+        </div>
         <p class="description">{{ artifact|bd:'description'|linebreaksbr }}</p>
-        <a href="#">
+        <a class="header-more" href="#">
             <b>{% trans 'Read more' %}</b>
         </a>
 
@@ -46,17 +48,26 @@
     <div class="progress-map mb-4" style="background-image: url({% static 'images/map123.jpg' %});"></div>
 
     <div class="container">
+        <h3>{% trans 'More information' %}</h3>
         <div class="row">
-            <div class="col-12">
-                <h3>{% trans 'More information' %}</h3>
+            <div class="col-8">
                 <hr/>
                 <dl class="row">
                     <dt class="col-sm-3">{% trans 'Donor name' %}</dt>
                     <dd class="col-sm-9">{{ artifact|bd:'donor_name' }}</dd>
+                </dl>
+                <hr/>
+                <dl class="row">
                     <dt class="col-sm-3">{% trans 'Origin' %}</dt>
-                    <dd class="col-sm-9">{{ artifact.origin_country }}</dd>
+                    <dd class="col-sm-9">{{ artifact.origin_country.name }}</dd>
+                </dl>
+                <hr/>
+                <dl class="row">
                     <dt class="col-sm-3">{% trans 'Year' %}</dt>
                     <dd class="col-sm-9">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
+                </dl>
+                <hr/>
+                <dl class="row">
                     <dt class="col-sm-3">{% trans 'Artifact material' %}</dt>
                     <dd class="col-sm-9">
                         {% for material in artifact.artifact_materials.all %}
@@ -65,26 +76,23 @@
                     </dd>
                 </dl>
                 <hr/>
-                <div class="col-12 mb-1">
-                    <h3>{% trans 'Technical data about the item' %}</h3>
-                    <p class="description">
-                        {{ artifact|bd:'technical_data'|linebreaksbr }}
-                    </p>
-                </div>
-                <div class="col-12 mb-3">
-                    {% for tag in artifact.get_all_tags %}
-                    <span class="badge badge-pill badge-secondary">
-                            {{ tag }}
-                        </span>
-                    {% endfor %}
-                </div>
             </div>
 
-            <div class="col">
+            <div class="col-4">
                 {% if artifact.is_displayed %}
-                <h3>{% trans 'Jewish Diaspora' %}</h3>
-                <p>{% trans 'Displayed' %} {{ artifact|bd:'displayed_at' }}</p>
+                <hr/>
+                <div class="displayed-at"> {% trans 'Displayed' %} {{ artifact|bd:'displayed_at' }}, {% trans 'Jewish Diaspora' %}</div>
+                <hr/>
                 {% endif %}
+                <div class="header-more">
+                    {% trans 'Tags' %}
+                </div>
+
+                {% for tag in artifact.get_all_tags %}
+                <span class="badge badge-secondary badge-color">
+                    {{ tag }}
+                </span>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -99,13 +107,6 @@
             {% endfor %}
         </div>
     </div>
-    <div class="part-of-the-story text-center">
-        <p class="font-bold font-36">
-            {% trans 'you are part of the story' %}
-        </p>
-        <a class="btn btn-dark-gray round-btn" href="{% url 'artifacts:create_step_one' %}">
-            {% trans 'Upload artifact' %}
-        </a>
-    </div>
+
 </main>
 {% endblock %}
