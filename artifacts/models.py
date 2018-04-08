@@ -55,6 +55,8 @@ class Pages(object):
 class ArtifactType(models.Model):
     title_he = models.CharField(_('Title Hebrew'), max_length=250)
     title_en = models.CharField(_('Title English'), max_length=250)
+    image = models.ImageField(_('Image'), upload_to=upload_func, blank=True, null=True,
+                              validators=[validate_image_file_extension])
 
     def __str__(self):
         return self.title_he if self.title_he else self.title_en
@@ -154,7 +156,7 @@ class Artifact(models.Model):
     def get_all_tags(self):
         artifact_type = [self.artifact_type.title_he] if self.artifact_type else []
         artifact_materials = [x.title_he for x in self.artifact_materials.all()]
-        artifact_origin = [self.origin_country.name ] if self.origin_country else []
+        artifact_origin = [self.origin_country.name] if self.origin_country else []
         return artifact_materials + artifact_type + artifact_origin
 
     def get_cover_image(self):

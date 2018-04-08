@@ -1,2 +1,22 @@
 {% load i18n static bhdigitalcollection %}
-<footer></footer>
+<footer>
+    <div class="main-footer footer-top" style="background-image: url({{ footer_cover }})">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-8">
+                    <p>{% lorem %}</p>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="part-of-the-story text-center">
+                        <p>
+                            {% trans 'You are part of the story' %}
+                        </p>
+                        <a class="btn square-btn btn-outline-blue" href="{% url 'artifacts:create_step_one' %}">
+                            {% trans 'Upload artifact' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

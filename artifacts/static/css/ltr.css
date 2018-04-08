@@ -72,6 +72,15 @@ p.page-banner-credit {
     margin-right: 0.5rem;
 }
 
+ul.form-control li {
+    padding-left: 20px;
+    float: left;
+}
+
+ul.form-control li input[type="checkbox"] {
+    left: 0;
+}
+
 /* NoUiSlider */
 .noUi-connect, .noUi-origin {
     right: 15px;

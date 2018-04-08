@@ -166,7 +166,7 @@ class ArtifactCreateStepOneView(BHUIMixin, FormView):
     form_class = UserForm
     success_url = reverse_lazy('artifacts:create_step_two')
     page_title = _('Artifact create')
-    page_name = 'artifact_create'
+    page_name = 'artifact_create_1'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -208,8 +208,8 @@ class ArtifactCreateStepOneView(BHUIMixin, FormView):
 class ArtifactCreateStepTwoView(BHUIMixin, CreateView):
     template_name = 'artifacts/artifact_create_step_two.html'
     model = Artifact
-    page_title = _('Artifact detail')
-    page_name = 'artifact_detail'
+    page_title = _('Artifact create')
+    page_name = 'artifact_create_2'
     form_description = _('Some Artifact Description')
 
     def get(self, request, *args, **kwargs):

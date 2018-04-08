@@ -96,45 +96,47 @@
     {% if filterable %}
         <div class="header-bottom">
             <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 sps" data-sps-offset="691">
-                <div class="collapse navbar-collapse" id="bottom-navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item{% if page_name == 'home' %} blue active{% endif %}">
-                            <a class="nav-link" href="{% url 'home' %}">
-                                {% trans 'Museum Collection' %}{% if page_name == 'home' %}
-                                    <span class="sr-only">(current)</span>{% endif %}
-                            </a>
-                        </li>
-                        <li class="nav-item{% if page_name == 'users_artifact_list' %} red active{% endif %}">
-                            <a class="nav-link" href="{% url 'artifacts:users' %}">
-                                {% trans 'Users Collection' %}{% if page_name == 'users_artifact_list' %}
-                                    <span class="sr-only">(current)</span>{% endif %}</a>
-                        </li>
-                        <li class="nav-item{% if page_name == 'all_artifact_list' %} gray active{% endif %}">
-                            <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">
-                                {% trans 'All' %}{% if page_name == 'all_artifact_list' %}
-                                    <span class="sr-only">(current)</span>{% endif %}</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto filter-result">
-                        {% if filter_type %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% get_base_url current_url_name %}">
-                                    <span class="filter-indicator">x</span> {% blocktrans with x=filter_type %}Filter by {{ x }}{% endblocktrans %}
+                <div class="container p-0">
+                    <div class="collapse navbar-collapse" id="bottom-navbar">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item{% if page_name == 'home' %} blue active{% endif %}">
+                                <a class="nav-link" href="{% url 'home' %}">
+                                    {% trans 'Museum Collection' %}{% if page_name == 'home' %}
+                                        <span class="sr-only">(current)</span>{% endif %}
                                 </a>
                             </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#filters" id="filterDropdown" role="button"
-                                   data-toggle="collapse" aria-controls="filters" aria-expanded="false">
-                                    <span class="filter-indicator">+</span> {% trans 'Filters' %}
-                                </a>
+                            <li class="nav-item{% if page_name == 'users_artifact_list' %} red active{% endif %}">
+                                <a class="nav-link" href="{% url 'artifacts:users' %}">
+                                    {% trans 'Users Collection' %}{% if page_name == 'users_artifact_list' %}
+                                        <span class="sr-only">(current)</span>{% endif %}</a>
                             </li>
-                        {% endif %}
-                    </ul>
+                            <li class="nav-item{% if page_name == 'all_artifact_list' %} gray active{% endif %}">
+                                <a class="nav-link" href="{% url 'artifacts:all_artifacts' %}">
+                                    {% trans 'All' %}{% if page_name == 'all_artifact_list' %}
+                                        <span class="sr-only">(current)</span>{% endif %}</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto filter-result">
+                            {% if filter_type %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% get_base_url current_url_name %}">
+                                        <span class="filter-indicator">x</span> {% blocktrans with x=filter_type %}Filter by {{ x }}{% endblocktrans %}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#filters" id="filterDropdown" role="button"
+                                       data-toggle="collapse" aria-controls="filters" aria-expanded="false">
+                                        <span class="filter-indicator">+</span> {% trans 'Filters' %}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </nav>
             {% if not filter_type %}
-                <div class="collapse" id="filters">
+                <div class="collapse sps" id="filters" data-sps-offset="691">
                     <a class="filter-item" href="?filter=time">
                         {% trans 'Filter by time' %}
                     </a>

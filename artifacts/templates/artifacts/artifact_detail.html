@@ -18,7 +18,7 @@
             {% endif %}
             <div class="carousel-inner">
                 {% for image in artifact.images.all %}
-                    <div class="carousel-items1  carousel-item{% if forloop.first %} active{% endif %}"
+                    <div class="carousel-items1 carousel-item{% if forloop.first %} active{% endif %}"
                          style="background-image: url({{ image.image.url }});">
                     </div>
                 {% endfor %}

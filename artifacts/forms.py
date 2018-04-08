@@ -47,7 +47,7 @@ class UserArtifactForm(forms.ModelForm):
             # 'year_to': forms.TextInput(attrs={'class': 'form-control'}),
             'description_he': forms.Textarea(attrs={'class': 'form-control'}),
             'artifact_type': forms.Select(attrs={'class': 'form-control'}),
-            'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'artifact_materials': forms.CheckboxSelectMultiple(attrs={'class': 'form-control clearfix'}),
             'technical_data_he': forms.Textarea(attrs={'class': 'form-control'}),
             'donor_name_he': forms.TextInput(attrs={'class': 'form-control'}),
         }

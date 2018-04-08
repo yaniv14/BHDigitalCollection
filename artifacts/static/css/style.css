@@ -604,6 +604,11 @@ footer .footer-top {
     position: relative;
 }
 
+footer .main-footer.footer-top {
+    height: calc(100vw / 9);
+    background-color: #ccc;
+}
+
 .no-btn {
     background-color: transparent;
     border: 0;
@@ -623,6 +628,10 @@ footer .footer-top {
 #filters {
     height: 185px;
     width: 100%;
+}
+
+#filters.fixed-top {
+    top: 75px;
 }
 
 #filters.collapsing {
@@ -904,6 +913,18 @@ textarea.form-control:focus {
     font-weight: 300;
 }
 
+ul.form-control li {
+    width: 25%;
+    position: relative;
+    list-style-type: none;
+}
+
+ul.form-control li input[type="checkbox"] {
+    position: absolute;
+    width: auto;
+    top: 7px;
+}
+
 select[name^="phone_number"].form-control:not([size]):not([multiple]) {
     height: calc(2rem + 3px);
 }
@@ -1066,6 +1087,7 @@ main {
 
 .steps {
     clear: both;
+    margin: 0 200px;
 }
 
 .step {
