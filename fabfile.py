@@ -19,6 +19,7 @@ env.project_name = "bh"
 env.clone_url = "https:///github.com/yaniv14/BHDigitalCollection.git"
 env.code_dir = f"/home/sysop/{env.project_name}"
 env.static_path = f"{env.code_dir}/collected_static/"
+env.media_path = f"{env.code_dir}/uploads/"
 
 env.app_name = "bh"
 
@@ -243,6 +244,10 @@ server {{
 
     location /static/ {{
         alias {env.static_path};
+    }}
+
+    location /uploads/ {{
+        alias {env.media_path};
     }}
 
     location / {{
