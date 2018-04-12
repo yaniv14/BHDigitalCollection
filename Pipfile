@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+"fabric3" = "*"
+
+[packages]
+django-authtools = "*"
+django-extensions = "*"
+django-countries = { git = 'https://github.com/SmileyChris/django-countries.git', ref = 'f4fc1d98895255a4bcdd41a6e4c2eb81336e0172' }
+django-taggit = "*"
+ipython = "*"
+"psycopg2-binary" = "*"
+pycountry = "*"
+Django = "*"
+Pillow = "*"
+
+[requires]
+python_version = "3.6"
