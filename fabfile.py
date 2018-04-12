@@ -145,6 +145,13 @@ def virtualenv():
 
 
 @task
+def create_media_folder():
+    with cd(env.code_dir):
+        run('mkdir -p uploads')
+        sudo('chown -R www-data uploads')
+
+
+@task
 def upgrade_pip():
     with virtualenv():
         run("pip install --upgrade pip", pty=False)

@@ -205,8 +205,8 @@ class ArtifactImage(models.Model):
     def get_thumb_path(self, k):
         name, ext = os.path.splitext(self.image.name)
         path, image_name = os.path.split(name)
-        if not os.path.exists(f"{path}/CACHE"):
-            os.makedirs(f"{path}/CACHE")
+        # if not os.path.exists(f"{path}/CACHE"):
+        #     os.makedirs(f"{path}/CACHE")
         return f"{path}/CACHE/{image_name}_{k}{ext}"
 
     def generate_thumbnails(self):
