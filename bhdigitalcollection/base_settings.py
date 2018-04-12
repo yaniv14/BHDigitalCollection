@@ -149,6 +149,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
 
 # Email settings
-DEFAULT_FROM_EMAIL = "BHDigitalCollection <no-reply@bh.org.il>"
+DEFAULT_FROM_EMAIL = "BHDigitalCollection <no-reply@bh.oglam.hasadna.org.il>"
 EMAIL_SUBJECT_PREFIX = '[BHDigitalCollection] '
 EMAIL_USE_LOCALTIME = True
+SERVER_EMAIL = "admin@bh.oglam.hasadna.org.il"
