@@ -106,6 +106,10 @@ ul.form-control li input[type="checkbox"] {
     margin-left: 30px;
 }
 
+.artifact-set .card.bh::after {
+    left: 1rem;
+}
+
 .card.small {
     float: right;
 }

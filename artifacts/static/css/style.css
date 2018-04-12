@@ -990,6 +990,17 @@ main {
     width: calc(25% - 30px);
 }
 
+.artifact-set .card.bh::after {
+    content: '';
+    background: url(/static/images/symbol.svg) no-repeat center;
+    background-size: cover;
+    width: 26px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    top: 1rem;
+}
+
 .artifact-set .card a.img-container {
     overflow: hidden;
     /*padding: 1rem;*/
