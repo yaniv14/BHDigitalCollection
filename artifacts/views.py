@@ -72,17 +72,17 @@ class HomeView(BHUIMixin, ListView):
             return LocationForm(initial={'filter': filter_type}, bidi=translation.get_language_bidi())
         return None
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        if self.request.user.is_authenticated:
-            if self.request.user.is_superuser:
-                return qs.filter(is_private=False)
-        return qs.filter(status=ArtifactStatus.APPROVED, is_private=False)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['none_featured'] = Artifact.objects.filter(status=ArtifactStatus.APPROVED, is_private=False,
-                                                           is_featured=False)
+        artifacts = Artifact.objects.filter(is_private=False)
+        if self.request.user.is_authenticated:
+            if not self.request.user.is_superuser:
+                artifacts = artifacts.filter(status=ArtifactStatus.APPROVED)
+        else:
+            artifacts = artifacts.filter(status=ArtifactStatus.APPROVED)
+
+        context['featured'] = artifacts.filter(is_featured=True)
+        context['none_featured'] = artifacts.filter(is_featured=False)
         return context
 
 
