@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>dishes </title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M31.0125334,3.24038236 L30.9080049,4.23490426 C30.0997922,11.9245341 23.2109297,17.503025 15.5212999,16.6948123 L12.5377342,16.3812269 C4.84810432,15.5730142 -0.730386528,8.68415176 0.0778261387,0.994521895 L0.182354602,-1.98729921e-14 L31.0125334,3.24038236 Z" id="path-1"></path>
+        <path d="M31.0125334,3.24038236 L30.9080049,4.23490426 C30.0997922,11.9245341 23.2109297,17.503025 15.5212999,16.6948123 L12.5377342,16.3812269 C4.84810432,15.5730142 -0.730386528,8.68415176 0.0778261387,0.994521895 L0.182354602,2.07500683e-13 L31.0125334,3.24038236 Z" id="path-2"></path>
+        <path d="M31,0 L31,1 C31,8.7319865 24.7319865,15 17,15 L14,15 C6.2680135,15 9.46895252e-16,8.7319865 0,1 L0,0 L31,0 Z" id="path-3"></path>
+    </defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dishes-">
+            <g id="Group-6-Copy" transform="translate(24.286899, 17.053214) rotate(-4.000000) translate(-24.286899, -17.053214) translate(8.286899, 8.553214)">
+                <g id="Combined-Shape-Copy">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <path stroke="#AFC0CB" stroke-width="1" d="M30.4630082,3.68537908 L0.627351318,0.549525179 L0.575087086,1.04678613 C-0.204260842,8.46178636 5.17499819,15.104618 12.5899984,15.883966 L15.5735641,16.1975514 C22.9885643,16.9768993 29.631396,11.5976403 30.4107439,4.18264003 L30.4630082,3.68537908 Z"></path>
+                </g>
+                <path d="M0.988335575,3.57763126 L29.570733,6.27636173" id="Line-6" stroke="#AFC0CB" stroke-linecap="square"></path>
+            </g>
+            <g id="Group-6" transform="translate(23.286899, 27.053214) rotate(2.000000) translate(-23.286899, -27.053214) translate(7.286899, 18.553214)">
+                <g id="Combined-Shape-Copy">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <path stroke="#AFC0CB" stroke-width="1" d="M30.4630082,3.68537908 L0.627351318,0.549525179 L0.575087086,1.04678613 C-0.204260842,8.46178636 5.17499819,15.104618 12.5899984,15.883966 L15.5735641,16.1975514 C22.9885643,16.9768993 29.631396,11.5976403 30.4107439,4.18264003 L30.4630082,3.68537908 Z"></path>
+                </g>
+                <path d="M0.883679605,3.57580449 L29.4660771,6.27453495" id="Line-6" stroke="#AFC0CB" stroke-linecap="square"></path>
+            </g>
+            <g id="Group-7" transform="translate(7.000000, 29.000000)">
+                <g id="Combined-Shape-Copy-2">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <path stroke="#AFC0CB" stroke-width="1" d="M30.5,0.5 L0.5,0.5 L0.5,1 C0.5,8.45584412 6.54415588,14.5 14,14.5 L17,14.5 C24.4558441,14.5 30.5,8.45584412 30.5,1 L30.5,0.5 Z"></path>
+                </g>
+                <path d="M1.5,3.5 L29.5,3.5" id="Line-5" stroke="#AFC0CB" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>other hover-selected</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="other-hover-selected" stroke="#009DB2">
+            <g id="Group-10" transform="translate(3.000000, 6.000000)">
+                <rect id="Rectangle-24" x="6.5" y="14.5" width="28" height="23"></rect>
+                <rect id="Rectangle-25" x="14.5" y="19.5" width="12" height="3" rx="1.5"></rect>
+                <path d="M20.5,5.5 L20.5,0.5" id="Line-7" stroke-linecap="square"></path>
+                <path d="M25,7.14495755 L28.0869745,3" id="Line-8" stroke-linecap="square"></path>
+                <path d="M12.4565127,7.14495755 L15.5434873,3" id="Line-8-Copy" stroke-linecap="square" transform="translate(14.000000, 5.072479) scale(-1, 1) translate(-14.000000, -5.072479) "></path>
+                <path d="M0.5,37.5 L40.5,37.5" id="Line-11" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

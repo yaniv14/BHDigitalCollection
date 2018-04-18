@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>clothes hover-selected</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="clothes-hover-selected" stroke="#009DB2">
+            <g id="Group-9" transform="translate(4.000000, 7.000000)">
+                <path d="M19.5,0.5 L26.4421832,17.5" id="Line-7-Copy-2" transform="translate(23.000000, 9.000000) scale(-1, 1) translate(-23.000000, -9.000000) "></path>
+                <path d="M12.5,0.5 L19.4421832,17.5" id="Line-7-Copy-3"></path>
+                <polygon id="Line-8-Copy-3" stroke-linecap="square" points="8.42725877 36.497602 30.621582 36.497602 30.621582 12.4884644 34.9099121 12.4884644 38.3449707 8.08786011 30.621582 2.12988281 26.3995974 0.488525391 12.6601562 0.488525391 7.95758057 2.69348145 0.698883057 8.08786011 4.0859375 12.4884644 8.50931032 12.4884644"></polygon>
+                <path d="M19.5,17.5 L19.5,33.5" id="Line-9" stroke-linecap="square"></path>
+                <path d="M8.5,33.5 L30.5249844,33.5" id="Line-10" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

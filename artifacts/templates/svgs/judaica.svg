@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="47px" viewBox="0 0 47 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>judaica</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="judaica" stroke="#AFC0CB">
+            <g id="Group-5" transform="translate(7.000000, 5.000000)">
+                <g id="Group-3" transform="translate(16.000000, 2.000000)">
+                    <polyline id="Path-6" points="5 0 5 6.80062799 0.450098314 10.7203235"></polyline>
+                    <polyline id="Path-6-Copy" points="9 0 9 7.80062799 0.507068328 14.8273778"></polyline>
+                    <polyline id="Path-6-Copy-2" points="13 0 13 8.80062799 0.407714844 19.5964355"></polyline>
+                    <polyline id="Path-6-Copy-3" points="17 0 17 9.80062799 0.736083984 24.1477051"></polyline>
+                </g>
+                <g id="Group-3" transform="translate(8.500000, 14.500000) scale(-1, 1) translate(-8.500000, -14.500000) translate(0.000000, 2.000000)">
+                    <polyline id="Path-6" points="5 0 5 6.80062799 0.450098314 10.7203235"></polyline>
+                    <polyline id="Path-6-Copy" points="9 0 9 7.80062799 0.507068328 14.8273778"></polyline>
+                    <polyline id="Path-6-Copy-2" points="13 0 13 8.80062799 0.407714844 19.5964355"></polyline>
+                    <polyline id="Path-6-Copy-3" points="17 0 17 9.80062799 0.736083984 24.1477051"></polyline>
+                </g>
+                <path d="M16.5,0.5 C16.5,27.0383323 16.5,39.6647158 16.5,38.3791504" id="Line-3" stroke-linecap="square"></path>
+                <path d="M11.5,38.5 L21.5,38.5" id="Line-4" stroke-linecap="square"></path>
+            </g>
+            <circle id="Oval-10" fill="#FFFFFF" cx="23.5" cy="31.5" r="1.5"></circle>
+        </g>
+    </g>
+</svg>
