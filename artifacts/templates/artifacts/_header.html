@@ -1,7 +1,7 @@
 {% load i18n static bhdigitalcollection %}
 
 <header>
-    <div class="header-top clearfix{% if not page_banner %} no-banner{% endif %}"{% if page_banner %} style="background-image: url({{ page_banner.image.url }});"{% endif %}>
+    <div class="header-top clearfix{% if not page_banner %} no-banner{% endif %}"{% if page_banner %} style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url({{ page_banner.image.url }});"{% endif %}>
         <div class="nav-toggle">
             <div class="nav-toggle-bar"></div>
         </div>
@@ -81,10 +81,10 @@
             {% if page_banner %}
                 <div class="banner-text">
                     <h1 class="page-banner-title suezone-font">
-                        {{ page_banner|bd:'main_text'|default_if_none:'' }}
+                        {{ page_banner|bd:'main_text' }}
                     </h1>
                     <h2 class="page-banner-subtitle arimo-font">
-                        {{ page_banner|bd:'description'|default_if_none:'' }}
+                        {{ page_banner|bd:'description' }}
                     </h2>
                 </div>
                 <p class="page-banner-credit">

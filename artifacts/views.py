@@ -93,6 +93,8 @@ class ArtifactUsersListView(BHUIMixin, ListView):
     page_title = _('Users artifacts list')
     page_name = 'users_artifact_list'
     page_banner = PageBanner.objects.filter(active=True, page='users_collections').order_by('?').first()
+    if not page_banner:
+        page_banner = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
     filterable = True
 
     def get_queryset(self):
@@ -126,6 +128,8 @@ class ArtifactFullListView(BHUIMixin, ListView):
     page_name = 'all_artifact_list'
     filterable = True
     page_banner = PageBanner.objects.filter(active=True, page='all_collections').order_by('?').first()
+    if not page_banner:
+        page_banner = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
 
     def set_filter_form(self):
         filter_type = self.request.GET.get('filter', None)

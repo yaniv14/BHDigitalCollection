@@ -90,6 +90,9 @@ def get_origin_image(origin_id):
 @register.filter
 def bd(instance, field):
     lang = translation.get_language()[:2]
+    res = getattr(instance, field + "_" + lang)
+    if not res:
+        return ''
     return getattr(instance, field + "_" + lang)
 
 

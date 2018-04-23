@@ -130,6 +130,10 @@ ul.form-control li input[type="checkbox"] {
     left: -2rem;
 }
 
+footer .footer-top .footer-text {
+    padding-left: 5rem;
+}
+
 /* Responsive */
 @media (min-width: 576px) {
 }

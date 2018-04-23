@@ -116,6 +116,10 @@ ul.form-control li input[type="checkbox"] {
     right: -2rem;
 }
 
+footer .footer-top .footer-text {
+    padding-right: 5rem;
+}
+
 /* Responsive */
 @media (min-width: 576px) {
 }

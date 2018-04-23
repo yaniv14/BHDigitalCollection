@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-16 10:23+0200\n"
+"POT-Creation-Date: 2018-04-23 13:05+0300\n"
 "PO-Revision-Date: 2018-02-20 08:50+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
+
+#: bhdigitalcollection/base_settings.py:122
+msgid "Hebrew"
+msgstr "עברית"
+
+#: bhdigitalcollection/base_settings.py:123
+msgid "English"
+msgstr "אנגלית"
 
 #: bhdigitalcollection/base_views.py:15
 msgid "Period"
@@ -33,11 +41,3 @@ msgstr "קידומת"
 #: bhdigitalcollection/fields.py:107
 msgid "Area or continent"
 msgstr "אזור או יבשת"
-
-#: bhdigitalcollection/settings.py:125
-msgid "Hebrew"
-msgstr "עברית"
-
-#: bhdigitalcollection/settings.py:126
-msgid "English"
-msgstr "אנגלית"
