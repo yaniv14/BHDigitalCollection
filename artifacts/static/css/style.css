@@ -958,6 +958,11 @@ label {
     font-size: 14px;
 }
 
+ul.form-control {
+    border: 0;
+    padding: 0;
+}
+
 .form-control:focus {
     font-style: normal;
     color: #7E8F9B;
@@ -979,11 +984,13 @@ ul.form-control li {
     width: 25%;
     position: relative;
     list-style-type: none;
+    margin-bottom: 1rem;
 }
 
 ul.form-control li input[type="checkbox"] {
     position: absolute;
-    width: auto;
+    width: 21px;
+    height: 21px;
     top: 7px;
 }
 
@@ -1346,6 +1353,46 @@ main {
 .badge {
     padding: 0.75rem 1.5rem;
     border-radius: 0;
+}
+
+#id_artifact_materials .custom-control-label::before {
+    width: 21px;
+    height: 21px;
+    border: 1px solid #AFC0CB;
+    background-color: #fff;
+}
+
+#id_artifact_materials .custom-control-label::after {
+    width: 21px;
+    height: 21px;
+}
+
+#id_artifact_materials .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #009DB2;
+    width: 21px;
+    height: 21px;
+}
+
+#id_artifact_materials .custom-control-input:checked ~ .custom-control-label::after {
+    content: "";
+    top: 8px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.artifact-type-radios {
+    position: relative;
+    padding: 0;
+    list-style-type: none;
+}
+
+.artifact-type-radios .custom-radio {
+    width: calc(20% - 10px);
 }
 
 /* Responsive */

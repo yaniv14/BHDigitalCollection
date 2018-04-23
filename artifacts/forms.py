@@ -3,7 +3,7 @@ from django.forms import inlineformset_factory
 from django_countries.widgets import CountrySelectWidget, LazySelectMultiple
 from django.utils.translation import ugettext_lazy as _
 from bhdigitalcollection.fields import ILPhoneNumberMultiWidget, CountryOrAreaMultiWidget, PeriodMultiWidget
-from bhdigitalcollection.widgets import OriginRadioSelect
+from bhdigitalcollection.widgets import OriginRadioSelect, MaterialCheckboxSelectMultiple, ArtifactTypeRadioSelect
 from users.models import User
 from .models import Artifact, ArtifactImage, OriginArea, ArtifactMaterial, ArtifactType
 
@@ -119,8 +119,8 @@ class ArtifactForm(UserArtifactForm):
             'year_to': forms.TextInput(attrs={'class': 'form-control'}),
             'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'description_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
-            'artifact_type': forms.Select(attrs={'class': 'form-control'}),
-            'artifact_materials': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'artifact_type': ArtifactTypeRadioSelect(attrs={'class': 'form-control'}),
+            'artifact_materials': MaterialCheckboxSelectMultiple(attrs={'class': 'form-control'}),
             'technical_data_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'technical_data_en': forms.Textarea(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'donor_name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),

@@ -166,7 +166,7 @@ class ArtifactDetailView(BHUIMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         d = super().get_context_data(**kwargs)
-        d['donors_artifacts'] = Artifact.objects.filter(is_private=True, status=3)
+        d['donors_artifacts'] = Artifact.objects.filter(is_private=True, status=3).exclude(pk=self.get_object().id)
         return d
 
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-23 13:28+0300\n"
-"PO-Revision-Date: 2018-04-23 13:29+0300\n"
+"PO-Revision-Date: 2018-04-23 15:02+0300\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -229,7 +229,7 @@ msgstr "שם באנגלית"
 
 #: models.py:118
 msgid "Slug"
-msgstr "מה זה"
+msgstr "קישור ידידותי"
 
 #: models.py:119
 msgid "Year from"

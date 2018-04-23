@@ -73,7 +73,7 @@ p.page-banner-credit {
 }
 
 ul.form-control li {
-    padding-left: 20px;
+    padding-left: 30px;
     float: left;
 }
 
@@ -118,6 +118,16 @@ ul.form-control li input[type="checkbox"] {
 
 footer .footer-top .footer-text {
     padding-right: 5rem;
+}
+
+/* Bootstrap */
+#id_artifact_materials .custom-control-input:checked ~ .custom-control-label::after {
+    left: 7px;
+}
+
+.artifact-type-radios .custom-radio {
+    float: left;
+    margin-right: 10px;
 }
 
 /* Responsive */
