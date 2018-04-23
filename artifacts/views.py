@@ -164,6 +164,11 @@ class ArtifactDetailView(BHUIMixin, DetailView):
             return 'artifacts/user_artifact_detail.html'
         return 'artifacts/artifact_detail.html'
 
+    def get_context_data(self, **kwargs):
+        d = super().get_context_data(**kwargs)
+        d['donors_artifacts'] = Artifact.objects.filter(is_private=True, status=3)
+        return d
+
 
 class ArtifactCreateStepOneView(BHUIMixin, FormView):
     template_name = 'artifacts/artifact_create_step_one.html'

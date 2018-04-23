@@ -73,6 +73,7 @@
             <script src="{% static 'js/slider.js' %}"></script>
         {% endif %}
         <script>
+            const isRtl = {{ LANGUAGE_BIDI|yesno:"true,false" }};
             $(function () {
                 ScrollPosStyler.init({
                     scrollOffsetY: 1,

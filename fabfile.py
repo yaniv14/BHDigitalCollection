@@ -305,8 +305,7 @@ def make_backup():
         "{}-%Y-%m-%d-%H-%M.sql.gz".format(env.project_name))
     run('mkdir -p {}'.format(env.backup_dir))
     fullpath = env.backup_dir + '/' + filename
-    run('sudo -u postgres pg_dump --no-acl --no-owner {} | gzip > {}'.format(env.app_name,
-                                                         fullpath))
+    run('sudo -u postgres pg_dump --no-acl --no-owner {} | gzip > {}'.format(env.app_name, fullpath))
     return fullpath
 
 

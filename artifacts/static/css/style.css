@@ -283,6 +283,19 @@ footer .square-btn {
     padding: 0.75rem;
 }
 
+.artifact-footer-line1 {
+    color: #EDEDED;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+}
+
+.artifact-footer-line2 {
+    color: #EDEDED;
+    font-size: 1.75rem;
+    line-height: 2rem;
+    font-weight: bold;
+}
+
 .round-btn {
     border-radius: 2rem !important;
 }
@@ -807,7 +820,7 @@ footer .main-footer.footer-top {
 
 .artifact-detail h1 {
     color: #51595F;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 2.7rem;
     font-family: "Suez One";
     line-height: 3.1rem;
@@ -822,8 +835,8 @@ footer .main-footer.footer-top {
 .artifact-detail h3 {
     color: #617786;
     font-weight: bold;
-    font-size: 1.6rem;
-    line-height: 3.1rem;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
 }
 
 .artifact-detail .description {
@@ -865,6 +878,41 @@ footer .main-footer.footer-top {
     line-height: 2.0rem;
     text-align: center;
     display: inline-block;
+}
+
+.donors-artifacts .item span.donor-item {
+    display: block;
+    width: calc((100vw / 5) - 10px);
+    height: calc((100vw / 5) - 10px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.donors-artifacts .item .item-info {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background: rgba(83, 81, 81, 0.6);
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    z-index: -1;
+}
+
+.donors-artifacts .item:hover .item-info {
+    transition: all 0.4s;
+    opacity: 1;
+    z-index: 1;
+}
+
+.donors-artifacts .item .item-info .item-name {
+    display: block;
+    font-weight: normal;
 }
 
 dt {

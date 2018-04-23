@@ -3,13 +3,19 @@
 
 {% block body_class %} class="artifact-detail"{% endblock %}
 
+{% block extrahead %}
+    <link href="{% static 'vendors/OwlCarousel2-2.3.4/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/OwlCarousel2-2.3.4/assets/owl.theme.default.min.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
     <main>
         <div id="carousel_artifacts" class="carousel slide" data-ride="carousel">
             {% if artifact.images.all|length > 1 %}
                 <ol class="carousel-indicators">
                     {% for image in artifact.images.all %}
-                        <li data-target="#carousel_artifacts" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}
+                        <li data-target="#carousel_artifacts" data-slide-to="{{ forloop.counter0 }}"
+                                {% if forloop.first %}
                             class="active" {% endif %}>
                             <img class="img-fluid" src="{{ image.image.url }}">
                         </li>
@@ -34,7 +40,7 @@
                 </a>
             {% endif %}
         </div>
-        <div class="container text-center">
+        <div class="container text-center pt-5">
             <h1>
                 {{ artifact|bd:'name' }}
             </h1>
@@ -102,17 +108,54 @@
                 </div>
             </div>
         </div>
-        {% comment %}
-        <div class="container">
-            <h3>{% trans 'Artifacts loaded by donors' %}</h3>
-            <div class="row">
-                {% for image in artifact.images.all %}
-                    <div class="col-6 col-md-3">
-                        <img src="{{ image.image.url }}" class="rounded img-thumbnail" alt="{{ artifact.name }}">
-                    </div>
-                {% endfor %}
+        {% if donors_artifacts %}
+            <div class="donors-artifacts pt-5 pb-5">
+                <div class="container">
+                    <h3 class="mb-5">{% trans 'Artifacts uploaded by donors' %}</h3>
+                </div>
+                <div class="owl-carousel donor-carousel">
+                    {% for item in donors_artifacts %}
+                        <div class="item">
+                            <a href="{{ item|get_slug_or_none }}">
+                                <span class="donor-item"
+                                      style="background-image: url({{ item.get_cover_image.image.url }})"></span>
+                            </a>
+                            <span class="item-info">
+                                {{ item|bd:'name' }}
+                                <span class="item-name">
+                                    {{ item.origin_country.name }}{% if item.get_years %}, {{ item.get_years }}{% endif %}
+                                </span>
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-        {% endcomment %}
+        {% endif %}
     </main>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'vendors/OwlCarousel2-2.3.4/owl.carousel.min.js' %}"></script>
+    <script>
+        $(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                rtl: isRtl,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    992: {
+                        items: 5
+                    }
+                }
+            })
+        })
+    </script>
 {% endblock %}
