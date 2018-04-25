@@ -7,7 +7,7 @@
                 <ul{% if id %} id="{{ id }}_{{ index }}"{% endif %}>
             {% endif %}
         {% for option in options %}
-            <li class="custom-control custom-radio">
+            <li class="custom-control custom-radio icon-{{ option.value|default:'0' }}">
                 {% include option.template_name with widget=option %}
             </li>
         {% endfor %}

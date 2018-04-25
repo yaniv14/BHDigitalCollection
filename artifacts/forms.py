@@ -84,10 +84,12 @@ class ArtifactForm(UserArtifactForm):
             'name_he',
             'name_en',
             'slug',
-            'origin_country',
+            # 'origin_country',
+            # 'origin_area',
+            'country_area',
             'origin_city_he',
             'origin_city_en',
-            'origin_area',
+            'period',
             'year_from',
             'year_to',
             'description_he',
@@ -113,8 +115,8 @@ class ArtifactForm(UserArtifactForm):
             'name_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl', 'placeholder': _('Item name')}),
             'name_en': forms.TextInput(
                 attrs={'class': 'form-control', 'dir': 'ltr', 'placeholder': ' English-Item name'}),
-            'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
-            'origin_area': forms.Select(attrs={'class': 'form-control'}),
+            # 'origin_country': CountrySelectWidget(attrs={'class': 'form-control'}),
+            # 'origin_area': forms.Select(attrs={'class': 'form-control'}),
             'year_from': forms.TextInput(attrs={'class': 'form-control'}),
             'year_to': forms.TextInput(attrs={'class': 'form-control'}),
             'description_he': forms.Textarea(attrs={'class': 'form-control', 'dir': 'rtl'}),
@@ -231,7 +233,7 @@ class ArtifactImageForm(UserArtifactImageForm):
             'year_era_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
             'location_he': forms.TextInput(attrs={'class': 'form-control', 'dir': 'rtl'}),
             'location_en': forms.TextInput(attrs={'class': 'form-control', 'dir': 'ltr'}),
-            'is_cover': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'is_cover': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
         }
 
 

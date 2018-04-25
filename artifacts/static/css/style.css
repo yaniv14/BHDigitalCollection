@@ -1350,9 +1350,58 @@ main {
 }
 
 /* Bootstrap */
+.formset-wrapper .jumbotron {
+    position: relative;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid #E3E3E4;
+}
+
+.add-row {
+    height: 40px;
+    width: 100%;
+    border: 1px solid #AFC0CB;
+    background-color: #EDF3F4;
+    color: #617786;
+    text-align: center;
+    font-size: 15px;
+    line-height: 40px;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.delete-row {
+    display: block;
+    position: absolute;
+    top: 0;
+    color: #fff;
+    background-color: #d02828;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+}
+
 .badge {
     padding: 0.75rem 1.5rem;
     border-radius: 0;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+}
+
+.custom-control-label::before {
+    background-color: #009DB2;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #009DB2;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #009DB2;
 }
 
 #id_artifact_materials .custom-control-label::before {
@@ -1392,7 +1441,121 @@ main {
 }
 
 .artifact-type-radios .custom-radio {
-    width: calc(20% - 10px);
+    width: calc(20% - 8px);
+    height: 97px;
+    border: 1px solid #AFC0CB;
+    padding: 60px 0 0 0;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.artifact-type-radios .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    background-color: #009DB2;
+}
+
+.artifact-type-radios .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #009DB2;
+}
+
+.artifact-type-radios .custom-radio .custom-control-label::before {
+    border-radius: 0;
+}
+
+.artifact-type-radios .custom-control-label::before {
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+}
+
+.artifact-type-radios .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+    background-image: none;
+    content: "";
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.artifact-type-radios .custom-control-label:hover::before {
+    background-color: #009DB2;
+}
+
+.artifact-type-radios .custom-radio:hover .custom-control-input:hover ~ .custom-control-label::after {
+    background-image: none;
+    content: "";
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.artifact-type-radios .custom-radio .custom-control-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: 60px;
+    overflow: hidden;
+}
+
+.icon-0 {
+    display: none;
+}
+
+.icon-1 {
+    background-image: url("/static/images/icons/judaica.png");
+}
+
+.icon-2 {
+    background-image: url("/static/images/icons/judaica.png");
+}
+
+.icon-3 {
+    background-image: url("/static/images/icons/jewelry.png");
+}
+
+.icon-4 {
+    background-image: url("/static/images/icons/clothes.png");
+}
+
+.icon-5 {
+    background-image: url("/static/images/icons/dishes.png");
+}
+
+.icon-6 {
+    background-image: url("/static/images/icons/clothes.png");
+}
+
+.icon-7 {
+    background-image: url("/static/images/icons/clothes.png");
+}
+
+.icon-8 {
+    background-image: url("/static/images/icons/clothes.png");
+}
+
+.icon-9 {
+    background-image: url("/static/images/icons/other.png");
+}
+
+.icon-10 {
+    background-image: url("/static/images/icons/clothes.png");
 }
 
 /* Responsive */

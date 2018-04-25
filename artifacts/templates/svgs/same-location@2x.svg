@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>same-location@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="same-location">
+            <g transform="translate(3.000000, 2.000000)">
+                <polygon id="Rectangle-3" fill="#D8D8D8" points="3.97081163 14 16.6948785 14 20 21 0 21"></polygon>
+                <path d="M10,17 C14,11.5496207 16,7.77788799 16,5.68480178 C16,2.54517245 13.3137085,0 10,0 C6.6862915,0 4,2.54517245 4,5.68480178 C4,7.77788799 6,11.5496207 10,17 Z" id="Oval-2" stroke="#FFFFFF" fill="#D8D8D8"></path>
+                <circle id="Oval-3" fill="#FFFFFF" cx="10" cy="5" r="2"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

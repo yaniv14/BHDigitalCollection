@@ -135,13 +135,29 @@ footer .footer-top .footer-text {
 }
 
 /* Bootstrap */
+.delete-row {
+    left: 0;
+}
+
 #id_artifact_materials .custom-control-input:checked ~ .custom-control-label::after {
     right: 7px;
+}
+
+.artifact-type-radios .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+    right: 5px;
+}
+
+.artifact-type-radios .custom-radio:hover .custom-control-input:hover ~ .custom-control-label::after {
+    right: 5px;
 }
 
 .artifact-type-radios .custom-radio {
     float: right;
     margin-left: 10px;
+}
+
+.artifact-type-radios .custom-radio:nth-child(6n) {
+    margin-left: 0;
 }
 
 /* Responsive */

@@ -1,27 +1,41 @@
 {% extends 'artifacts/base.html' %}
 {% load static bhdigitalcollection i18n %}
 
-{% block content %}
-    <div class="row justify-content-md-center">
-        <div class="col col-md-8">
-            <div class="steps clearfix">
-                <span class="step">1</span>
-                <span class="step">2</span>
-                <span class="step step_three">3</span>
+{% block main %}
+    <main>
+        <div class="justify-content-md-center pb-5">
+            <div class="form-header">
+                <div class="container">
+                    <div class="steps clearfix">
+                        <div class="step-item">
+                            <span class="step">1</span> {% trans 'About yourself' %}
+                        </div>
+                        <div class="step-item">
+                            <span class="step">2</span> {% trans 'Info about your item' %}
+                        </div>
+                        <div class="step-item">
+                            <span class="step current_step">3</span> <span class="step_active">{% trans 'Item pictures' %}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 class="text-center step_title">
-                3. {% trans 'Item pictures' %}
-            </h1>
-            <h4>
-                {% blocktrans trimmed %}
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                {% endblocktrans %}
-            </h4>
+            <div class="container">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <h1 class="step_title pt-5">
+                        {% trans 'Item pictures' %}
+                    </h1>
+                    <div class="form-description">
+                        {% blocktrans trimmed %}
+                            We'll be happy to see your item's pictures from several angles (successful photography tips) and even old photos of the item in use and with the family. You can upload up to 5 photos.
+                        {% endblocktrans %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 offset-md-3">
+                    {% include '_base_form.html' with form=form with_files=True submit_text=_('Upload item') labels=True full_size=True button_color='blue' btn_location='right' formset=artifact_image_formset %}
+                </div>
+            </div>
         </div>
-        <div class="col col-md-8">
-            {% include '_base_form.html' with form=form with_files=True button_color='red' submit_text=_('Donate item') labels=True formset=artifact_image_formset %}
-        </div>
-    </div>
+    </main>
 {% endblock %}
 
 {% block scripts %}
@@ -31,8 +45,8 @@
         $(".{{ artifact_image_formset.prefix }}").formset({
             prefix: "{{ artifact_image_formset.prefix }}",
             formCssClass: "dynamic-{{ artifact_image_formset.prefix }}",
-            addText: "{% trans 'Add' %}",
-            deleteText: "{% trans 'Delete' %}"
+            addText: "{% trans 'To upload another image' %}",
+            deleteText: "{% trans 'X' %}"
         });
     })
 </script>

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-23 13:28+0300\n"
-"PO-Revision-Date: 2018-04-23 15:02+0300\n"
+"POT-Creation-Date: 2018-04-25 10:20+0300\n"
+"PO-Revision-Date: 2018-04-25 10:20+0300\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -46,7 +46,7 @@ msgstr "שנה מדוייקת"
 msgid "Year range"
 msgstr "טווח שנים"
 
-#: forms.py:43 forms.py:113 forms.py:150
+#: forms.py:43 forms.py:115 forms.py:152
 msgid "Item name"
 msgstr "שם הפריט"
 
@@ -75,50 +75,50 @@ msgstr "תיאור טכני"
 msgid "Credit"
 msgstr "קרדיט לצלם"
 
-#: forms.py:258
+#: forms.py:260
 msgid "I approve that I have all the rights to uplaod the image"
 msgstr "אני מאשר שיש בידי את כל הזכויות להעלות את התמונה"
 
-#: forms.py:260
+#: forms.py:262
 msgid "I would love to get info"
 msgstr "אשמח לקבל את עידכונים ודיוורים"
 
-#: forms.py:269
+#: forms.py:271
 msgid "You must approve that you have the rights for the pictures"
 msgstr "חובה לאשר שאתה בעל הזכויות על התמונות"
 
-#: forms.py:293 forms.py:296
+#: forms.py:295 forms.py:298
 msgid "First and last name"
 msgstr "שם מלא"
 
-#: forms.py:299
+#: forms.py:301
 msgid "Phone number"
 msgstr "מספר טלפון"
 
-#: forms.py:301 forms.py:321
+#: forms.py:303 forms.py:323
 msgid "Mobile preferred"
 msgstr "אפשר גם סלולרי"
 
-#: forms.py:304
+#: forms.py:306
 msgid "Email address"
 msgstr "דואר אלקטרוני"
 
-#: forms.py:308
+#: forms.py:310
 msgid "We will never send you spam"
 msgstr "לא נשלח ספאם או פרסומות"
 
-#: forms.py:311
+#: forms.py:313
 msgid ""
 "These information is for contact reference only, it won't submitted to 3rd "
 "party without your consent"
 msgstr "פרטים אלו לצורך התקשרות בלבד. לא ינתנו לצד שלישי ללא הסכמתך"
 
-#: forms.py:329
+#: forms.py:331
 msgid ""
 "There is an existing account with that email address, please login first"
 msgstr "קיים חשבון עם כתובת מייל זו, נא לבצע התחברות למערכת"
 
-#: forms.py:375
+#: forms.py:377
 msgid "Location"
 msgstr "מהיכן הפריט"
 
@@ -198,8 +198,8 @@ msgstr "תמונה"
 msgid "Background image"
 msgstr "תמונת רקע"
 
-#: models.py:109 templates/artifacts/artifact_detail.html:77
-#: templates/artifacts/user_artifact_detail.html:72
+#: models.py:109 templates/artifacts/artifact_detail.html:83
+#: templates/artifacts/user_artifact_detail.html:78
 msgid "Artifact material"
 msgstr "חומר הפריט"
 
@@ -347,7 +347,7 @@ msgstr "תמונת שער?"
 msgid "Small thumbnail square"
 msgstr "חיתוך ריבוע קטן"
 
-#: models.py:226
+#: models.py:226 templates/artifacts/artifact_create_step_three.html:49
 msgid "X"
 msgstr "X"
 
@@ -504,13 +504,11 @@ msgid "Save"
 msgstr "שמור"
 
 #: templates/artifacts/artifact_createPersonDetails.html:30
-#: templates/artifacts/artifact_create_step_three.html:34
 #: templates/artifacts/artifact_image.html:29
 msgid "Add"
 msgstr "הוסף"
 
 #: templates/artifacts/artifact_createPersonDetails.html:31
-#: templates/artifacts/artifact_create_step_three.html:35
 #: templates/artifacts/artifact_image.html:30
 #: templates/artifacts/artifact_material_delete.html:11
 #: templates/artifacts/artifact_material_list.html:21
@@ -525,18 +523,21 @@ msgstr "מחק"
 
 #: templates/artifacts/artifact_create_step_one.html:11
 #: templates/artifacts/artifact_create_step_one.html:36
+#: templates/artifacts/artifact_create_step_three.html:11
 #: templates/artifacts/artifact_create_step_two.html:11
 msgid "About yourself"
 msgstr "קצת פרטים עליך"
 
 #: templates/artifacts/artifact_create_step_one.html:14
+#: templates/artifacts/artifact_create_step_three.html:14
 #: templates/artifacts/artifact_create_step_two.html:14
 #: templates/artifacts/artifact_create_step_two.html:25
 msgid "Info about your item"
 msgstr "מידע על הפריט שלך"
 
 #: templates/artifacts/artifact_create_step_one.html:17
-#: templates/artifacts/artifact_create_step_three.html:13
+#: templates/artifacts/artifact_create_step_three.html:17
+#: templates/artifacts/artifact_create_step_three.html:25
 #: templates/artifacts/artifact_create_step_two.html:17
 msgid "Item pictures"
 msgstr "תמונות של הפריט"
@@ -550,7 +551,6 @@ msgid "Upload item in 3 simple steps"
 msgstr "העלו פריט ב-3 שלבים פשוטים"
 
 #: templates/artifacts/artifact_create_step_one.html:31
-#: templates/artifacts/artifact_create_step_three.html:16
 #: templates/artifacts/artifact_create_step_two.html:28
 msgid ""
 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
@@ -564,40 +564,57 @@ msgstr ""
 msgid "Continue"
 msgstr "המשך"
 
-#: templates/artifacts/artifact_create_step_three.html:22
-msgid "Donate item"
-msgstr "תרמו פריט"
+#: templates/artifacts/artifact_create_step_three.html:28
+msgid ""
+"We'll be happy to see your item's pictures from several angles (successful "
+"photography tips) and even old photos of the item in use and with the "
+"family. You can upload up to 5 photos."
+msgstr ""
+"נשמח לתמונות של הפריט שלך מכמה זויות (טיפים לצילום מוצלח) ואף לתמונות  ישנות "
+"של הפריט בשימוש ועם המשפחה. ניתן להעלות עד 5 תמונות."
 
-#: templates/artifacts/artifact_detail.html:57
+#: templates/artifacts/artifact_create_step_three.html:34
+msgid "Upload item"
+msgstr "העלו פריט"
+
+#: templates/artifacts/artifact_create_step_three.html:48
+msgid "To upload another image"
+msgstr "להעלאת תמונה נוספת"
+
+#: templates/artifacts/artifact_detail.html:63
 msgid "More information"
 msgstr "מידע נוסף"
 
-#: templates/artifacts/artifact_detail.html:62
-#: templates/artifacts/user_artifact_detail.html:57
+#: templates/artifacts/artifact_detail.html:68
+#: templates/artifacts/user_artifact_detail.html:63
 msgid "Donor name"
 msgstr "שם התורם/משאיל"
 
-#: templates/artifacts/artifact_detail.html:67
-#: templates/artifacts/user_artifact_detail.html:62
+#: templates/artifacts/artifact_detail.html:73
+#: templates/artifacts/user_artifact_detail.html:68
 msgid "Origin"
 msgstr "ארץ מקור"
 
-#: templates/artifacts/artifact_detail.html:72
-#: templates/artifacts/user_artifact_detail.html:67
+#: templates/artifacts/artifact_detail.html:78
+#: templates/artifacts/user_artifact_detail.html:73
 msgid "Year"
 msgstr "שנה/תקופה"
 
-#: templates/artifacts/artifact_detail.html:91
+#: templates/artifacts/artifact_detail.html:97
 msgid "Displayed"
 msgstr "מוצג במוזיאון"
 
-#: templates/artifacts/artifact_detail.html:91
+#: templates/artifacts/artifact_detail.html:97
 msgid "Beit Hatfusot"
 msgstr "בית התפוצות"
 
-#: templates/artifacts/artifact_detail.html:96
+#: templates/artifacts/artifact_detail.html:102
 msgid "Tags"
 msgstr "תגיות"
+
+#: templates/artifacts/artifact_detail.html:115
+msgid "Artifacts uploaded by donors"
+msgstr "פריטים שגולשים העלו"
 
 #: templates/artifacts/artifact_material_list.html:13
 msgid "Add new material"
@@ -673,19 +690,19 @@ msgstr "שם"
 msgid "Thank you for your part of the story"
 msgstr "תודה שאתם חלק מהסיפור"
 
-#: templates/artifacts/user_artifact_detail.html:84
+#: templates/artifacts/user_artifact_detail.html:90
 msgid "uploaded by"
 msgstr "הועלה ע\"י"
 
-#: templates/artifacts/user_artifact_detail.html:88
+#: templates/artifacts/user_artifact_detail.html:94
 msgid "more about community"
 msgstr "עוד על קהילת"
 
-#: templates/artifacts/user_artifact_detail.html:93
+#: templates/artifacts/user_artifact_detail.html:99
 msgid "share"
 msgstr "שתפו"
 
-#: templates/artifacts/user_artifact_detail.html:108
+#: templates/artifacts/user_artifact_detail.html:115
 msgid "Maybe you would like these"
 msgstr "אולי יעניין אותן גם"
 
@@ -729,69 +746,72 @@ msgstr "רשימת פרטי משתמשים"
 msgid "Artifact detail"
 msgstr "פרטי פריט"
 
-#: views.py:172 views.py:215
+#: views.py:177 views.py:220
 msgid "Artifact create"
 msgstr "יצירת פריט"
 
-#: views.py:217
+#: views.py:222
 msgid "Some Artifact Description"
 msgstr "תיאור קצר"
 
-#: views.py:274
+#: views.py:279
 msgid "Artifact update"
 msgstr "עדכון פריט"
 
-#: views.py:276
+#: views.py:281
 msgid "Update successfully"
 msgstr "נשמר בהצלחה"
 
-#: views.py:322
+#: views.py:327
 msgid "Artifact Images"
 msgstr "תמונות הפריט"
 
-#: views.py:375
+#: views.py:380
 msgid "Image crop"
 msgstr "חיתוך תמונה"
 
-#: views.py:495
+#: views.py:500
 msgid "Origin area delete"
 msgstr "מחיקת תמונת פריט"
 
-#: views.py:504
+#: views.py:509
 msgid "Origin area create"
 msgstr "הוספת אזור"
 
-#: views.py:513 views.py:548
+#: views.py:518 views.py:553
 msgid "Origin area update"
 msgstr "עדכון אזור"
 
-#: views.py:521
+#: views.py:526
 msgid "Origin area list"
 msgstr "רשימת אזורים"
 
-#: views.py:530
+#: views.py:535
 msgid "Artifact material create"
 msgstr "חומר פריט"
 
-#: views.py:539
+#: views.py:544
 msgid "Artifact material update"
 msgstr "חומר הפריט"
 
-#: views.py:563
+#: views.py:568
 msgid "Artifact type create"
 msgstr "יצירת סוג פריט"
 
-#: views.py:572
+#: views.py:577
 msgid "Artifact type update"
 msgstr "עדכון סוג הפריט"
 
-#: views.py:581
+#: views.py:586
 msgid "Artifact type delete"
 msgstr "מחיקת סוג הפריט"
 
-#: views.py:595
+#: views.py:600
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
+
+#~ msgid "Donate item"
+#~ msgstr "תרמו פריט"
 
 #~ msgid "you are part of the story"
 #~ msgstr "גם אתם חלק מהסיפור"
@@ -804,9 +824,6 @@ msgstr "יצירת תמונת פריט"
 
 #~ msgid "Technical data about the item"
 #~ msgstr "תיאור טכני"
-
-#~ msgid "Artifacts loaded by donors"
-#~ msgstr "פריטים שגולשים העלו"
 
 #~ msgid "Log In"
 #~ msgstr "כניסה"
@@ -840,9 +857,6 @@ msgstr "יצירת תמונת פריט"
 
 #~ msgid "City"
 #~ msgstr "עיר"
-
-#~ msgid "Upload images"
-#~ msgstr "העלה תמונות"
 
 #~ msgid "year"
 #~ msgstr "שנה"
