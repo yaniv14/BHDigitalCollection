@@ -120,6 +120,10 @@ footer .footer-top .footer-text {
     padding-right: 5rem;
 }
 
+.share-icon {
+    margin-right: 20px;
+}
+
 /* Bootstrap */
 .delete-row {
     right: 0;

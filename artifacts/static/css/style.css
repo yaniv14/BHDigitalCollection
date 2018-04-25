@@ -206,6 +206,12 @@ h4, .h4 {
     color: #666666;
 }
 
+.inline-svg {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 40px;
+}
+
 /* Buttons */
 .btn-outline-gray {
     border-radius: 0;
@@ -913,6 +919,55 @@ footer .main-footer.footer-top {
 .donors-artifacts .item .item-info .item-name {
     display: block;
     font-weight: normal;
+}
+
+.similar-items {
+    display: inline-block;
+}
+
+.similar-item {
+    display: inline-block;
+}
+
+.similar-item:hover {
+    border-bottom: 2px solid #47C3D3;
+}
+
+.similar-item.same-items:hover svg #similar-items use {
+    fill: #47C3D3;
+}
+
+.similar-item.same-location:hover svg #same-location path,
+.similar-item.same-location:hover svg #same-location polygon {
+    fill: #47C3D3;
+}
+
+.similar-item.same-user:hover svg #same-user circle,
+.similar-item.same-user:hover svg #same-user path {
+    fill: #47C3D3;
+}
+
+.similar-item span.hover-text {
+    display: none;
+    color: #47C3D3;
+    font-size: 20px;
+}
+
+.similar-item:hover span.hover-text {
+    display: inline;
+}
+
+.share-icon {
+    min-width: 0 !important;
+}
+
+.share-icon svg {
+    height: 22px;
+    width: auto;
+}
+
+.share-icon svg path {
+    fill: #47C3D3 !important;
 }
 
 dt {

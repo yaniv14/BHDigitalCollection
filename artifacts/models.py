@@ -146,7 +146,7 @@ class Artifact(models.Model):
     def get_years(self):
         if self.year_from:
             if self.year_to:
-                if self.year_from == self.year_to:
+                if self.year_from != self.year_to:
                     return '{}-{}'.format(self.year_from, self.year_to)
             return self.year_from
         elif self.year_to:

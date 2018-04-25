@@ -47,6 +47,7 @@ class AboutView(BHUIMixin, TemplateView):
     template_name = 'artifacts/about.html'
     page_title = _('About')
     page_name = 'about'
+    page_banner = PageBanner.objects.filter(active=True, page='museum_collections').order_by('?').first()
 
 
 class PartOfTheStoryView(BHUIMixin, TemplateView):

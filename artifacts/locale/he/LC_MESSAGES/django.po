@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-25 10:20+0300\n"
-"PO-Revision-Date: 2018-04-25 10:20+0300\n"
+"POT-Creation-Date: 2018-04-25 14:00+0300\n"
+"PO-Revision-Date: 2018-04-25 14:01+0300\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -694,17 +694,25 @@ msgstr "תודה שאתם חלק מהסיפור"
 msgid "uploaded by"
 msgstr "הועלה ע\"י"
 
-#: templates/artifacts/user_artifact_detail.html:94
+#: templates/artifacts/user_artifact_detail.html:95
 msgid "more about community"
 msgstr "עוד על קהילת"
 
-#: templates/artifacts/user_artifact_detail.html:99
-msgid "share"
-msgstr "שתפו"
-
-#: templates/artifacts/user_artifact_detail.html:115
+#: templates/artifacts/user_artifact_detail.html:116
 msgid "Maybe you would like these"
 msgstr "אולי יעניין אותן גם"
+
+#: templates/artifacts/user_artifact_detail.html:121
+msgid "Items from the same place"
+msgstr "פריטים מאותו מקום"
+
+#: templates/artifacts/user_artifact_detail.html:125
+msgid "Similar items"
+msgstr "פריטים דומים"
+
+#: templates/artifacts/user_artifact_detail.html:129
+msgid "Items from the same user"
+msgstr "פריטים של אותו משתמש"
 
 #: templates/period_multiwidget.html:5
 msgid "Or choose era"
@@ -810,6 +818,9 @@ msgstr "מחיקת סוג הפריט"
 msgid "Artifact image create"
 msgstr "יצירת תמונת פריט"
 
+#~ msgid "share"
+#~ msgstr "שתפו"
+
 #~ msgid "Donate item"
 #~ msgstr "תרמו פריט"
 
@@ -818,9 +829,6 @@ msgstr "יצירת תמונת פריט"
 
 #~ msgid "Read more"
 #~ msgstr "קרא עוד"
-
-#~ msgid "from the same origin"
-#~ msgstr "פריטים מאותו מקום"
 
 #~ msgid "Technical data about the item"
 #~ msgstr "תיאור טכני"

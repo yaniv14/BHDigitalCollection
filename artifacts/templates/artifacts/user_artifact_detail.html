@@ -70,7 +70,7 @@
                     <hr/>
                     <dl class="row">
                         <dt class="col-sm-4">{% trans 'Year' %}</dt>
-                        <dd class="col-sm-8">{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}</dd>
+                        <dd class="col-sm-8">{{ artifact.get_years|default_if_none:'' }}</dd>
                     </dl>
                     <hr/>
                     <dl class="row">
@@ -86,17 +86,18 @@
                 <div class="col-3">
                     <div class="upload-share">
                         <p>
-                            {% trans 'uploaded by' %} {{ artifact|bd:'donor_name' }}
+                            {% svg_icon 'user@2x' class_name='inline-svg' lang=False %} {% trans 'uploaded by' %} {{ artifact|bd:'donor_name' }}
                         </p>
                         <p>
-                            <a href="#">
-                                {% trans 'more about community' %} {{ artifact.origin_country.name }}
-                            </a>
+                            {% comment %}<a href="#">{% endcomment %}
+                            {% svg_icon 'read-more@2x' class_name='inline-svg' lang=False %} {% trans 'more about community' %} {{ artifact.origin_country.name }}
+                            {% comment %}</a>{% endcomment %}
                         </p>
                         <p>
-                            <a href="#">
-                                {% trans 'share' %}
-                            </a>
+                            {% svg_icon 'share@2x' class_name='inline-svg' lang=False %}
+                            {% svg_icon 'facebook' class_name='inline-svg share-icon' lang=False %}
+                            {% svg_icon 'mail' class_name='inline-svg share-icon' lang=False %}
+                            {% svg_icon 'whatsup' class_name='inline-svg share-icon' lang=False %}
                         </p>
                     </div>
                 </div>
@@ -111,7 +112,23 @@
         </div>
         {% if donors_artifacts %}
             <div class="container">
-                <h4 class="header-more">{% trans 'Maybe you would like these' %}</h4>
+                <h4 class="header-more d-inline-block">
+                    {% trans 'Maybe you would like these' %}:
+                </h4>
+                <div class="similar-items">
+                    <div class="similar-item same-location">
+                        {% svg_icon 'same-location@2x' class_name='inline-svg' lang=False %}
+                        <span class="hover-text">{% trans 'Items from the same place' %}</span>
+                    </div>
+                    <div class="similar-item same-items">
+                        {% svg_icon 'same-items@2x' class_name='inline-svg' lang=False %}
+                        <span class="hover-text">{% trans 'Similar items' %}</span>
+                    </div>
+                    <div class="similar-item same-user">
+                        {% svg_icon 'same-user@2x' class_name='inline-svg' lang=False %}
+                        <span class="hover-text">{% trans 'Items from the same user' %}</span>
+                    </div>
+                </div>
             </div>
             <div class="donors-artifacts pt-3 pb-3">
                 <div class="owl-carousel donor-carousel">

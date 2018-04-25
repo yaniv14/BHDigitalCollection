@@ -45,7 +45,7 @@
                 {{ artifact|bd:'name' }}
             </h1>
             <div class="sub-title">
-                {{ artifact.origin_country.name }}, {{ artifact.year_from }}-{{ artifact.year_to }}
+                {{ artifact.origin_country.name }}{% if artifact.get_years %}, {{ artifact.get_years }}{% endif %}
             </div>
             <p class="description">{{ artifact|bd:'description'|linebreaksbr }}</p>
             {% comment %}
@@ -75,7 +75,7 @@
                     <hr/>
                     <dl class="row">
                         <dt class="col-sm-3">{% trans 'Year' %}</dt>
-                        <dd class="col-sm-9">{{ artifact.year_from }}-{{ artifact.year_to }}</dd>
+                        <dd class="col-sm-9">{{ artifact.get_years|default_if_none:'' }}</dd>
                     </dl>
                     <hr/>
                     <dl class="row">

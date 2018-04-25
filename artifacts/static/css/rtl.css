@@ -134,6 +134,10 @@ footer .footer-top .footer-text {
     padding-left: 5rem;
 }
 
+.share-icon {
+    margin-left: 20px;
+}
+
 /* Bootstrap */
 .delete-row {
     left: 0;
