@@ -9,8 +9,8 @@ class ArtifactImageInline(admin.TabularInline):
 
 
 class ArtifactAdmin(admin.ModelAdmin):
-    list_display = ('uploaded_at', 'name_he', 'status', 'is_private', 'is_featured')
-    list_display_links = ('uploaded_at', 'name_he', 'status', 'is_private', 'is_featured')
+    list_display = ('uploaded_at', 'item_no', 'name_he', 'status', 'is_private', 'is_featured')
+    list_display_links = ('uploaded_at', 'item_no', 'name_he', 'status', 'is_private', 'is_featured')
     inlines = [
         ArtifactImageInline,
     ]
