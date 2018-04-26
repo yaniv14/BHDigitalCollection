@@ -441,40 +441,80 @@ class CropImageFormView(BHUIMixin, FormView):
         image_obj = ArtifactImage.objects.get(pk=int(self.kwargs['pk']))
         thumb_dict = OrderedDict()
         if small_thumbnail:
-            thumb_dict['small_thumbnail'] = [
-                small_thumbnail.get('x'),
-                small_thumbnail.get('y'),
-                small_thumbnail.get('x') + small_thumbnail.get('width'),
-                small_thumbnail.get('y') + small_thumbnail.get('height'),
-            ]
+            if type(small_thumbnail) is list:
+                thumb_dict['small_thumbnail'] = [
+                    small_thumbnail[0],
+                    small_thumbnail[1],
+                    small_thumbnail[0] + small_thumbnail[2],
+                    small_thumbnail[1] + small_thumbnail[3],
+                ]
+            else:
+                thumb_dict['small_thumbnail'] = [
+                    small_thumbnail.get('x'),
+                    small_thumbnail.get('y'),
+                    small_thumbnail.get('x') + small_thumbnail.get('width'),
+                    small_thumbnail.get('y') + small_thumbnail.get('height'),
+                ]
         if small_thumbnail_vertical:
-            thumb_dict['small_thumbnail_vertical'] = [
-                small_thumbnail_vertical.get('x'),
-                small_thumbnail_vertical.get('y'),
-                small_thumbnail_vertical.get('x') + small_thumbnail_vertical.get('width'),
-                small_thumbnail_vertical.get('y') + small_thumbnail_vertical.get('height'),
-            ]
+            if type(small_thumbnail_vertical) is list:
+                thumb_dict['small_thumbnail_vertical'] = [
+                    small_thumbnail_vertical[0],
+                    small_thumbnail_vertical[1],
+                    small_thumbnail_vertical[0] + small_thumbnail_vertical[2],
+                    small_thumbnail_vertical[1] + small_thumbnail_vertical[3],
+                ]
+            else:
+                thumb_dict['small_thumbnail_vertical'] = [
+                    small_thumbnail_vertical.get('x'),
+                    small_thumbnail_vertical.get('y'),
+                    small_thumbnail_vertical.get('x') + small_thumbnail_vertical.get('width'),
+                    small_thumbnail_vertical.get('y') + small_thumbnail_vertical.get('height'),
+                ]
         if big_thumbnail:
-            thumb_dict['big_thumbnail'] = [
-                big_thumbnail.get('x'),
-                big_thumbnail.get('y'),
-                big_thumbnail.get('x') + big_thumbnail.get('width'),
-                big_thumbnail.get('y') + big_thumbnail.get('height'),
-            ]
+            if type(big_thumbnail) is list:
+                thumb_dict['big_thumbnail'] = [
+                    big_thumbnail[0],
+                    big_thumbnail[1],
+                    big_thumbnail[0] + big_thumbnail[2],
+                    big_thumbnail[1] + big_thumbnail[3],
+                ]
+            else:
+                thumb_dict['big_thumbnail'] = [
+                    big_thumbnail.get('x'),
+                    big_thumbnail.get('y'),
+                    big_thumbnail.get('x') + big_thumbnail.get('width'),
+                    big_thumbnail.get('y') + big_thumbnail.get('height'),
+                ]
         if cover:
-            thumb_dict['cover'] = [
-                cover.get('x'),
-                cover.get('y'),
-                cover.get('x') + cover.get('width'),
-                cover.get('y') + cover.get('height'),
-            ]
+            if type(cover) is list:
+                thumb_dict['cover'] = [
+                    cover[0],
+                    cover[1],
+                    cover[0] + cover[2],
+                    cover[1] + cover[3],
+                ]
+            else:
+                thumb_dict['cover'] = [
+                    cover.get('x'),
+                    cover.get('y'),
+                    cover.get('x') + cover.get('width'),
+                    cover.get('y') + cover.get('height'),
+                ]
         if footer:
-            thumb_dict['footer'] = [
-                footer.get('x'),
-                footer.get('y'),
-                footer.get('x') + footer.get('width'),
-                footer.get('y') + footer.get('height'),
-            ]
+            if type(footer) is list:
+                thumb_dict['footer'] = [
+                    footer[0],
+                    footer[1],
+                    footer[0] + footer[2],
+                    footer[1] + footer[3],
+                ]
+            else:
+                thumb_dict['footer'] = [
+                    footer.get('x'),
+                    footer.get('y'),
+                    footer.get('x') + footer.get('width'),
+                    footer.get('y') + footer.get('height'),
+                ]
         image_obj.thumbnails = thumb_dict
         image_obj.save()
         image_obj.generate_thumbnails()
