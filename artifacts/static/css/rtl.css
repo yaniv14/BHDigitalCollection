@@ -27,6 +27,15 @@ p.page-banner-credit {
     left: 0;
 }
 
+/* Owl Carousel */
+.owl-carousel .owl-nav button.owl-next {
+    float: left;
+}
+
+.owl-carousel .owl-nav button.owl-prev {
+    float: right;
+}
+
 /* Hamburger menu */
 .nav-toggle {
     left: 0.5rem;

@@ -638,7 +638,7 @@ footer .footer-top .footer-text a {
 }
 
 footer .main-footer.footer-top {
-    height: calc(100vw / 9);
+    height: calc(100vw / 8);
     background-color: #ccc;
 }
 
@@ -1298,6 +1298,22 @@ main {
 .carousel-indicators li {
     text-indent: 0;
     height: 30px;
+}
+
+/* Owl Carousel */
+.owl-nav {
+    position: absolute;
+    top: calc(50% - 30px);
+    width: 100%;
+    clear: both;
+    padding: 0 1rem;
+}
+
+.owl-carousel .owl-nav button.owl-next span,
+.owl-carousel .owl-nav button.owl-prev span {
+    font-size: 50px;
+    line-height: 50px;
+    vertical-align: middle;
 }
 
 /* Hamburger menu */
